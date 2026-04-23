@@ -18,13 +18,13 @@
 
     {{-- Schema.org LocalBusiness --}}
     <script type="application/ld+json">
+    @verbatim
     {
         "@context": "https://schema.org",
         "@type": "TaxiService",
         "name": "TaxiCentrale",
         "description": "Professioneel taxivervoer 24/7 beschikbaar",
         "telephone": "+31-XX-XXX-XXXX",
-        "url": "{{ config('app.url') }}",
         "openingHours": "Mo-Su 00:00-24:00",
         "priceRange": "€€",
         "areaServed": {
@@ -32,6 +32,7 @@
             "name": "Nederland"
         }
     }
+    @endverbatim
     </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

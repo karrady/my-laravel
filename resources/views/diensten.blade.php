@@ -34,12 +34,12 @@
                     Stressvrij reizen begint met een betrouwbare transfer. Wij volgen uw vlucht live en passen de ophaaltime aan bij vertraging. U hoeft nergens op te wachten — wij wachten op u.
                 </p>
                 <ul class="space-y-3 mb-8">
-                    @foreach(['Vlucht tracking inbegrepen', 'Ophalen bij aankomsthal', 'Hulp bij bagage', 'Alle luchthavens in Nederland', 'Vaste prijs vooraf'])
+                    @foreach(['Vlucht tracking inbegrepen', 'Ophalen bij aankomsthal', 'Hulp bij bagage', 'Alle luchthavens in Nederland', 'Vaste prijs vooraf'] as $feature)
                     <li class="flex items-center gap-3 text-gray-300 text-sm">
                         <div class="w-5 h-5 bg-[#f5c518]/20 rounded-full flex items-center justify-center flex-shrink-0">
                             <svg class="w-3 h-3 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                         </div>
-                        {{ $loop->current }}
+                        {{ $feature }}
                     </li>
                     @endforeach
                 </ul>
