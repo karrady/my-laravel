@@ -35,6 +35,8 @@
     @endverbatim
     </script>
 
+    <link rel="icon" type="image/svg+xml" href="/images/logo-icon.svg">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,17 +49,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 {{-- Logo --}}
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 bg-[#f5c518] rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.08 3.11H5.77L6.85 7zM19 17H5v-5h14v5z"/>
-                            <circle cx="7.5" cy="14.5" r="1.5"/>
-                            <circle cx="16.5" cy="14.5" r="1.5"/>
-                        </svg>
-                    </div>
-                    <span class="text-xl font-bold tracking-tight">
-                        Taxi<span class="text-[#f5c518]">Centrale</span>
-                    </span>
+                <a href="{{ route('home') }}" class="group hover:opacity-90 transition-opacity">
+                    <img src="/images/logo.svg" alt="TaxiCentrale" class="h-10 w-auto">
                 </a>
 
                 {{-- Desktop nav --}}
@@ -118,15 +111,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {{-- Brand --}}
                 <div class="lg:col-span-2">
-                    <a href="{{ route('home') }}" class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-[#f5c518] rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.08 3.11H5.77L6.85 7zM19 17H5v-5h14v5z"/>
-                                <circle cx="7.5" cy="14.5" r="1.5"/>
-                                <circle cx="16.5" cy="14.5" r="1.5"/>
-                            </svg>
-                        </div>
-                        <span class="text-xl font-bold">Taxi<span class="text-[#f5c518]">Centrale</span></span>
+                    <a href="{{ route('home') }}" class="inline-block mb-4 hover:opacity-80 transition-opacity">
+                        <img src="/images/logo.svg" alt="TaxiCentrale" class="h-9 w-auto">
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
                         Betrouwbaar, professioneel en 24/7 beschikbaar. Wij zorgen dat u altijd op tijd en comfortabel op uw bestemming aankomt.
