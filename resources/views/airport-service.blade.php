@@ -79,28 +79,29 @@
                 </div>
                 <div class="divide-y divide-gray-100">
                     @foreach([
-                        ['plaats' => 'Ammerstol',               'prijs' => '€115'],
-                        ['plaats' => 'Bergambacht',             'prijs' => '€105'],
-                        ['plaats' => 'Berkenwoude',             'prijs' => '€110'],
-                        ['plaats' => 'Bodegraven',              'prijs' => '€85'],
-                        ['plaats' => 'Boskoop',                 'prijs' => '€85'],
-                        ['plaats' => 'Gouda',                   'prijs' => '€85'],
-                        ['plaats' => 'Gouderak',                'prijs' => '€100'],
-                        ['plaats' => 'Haastrecht',              'prijs' => '€100'],
-                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€130'],
-                        ['plaats' => 'Lekkerkerk',              'prijs' => '€130'],
-                        ['plaats' => 'Moordrecht',              'prijs' => '€95'],
-                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€110'],
-                        ['plaats' => 'Ouderkerk a/d IJssel',    'prijs' => '€120'],
-                        ['plaats' => 'Oudewater',               'prijs' => '€120'],
-                        ['plaats' => 'Reeuwijk',                'prijs' => '€85'],
-                        ['plaats' => 'Reeuwijk Sluipwijk',      'prijs' => '€95'],
-                        ['plaats' => 'Schoonhoven',             'prijs' => '€125'],
-                        ['plaats' => 'Stolwijk',                'prijs' => '€100'],
-                        ['plaats' => 'Vlist',                   'prijs' => '€110'],
-                        ['plaats' => 'Waddinxveen',             'prijs' => '€85'],
-                        ['plaats' => 'Waddinxveen Zuidplas',    'prijs' => '€90'],
-                        ['plaats' => 'Zevenhuizen/Moerkapelle', 'prijs' => '€110'],
+                        ['plaats' => 'Ammerstol',               'prijs' => '€99,50'],
+                        ['plaats' => 'Bergambacht',             'prijs' => '€99,50'],
+                        ['plaats' => 'Berkenwoude',             'prijs' => '€99,50'],
+                        ['plaats' => 'Bodegraven',              'prijs' => '€79,50'],
+                        ['plaats' => 'Boskoop',                 'prijs' => '€79,50'],
+                        ['plaats' => 'Capelle a/d IJssel',      'prijs' => '€99,50'],
+                        ['plaats' => 'Gouda',                   'prijs' => '€79,50'],
+                        ['plaats' => 'Gouderak',                'prijs' => '€89,50'],
+                        ['plaats' => 'Haastrecht',              'prijs' => '€89,50'],
+                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€94,50'],
+                        ['plaats' => 'Krimpen a/d Lek',         'prijs' => '€109,50'],
+                        ['plaats' => 'Lekkerkerk',              'prijs' => '€109,50'],
+                        ['plaats' => 'Moerkapelle',             'prijs' => '€89,50'],
+                        ['plaats' => 'Moordrecht',              'prijs' => '€84,50'],
+                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€94,50'],
+                        ['plaats' => 'Oudekerk a/d IJssel',     'prijs' => '€99,50'],
+                        ['plaats' => 'Oudewater',               'prijs' => '€99,50'],
+                        ['plaats' => 'Reeuwijk',                'prijs' => '€79,50'],
+                        ['plaats' => 'Schoonhoven',             'prijs' => '€109,50'],
+                        ['plaats' => 'Stolwijk',                'prijs' => '€94,50'],
+                        ['plaats' => 'Vlist',                   'prijs' => '€94,50'],
+                        ['plaats' => 'Waddinxveen',             'prijs' => '€79,50'],
+                        ['plaats' => 'Zevenhuizen',             'prijs' => '€89,50'],
                     ] as $i => $rij)
                     <div class="flex items-center justify-between px-8 py-3.5 {{ $i % 2 === 0 ? 'bg-white' : 'bg-gray-50' }} hover:bg-yellow-50 transition-colors">
                         <span class="text-gray-700 text-sm">{{ $rij['plaats'] }}</span>
@@ -121,29 +122,29 @@
                 </div>
                 <div class="divide-y divide-gray-100">
                     @foreach([
-                        ['plaats' => 'Ammerstol',               'prijs' => '€100'],
-                        ['plaats' => 'Bergambacht',             'prijs' => '€95'],
-                        ['plaats' => 'Berkenwoude',             'prijs' => '€100'],
-                        ['plaats' => 'Bodegraven',              'prijs' => '€95'],
-                        ['plaats' => 'Boskoop',                 'prijs' => '€100'],
-                        ['plaats' => 'Gouda',                   'prijs' => '€75'],
-                        ['plaats' => 'Gouderak',                'prijs' => '€85'],
-                        ['plaats' => 'Haastrecht',              'prijs' => '€85'],
-                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€100'],
-                        ['plaats' => 'Lekkerkerk',              'prijs' => '€100'],
-                        ['plaats' => 'Moordrecht',              'prijs' => '€75'],
-                        ['plaats' => 'Moerkapelle',             'prijs' => '€95'],
-                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€75'],
-                        ['plaats' => 'Ouderkerk a/d IJssel',    'prijs' => '€100'],
-                        ['plaats' => 'Oudewater',               'prijs' => '€115'],
-                        ['plaats' => 'Reeuwijk',                'prijs' => '€85'],
-                        ['plaats' => 'Reeuwijk Sluipwijk',      'prijs' => '€95'],
-                        ['plaats' => 'Schoonhoven',             'prijs' => '€115'],
-                        ['plaats' => 'Stolwijk',                'prijs' => '€90'],
-                        ['plaats' => 'Vlist',                   'prijs' => '€95'],
-                        ['plaats' => 'Waddinxveen',             'prijs' => '€85'],
-                        ['plaats' => 'Waddinxveen Noord',       'prijs' => '€90'],
-                        ['plaats' => 'Zevenhuizen',             'prijs' => '€90'],
+                        ['plaats' => 'Ammerstol',               'prijs' => '€89,50'],
+                        ['plaats' => 'Bergambacht',             'prijs' => '€89,50'],
+                        ['plaats' => 'Berkenwoude',             'prijs' => '€89,50'],
+                        ['plaats' => 'Bodegraven',              'prijs' => '€84,50'],
+                        ['plaats' => 'Boskoop',                 'prijs' => '€84,50'],
+                        ['plaats' => 'Capelle a/d IJssel',      'prijs' => '€69,50'],
+                        ['plaats' => 'Gouda',                   'prijs' => '€69,50'],
+                        ['plaats' => 'Gouderak',                'prijs' => '€74,50'],
+                        ['plaats' => 'Haastrecht',              'prijs' => '€89,50'],
+                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€74,50'],
+                        ['plaats' => 'Krimpen a/d Lek',         'prijs' => '€74,50'],
+                        ['plaats' => 'Lekkerkerk',              'prijs' => '€84,50'],
+                        ['plaats' => 'Moerkapelle',             'prijs' => '€69,50'],
+                        ['plaats' => 'Moordrecht',              'prijs' => '€69,50'],
+                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€69,50'],
+                        ['plaats' => 'Oudekerk a/d IJssel',     'prijs' => '€79,50'],
+                        ['plaats' => 'Oudewater',               'prijs' => '€89,50'],
+                        ['plaats' => 'Reeuwijk',                'prijs' => '€74,50'],
+                        ['plaats' => 'Schoonhoven',             'prijs' => '€94,50'],
+                        ['plaats' => 'Stolwijk',                'prijs' => '€84,50'],
+                        ['plaats' => 'Vlist',                   'prijs' => '€84,50'],
+                        ['plaats' => 'Waddinxveen',             'prijs' => '€74,50'],
+                        ['plaats' => 'Zevenhuizen',             'prijs' => '€74,50'],
                     ] as $i => $rij)
                     <div class="flex items-center justify-between px-8 py-3.5 {{ $i % 2 === 0 ? 'bg-white' : 'bg-gray-50' }} hover:bg-yellow-50 transition-colors">
                         <span class="text-gray-700 text-sm">{{ $rij['plaats'] }}</span>
@@ -160,9 +161,10 @@
             <svg class="w-5 h-5 text-[#f5c518] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
             </svg>
-            <p class="text-gray-600 text-sm leading-relaxed">
-                <strong class="text-gray-900">Let op:</strong> Bovenstaande prijzen zijn alleen van toepassing indien u de taxi <strong class="text-[#f5c518]">minimaal 24 uur van tevoren</strong> bestelt. Bij last-minute boekingen neem contact op via telefoon.
-            </p>
+            <div class="text-gray-600 text-sm leading-relaxed space-y-1">
+                <p><strong class="text-gray-900">Let op:</strong> Bovenstaande prijzen zijn alleen van toepassing indien u de taxi <strong class="text-[#f5c518]">minimaal 24 uur van tevoren</strong> bestelt.</p>
+                <p>Ritten tussen <strong class="text-gray-900">00:00 – 06:00 uur</strong> worden vermeerderd met een nachtopslag van <strong class="text-gray-900">€20,00</strong>.</p>
+            </div>
         </div>
 
         {{-- Andere luchthavens --}}
