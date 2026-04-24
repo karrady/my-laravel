@@ -6,11 +6,11 @@
 @section('content')
 
 {{-- Hero Carousel --}}
-<section class="relative overflow-hidden" id="hero" style="height:100vh;min-height:600px">
+<section id="hero">
 
     {{-- Slide 1: Airport --}}
-    <div class="hero-slide active absolute inset-0" id="slide-0">
-        <img src="/images/slide1.svg" alt="Schiphol" class="hero-slide-bg absolute inset-0 w-full h-full object-cover" style="filter:brightness(0.5)">
+    <div class="hero-slide active" id="slide-0">
+        <div class="hero-slide-bg" style="background-image:url('/images/slide1.svg');filter:brightness(0.5)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.8) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">✈ Airport Service</span>
@@ -37,11 +37,9 @@
     </div>
 
     {{-- Slide 2: Gouda regio --}}
-    <div class="hero-slide absolute inset-0" id="slide-1">
-        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(135deg,#0a0f1e 0%,#131929 60%,#0a0d1a 100%)">
-            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 25% 60%,rgba(245,197,24,0.18) 0%,transparent 50%)"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-2/5" style="background:linear-gradient(to top,rgba(245,197,24,0.07),transparent)"></div>
-        </div>
+    <div class="hero-slide" id="slide-1">
+        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#0a0f1e 0%,#131929 60%,#0a0d1a 100%)"></div>
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 25% 60%,rgba(245,197,24,0.18) 0%,transparent 50%)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🗺 Regiovervoer</span>
@@ -68,10 +66,9 @@
     </div>
 
     {{-- Slide 3: Zakelijk --}}
-    <div class="hero-slide absolute inset-0" id="slide-2">
-        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(160deg,#0e0900 0%,#1c1200 45%,#0a0700 100%)">
-            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 60% 30%,rgba(245,197,24,0.22) 0%,transparent 50%)"></div>
-        </div>
+    <div class="hero-slide" id="slide-2">
+        <div class="hero-slide-bg" style="background:linear-gradient(160deg,#0e0900 0%,#1c1200 45%,#0a0700 100%)"></div>
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 60% 30%,rgba(245,197,24,0.22) 0%,transparent 50%)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">💼 Zakelijk Vervoer</span>
@@ -98,10 +95,9 @@
     </div>
 
     {{-- Slide 4: Avond & Nacht --}}
-    <div class="hero-slide absolute inset-0" id="slide-3">
-        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(135deg,#070b14 0%,#0d1520 55%,#060a10 100%)">
-            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 40% 70%,rgba(245,197,24,0.12) 0%,transparent 45%),radial-gradient(ellipse at 80% 20%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
-        </div>
+    <div class="hero-slide" id="slide-3">
+        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#070b14 0%,#0d1520 55%,#060a10 100%)"></div>
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 40% 70%,rgba(245,197,24,0.12) 0%,transparent 45%),radial-gradient(ellipse at 80% 20%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🌙 Avond & Nacht</span>
@@ -128,17 +124,17 @@
     </div>
 
     {{-- Pijl links --}}
-    <button id="carousel-prev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all backdrop-blur-sm" style="background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    <button id="carousel-prev" class="carousel-arrow" style="left:1.5rem">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
     </button>
 
     {{-- Pijl rechts --}}
-    <button id="carousel-next" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all backdrop-blur-sm" style="background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    <button id="carousel-next" class="carousel-arrow" style="right:1.5rem">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </button>
 
-    {{-- Dots (rechtsonder) --}}
-    <div class="absolute bottom-8 right-8 sm:right-16 z-20 flex items-center gap-2">
+    {{-- Dots (midden-onder) --}}
+    <div class="carousel-dots-bar">
         <button class="carousel-dot active" data-index="0"></button>
         <button class="carousel-dot" data-index="1"></button>
         <button class="carousel-dot" data-index="2"></button>
@@ -148,13 +144,30 @@
 </section>
 
 <style>
-.hero-slide          { opacity: 0; transition: opacity 1.2s ease; }
-.hero-slide.active   { opacity: 1; }
-.hero-slide-bg       { transform: scale(1.08); transition: transform 8s ease; }
-.hero-slide.active .hero-slide-bg { transform: scale(1); }
-.carousel-dot        { width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;transition:all 0.3s; }
-.carousel-dot.active { background:#f5c518;transform:scale(1.35); }
-#carousel-prev:hover,#carousel-next:hover { background:#f5c518 !important;border-color:#f5c518 !important;color:#000; }
+#hero { position:relative; width:100%; height:100vh; min-height:600px; overflow:hidden; }
+.hero-slide          { position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease; }
+.hero-slide.active   { opacity:1; }
+.hero-slide-bg       { position:absolute; inset:0; transform:scale(1.08); transition:transform 8s ease; background-size:cover; background-position:center; }
+.hero-slide.active .hero-slide-bg { transform:scale(1); }
+
+/* Arrows */
+.carousel-arrow {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:20;
+    width:48px; height:48px; border-radius:50%;
+    background:rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.25);
+    color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background 0.2s, border-color 0.2s, color 0.2s;
+    backdrop-filter:blur(6px);
+}
+.carousel-arrow:hover { background:#f5c518; border-color:#f5c518; color:#000; }
+
+/* Dots */
+.carousel-dots-bar {
+    position:absolute; bottom:2rem; left:0; right:0; z-index:20;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.carousel-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.4); border:none; cursor:pointer; transition:all 0.3s; padding:0; }
+.carousel-dot.active { background:#f5c518; transform:scale(1.4); }
 </style>
 
 <script>
