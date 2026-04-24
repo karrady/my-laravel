@@ -11,9 +11,7 @@
     {{-- Slides --}}
     <div class="absolute inset-0" id="hero-slides">
         <div class="hero-slide absolute inset-0 transition-opacity duration-1000" data-slide="0">
-            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0d0d0d 100%);"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 40%, rgba(245,197,24,0.18) 0%, transparent 60%);"></div>
-            <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 60px 60px;"></div>
+            <div class="absolute inset-0" style="background: url('/images/slide1.svg') center center / cover no-repeat;"></div>
         </div>
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="1">
             <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0f1a 0%, #0f1c2e 50%, #080d15 100%);"></div>

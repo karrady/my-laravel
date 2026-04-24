@@ -1,0 +1,315 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 700" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Lucht gradient: warm oranje/roze zonsopgang -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4a843"/>
+      <stop offset="35%" stop-color="#f8c97a"/>
+      <stop offset="65%" stop-color="#fce0b0"/>
+      <stop offset="100%" stop-color="#e8b87a"/>
+    </linearGradient>
+    <!-- Tarmac gradient -->
+    <linearGradient id="tarmac" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a3a4a"/>
+      <stop offset="100%" stop-color="#22222e"/>
+    </linearGradient>
+    <!-- Gebouwen gloed -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Licht gloed voor lampen -->
+    <filter id="lampglow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Atmosferische nevel -->
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8c97a" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f8c97a" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Lucht -->
+  <rect width="1920" height="700" fill="url(#sky)"/>
+
+  <!-- Atmosferische gloed/nevel -->
+  <rect width="1920" height="700" fill="url(#haze)"/>
+
+  <!-- Verre luchten warmte -->
+  <ellipse cx="960" cy="320" rx="700" ry="200" fill="#f9d080" opacity="0.25"/>
+
+  <!-- ===== GEBOUWEN SILHOUETTEN ===== -->
+
+  <!-- Verre gebouwen links (laag) -->
+  <rect x="0" y="310" width="80" height="60" fill="#2a2a38" opacity="0.7"/>
+  <rect x="40" y="295" width="50" height="75" fill="#2a2a38" opacity="0.7"/>
+  <rect x="80" y="320" width="60" height="50" fill="#2a2a38" opacity="0.7"/>
+  <rect x="110" y="305" width="40" height="65" fill="#252530" opacity="0.8"/>
+
+  <!-- Terminal gebouw links (groot, breed) -->
+  <rect x="140" y="270" width="480" height="110" fill="#252535" opacity="0.9"/>
+  <rect x="150" y="255" width="100" height="25" fill="#252535" opacity="0.9"/>
+  <rect x="280" y="250" width="80" height="30" fill="#252535" opacity="0.9"/>
+  <rect x="400" y="248" width="120" height="32" fill="#252535" opacity="0.9"/>
+  <!-- Terminal ramen (warm licht) -->
+  <rect x="160" y="280" width="12" height="18" fill="#f9d080" opacity="0.6"/>
+  <rect x="180" y="280" width="12" height="18" fill="#f9d080" opacity="0.5"/>
+  <rect x="200" y="280" width="12" height="18" fill="#f9c050" opacity="0.7"/>
+  <rect x="220" y="280" width="12" height="18" fill="#f9d080" opacity="0.4"/>
+  <rect x="240" y="280" width="12" height="18" fill="#f9d080" opacity="0.6"/>
+  <rect x="260" y="280" width="12" height="18" fill="#f9c050" opacity="0.5"/>
+  <rect x="280" y="280" width="12" height="18" fill="#f9d080" opacity="0.7"/>
+  <rect x="300" y="280" width="12" height="18" fill="#f9d080" opacity="0.4"/>
+  <rect x="320" y="280" width="12" height="18" fill="#f9c050" opacity="0.6"/>
+  <rect x="340" y="280" width="12" height="18" fill="#f9d080" opacity="0.5"/>
+  <rect x="360" y="280" width="12" height="18" fill="#f9d080" opacity="0.7"/>
+  <rect x="380" y="280" width="12" height="18" fill="#f9c050" opacity="0.4"/>
+  <rect x="400" y="280" width="12" height="18" fill="#f9d080" opacity="0.6"/>
+  <rect x="420" y="280" width="12" height="18" fill="#f9d080" opacity="0.5"/>
+  <rect x="440" y="280" width="12" height="18" fill="#f9c050" opacity="0.7"/>
+  <rect x="460" y="280" width="12" height="18" fill="#f9d080" opacity="0.4"/>
+  <rect x="480" y="280" width="12" height="18" fill="#f9d080" opacity="0.6"/>
+  <rect x="500" y="280" width="12" height="18" fill="#f9c050" opacity="0.5"/>
+  <rect x="520" y="280" width="12" height="18" fill="#f9d080" opacity="0.7"/>
+  <rect x="540" y="280" width="12" height="18" fill="#f9d080" opacity="0.4"/>
+  <rect x="560" y="280" width="12" height="18" fill="#f9c050" opacity="0.6"/>
+
+  <!-- Sheraton hotel bord gebied (links) -->
+  <rect x="155" y="300" width="70" height="45" fill="#1e1e2a" opacity="0.95"/>
+  <circle cx="190" cy="320" r="18" fill="none" stroke="#f0f0f0" stroke-width="2" opacity="0.8"/>
+  <text x="190" y="325" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#f0f0f0" opacity="0.9" font-style="italic">S</text>
+
+  <!-- Controle toren (midden) -->
+  <!-- Toren basis/schacht -->
+  <rect x="900" y="150" width="22" height="170" fill="#1e1e2a" opacity="0.95"/>
+  <!-- Toren verbreding -->
+  <rect x="885" y="200" width="52" height="20" fill="#252535" opacity="0.9"/>
+  <!-- Toren cabine (hoofd) -->
+  <rect x="870" y="140" width="82" height="65" rx="4" fill="#252535" opacity="0.95"/>
+  <!-- Toren dak -->
+  <polygon points="870,140 952,140 940,125 882,125" fill="#1e1e2a" opacity="0.95"/>
+  <!-- Toren antenne -->
+  <line x1="911" y1="125" x2="911" y2="90" stroke="#2a2a38" stroke-width="3"/>
+  <circle cx="911" cy="88" r="3" fill="#f9d080" opacity="0.9"/>
+  <!-- Cabine ramen (oranje gloed) -->
+  <rect x="878" y="148" width="66" height="38" rx="2" fill="#f9c050" opacity="0.25"/>
+  <rect x="882" y="152" width="14" height="26" fill="#f9d080" opacity="0.5"/>
+  <rect x="900" y="152" width="14" height="26" fill="#f9c050" opacity="0.6"/>
+  <rect x="918" y="152" width="14" height="26" fill="#f9d080" opacity="0.4"/>
+
+  <!-- Groot gebouw rechts van toren -->
+  <rect x="980" y="260" width="320" height="120" fill="#252535" opacity="0.9"/>
+  <rect x="990" y="245" width="100" height="25" fill="#252535" opacity="0.9"/>
+  <rect x="1130" y="248" width="80" height="22" fill="#252535" opacity="0.9"/>
+  <!-- Ramen rechts gebouw -->
+  <rect x="1000" y="272" width="10" height="16" fill="#f9d080" opacity="0.5"/>
+  <rect x="1018" y="272" width="10" height="16" fill="#f9c050" opacity="0.6"/>
+  <rect x="1036" y="272" width="10" height="16" fill="#f9d080" opacity="0.4"/>
+  <rect x="1054" y="272" width="10" height="16" fill="#f9d080" opacity="0.7"/>
+  <rect x="1072" y="272" width="10" height="16" fill="#f9c050" opacity="0.5"/>
+  <rect x="1090" y="272" width="10" height="16" fill="#f9d080" opacity="0.4"/>
+  <rect x="1108" y="272" width="10" height="16" fill="#f9d080" opacity="0.6"/>
+  <rect x="1126" y="272" width="10" height="16" fill="#f9c050" opacity="0.7"/>
+  <rect x="1144" y="272" width="10" height="16" fill="#f9d080" opacity="0.5"/>
+  <rect x="1162" y="272" width="10" height="16" fill="#f9d080" opacity="0.4"/>
+  <rect x="1180" y="272" width="10" height="16" fill="#f9c050" opacity="0.6"/>
+  <rect x="1198" y="272" width="10" height="16" fill="#f9d080" opacity="0.5"/>
+  <rect x="1216" y="272" width="10" height="16" fill="#f9d080" opacity="0.7"/>
+  <rect x="1234" y="272" width="10" height="16" fill="#f9c050" opacity="0.4"/>
+  <rect x="1252" y="272" width="10" height="16" fill="#f9d080" opacity="0.6"/>
+  <rect x="1270" y="272" width="10" height="16" fill="#f9d080" opacity="0.5"/>
+
+  <!-- Verre gebouwen rechts -->
+  <rect x="1310" y="285" width="200" height="95" fill="#252535" opacity="0.85"/>
+  <rect x="1320" y="268" width="60" height="27" fill="#252535" opacity="0.85"/>
+  <rect x="1420" y="272" width="80" height="23" fill="#252535" opacity="0.85"/>
+  <rect x="1520" y="290" width="280" height="90" fill="#252535" opacity="0.8"/>
+  <rect x="1530" y="275" width="90" height="25" fill="#252535" opacity="0.8"/>
+  <rect x="1660" y="278" width="70" height="22" fill="#252535" opacity="0.8"/>
+  <rect x="1800" y="295" width="120" height="85" fill="#252535" opacity="0.75"/>
+
+  <!-- Lantaarnpalen links -->
+  <line x1="80" y1="220" x2="80" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="80" cy="215" rx="8" ry="5" fill="#f9d080" opacity="0.8" filter="url(#lampglow)"/>
+  <line x1="200" y1="230" x2="200" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="200" cy="225" rx="8" ry="5" fill="#f9d080" opacity="0.7" filter="url(#lampglow)"/>
+  <line x1="320" y1="225" x2="320" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="320" cy="220" rx="8" ry="5" fill="#f9d080" opacity="0.8" filter="url(#lampglow)"/>
+
+  <!-- Lantaarnpalen rechts -->
+  <line x1="1600" y1="225" x2="1600" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="1600" cy="220" rx="8" ry="5" fill="#f9d080" opacity="0.7" filter="url(#lampglow)"/>
+  <line x1="1720" y1="230" x2="1720" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="1720" cy="225" rx="8" ry="5" fill="#f9d080" opacity="0.8" filter="url(#lampglow)"/>
+  <line x1="1840" y1="235" x2="1840" y2="395" stroke="#1a1a26" stroke-width="5"/>
+  <ellipse cx="1840" cy="230" rx="8" ry="5" fill="#f9d080" opacity="0.7" filter="url(#lampglow)"/>
+
+  <!-- ===== TARMAC / GROND ===== -->
+  <rect x="0" y="385" width="1920" height="315" fill="url(#tarmac)"/>
+
+  <!-- Tarmac reflectie/gloed -->
+  <rect x="0" y="385" width="1920" height="30" fill="#f9c050" opacity="0.06"/>
+
+  <!-- Taxiway markering lijnen -->
+  <line x1="0" y1="480" x2="1920" y2="480" stroke="#f9d080" stroke-width="2" opacity="0.12"/>
+  <line x1="0" y1="550" x2="1920" y2="550" stroke="#f9d080" stroke-width="1.5" opacity="0.08"/>
+
+  <!-- ===== VLIEGTUIG ===== -->
+  <!-- Romp -->
+  <ellipse cx="960" cy="415" rx="220" ry="42" fill="#d0d0d8"/>
+  <!-- Neus -->
+  <path d="M740,415 Q710,415 700,418 Q695,420 700,425 Q710,432 740,432" fill="#c8c8d0"/>
+  <!-- Staart -->
+  <path d="M1180,415 Q1230,415 1240,418 Q1245,420 1240,425 Q1230,432 1180,432" fill="#c8c8d0"/>
+  <!-- Verticale staartvin -->
+  <path d="M1180,420 Q1195,380 1210,340 Q1215,335 1220,338 Q1225,342 1215,360 Q1200,395 1185,430" fill="#c0c0c8"/>
+  <!-- Horizontale staartvinnen -->
+  <path d="M1160,425 Q1200,418 1240,420 Q1245,422 1240,428 Q1200,435 1160,432" fill="#c8c8d0"/>
+  <path d="M1160,425 Q1180,432 1155,442" fill="#c0c0c8" stroke="none"/>
+  <!-- Vleugels -->
+  <path d="M880,422 Q820,448 700,490 Q690,494 688,498 Q690,502 702,500 Q830,465 890,445 Q900,440 900,435Z" fill="#b8b8c0"/>
+  <path d="M1040,422 Q1100,448 1220,490 Q1230,494 1232,498 Q1230,502 1218,500 Q1090,465 1050,445 Q1040,440 1040,435Z" fill="#b8b8c0"/>
+  <!-- Motoren links -->
+  <ellipse cx="770" cy="472" rx="30" ry="14" fill="#a8a8b0"/>
+  <rect x="740" y="458" width="60" height="14" rx="5" fill="#a0a0a8"/>
+  <!-- Motoren rechts -->
+  <ellipse cx="1150" cy="472" rx="30" ry="14" fill="#a8a8b0"/>
+  <rect x="1120" y="458" width="60" height="14" rx="5" fill="#a0a0a8"/>
+  <!-- Raampjes vliegtuig -->
+  <circle cx="780" cy="418" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="800" cy="416" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="820" cy="415" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="840" cy="414" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="860" cy="414" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="880" cy="413" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="900" cy="413" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="920" cy="413" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="940" cy="413" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="960" cy="413" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="980" cy="413" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="1000" cy="413" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="1020" cy="413" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="1040" cy="414" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="1060" cy="414" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="1080" cy="415" r="4" fill="#dde8f5" opacity="0.6"/>
+  <circle cx="1100" cy="416" r="4" fill="#dde8f5" opacity="0.7"/>
+  <circle cx="1120" cy="418" r="4" fill="#dde8f5" opacity="0.6"/>
+  <!-- Onderstel -->
+  <rect x="895" y="455" width="8" height="25" fill="#888890"/>
+  <rect x="1010" y="455" width="8" height="25" fill="#888890"/>
+  <ellipse cx="899" cy="482" rx="12" ry="6" fill="#555558"/>
+  <ellipse cx="1014" cy="482" rx="12" ry="6" fill="#555558"/>
+  <!-- Nosewiel -->
+  <rect x="750" y="440" width="6" height="20" fill="#888890"/>
+  <ellipse cx="753" cy="462" rx="8" ry="5" fill="#555558"/>
+
+  <!-- Grondvoertuigen links (de-icing trucks) -->
+  <!-- Truck 1 -->
+  <rect x="680" y="470" width="55" height="25" rx="3" fill="#e8961e"/>
+  <rect x="680" y="460" width="30" height="15" rx="2" fill="#d88010"/>
+  <ellipse cx="692" cy="496" rx="8" ry="8" fill="#333"/>
+  <ellipse cx="724" cy="496" rx="8" ry="8" fill="#333"/>
+  <!-- Truck 2 -->
+  <rect x="745" y="472" width="48" height="22" rx="3" fill="#c8820e"/>
+  <rect x="745" y="463" width="25" height="14" rx="2" fill="#b87208"/>
+  <ellipse cx="756" cy="494" rx="7" ry="7" fill="#333"/>
+  <ellipse cx="784" cy="494" rx="7" ry="7" fill="#333"/>
+
+  <!-- Stoom/uitlaat effect bij de-icing -->
+  <ellipse cx="680" cy="455" rx="25" ry="12" fill="white" opacity="0.25"/>
+  <ellipse cx="660" cy="440" rx="30" ry="15" fill="white" opacity="0.18"/>
+  <ellipse cx="640" cy="425" rx="35" ry="18" fill="white" opacity="0.12"/>
+  <ellipse cx="615" cy="408" rx="40" ry="20" fill="white" opacity="0.07"/>
+
+  <!-- ===== HEK / OMHEINING VOORGROND ===== -->
+  <!-- Hek palen -->
+  <rect x="0" y="530" width="1920" height="8" fill="#1a1a22" opacity="0.9"/>
+  <!-- Verticale spijlen -->
+  <rect x="30" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="60" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="90" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="120" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="150" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="180" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="210" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="240" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="270" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="300" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="330" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="360" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="390" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="420" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="450" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="480" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="510" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="540" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="570" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="600" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="630" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="660" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="690" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="720" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="750" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="780" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="810" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="840" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="870" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="900" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="930" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="960" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="990" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1020" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1050" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1080" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1110" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1140" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1170" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1200" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1230" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1260" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1290" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1320" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1350" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1380" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1410" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1440" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1470" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1500" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1530" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1560" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1590" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1620" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1650" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1680" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1710" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1740" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1770" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1800" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1830" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1860" y="508" width="3" height="52" fill="#1a1a22" opacity="0.85"/>
+  <rect x="1890" y="510" width="3" height="50" fill="#1a1a22" opacity="0.85"/>
+
+  <!-- Hek bovenbalk -->
+  <rect x="0" y="508" width="1920" height="5" fill="#1a1a22" opacity="0.9"/>
+
+  <!-- Prikkeldraad bovenop hek -->
+  <path d="M0,506 Q30,500 60,506 Q90,512 120,506 Q150,500 180,506 Q210,512 240,506 Q270,500 300,506 Q330,512 360,506 Q390,500 420,506 Q450,512 480,506 Q510,500 540,506 Q570,512 600,506 Q630,500 660,506 Q690,512 720,506 Q750,500 780,506 Q810,512 840,506 Q870,500 900,506 Q930,512 960,506 Q990,500 1020,506 Q1050,512 1080,506 Q1110,500 1140,506 Q1170,512 1200,506 Q1230,500 1260,506 Q1290,512 1320,506 Q1350,500 1380,506 Q1410,512 1440,506 Q1470,500 1500,506 Q1530,512 1560,506 Q1590,500 1620,506 Q1650,512 1680,506 Q1710,500 1740,506 Q1770,512 1800,506 Q1830,500 1860,506 Q1890,512 1920,506" stroke="#252530" stroke-width="2" fill="none" opacity="0.7"/>
+
+  <!-- Voorgrond donker -->
+  <rect x="0" y="580" width="1920" height="120" fill="#181820" opacity="0.95"/>
+
+  <!-- Vignette / donkere randen voor diepte -->
+  <rect x="0" y="0" width="200" height="700" fill="url(#leftVig)" opacity="1"/>
+  <rect x="1720" y="0" width="200" height="700" fill="url(#rightVig)" opacity="1"/>
+
+  <defs>
+    <linearGradient id="leftVig" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a0a10" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0a0a10" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rightVig" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a0a10" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0a0a10" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+</svg>
