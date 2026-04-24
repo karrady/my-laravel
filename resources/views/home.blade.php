@@ -116,6 +116,35 @@
         </div>
     </div>
 
+    {{-- Slide 5: Schoolvervoer --}}
+    <div class="hero-slide" id="slide-4">
+        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#0a1628 0%,#0f2040 50%,#081020 100%)">
+            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 40%,rgba(245,197,24,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.75) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
+                Veilig naar school,<br><span class="text-[#f5c518]">elke dag weer</span>
+            </h2>
+            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
+                Betrouwbaar schoolvervoer voor uw kind. Vaste chauffeur, vaste tijden en altijd veilig op de bestemming. U hoeft zich geen zorgen te maken.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-10">
+                <a href="tel:+31XXXXXXXXX" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
+                    Info Aanvragen
+                </a>
+                <a href="{{ route('contact') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
+                    Meer Info
+                </a>
+            </div>
+            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
+                <div><div class="text-2xl font-black text-[#f5c518]">Veilig</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Gegarandeerd</div></div>
+                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Chauffeur</div></div>
+                <div><div class="text-2xl font-black text-white">Dagelijks</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beschikbaar</div></div>
+            </div>
+        </div>
+    </div>
+
     {{-- Pijl links --}}
     <button id="carousel-prev" class="carousel-arrow" style="left:1.5rem">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -132,6 +161,7 @@
         <button class="carousel-dot" data-index="1"></button>
         <button class="carousel-dot" data-index="2"></button>
         <button class="carousel-dot" data-index="3"></button>
+        <button class="carousel-dot" data-index="4"></button>
     </div>
 
 </section>
