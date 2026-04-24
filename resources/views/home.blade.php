@@ -13,7 +13,6 @@
         <div class="hero-slide-bg" style="background-image:url('/images/slide1.svg');filter:brightness(0.5)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.8) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">✈ Airport Service</span>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
                 Uw taxi naar<br><span class="text-[#f5c518]">alle luchthavens</span>
             </h1>
@@ -68,7 +67,6 @@
         <div class="hero-slide-bg" style="background-image:url('/newstadhuis.jpg');filter:brightness(0.38)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">💼 Zakelijk Vervoer</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
                 Zakelijk vervoer<br><span class="text-[#f5c518]">op maat</span>
             </h2>
@@ -96,7 +94,6 @@
         <div class="hero-slide-bg" style="background-image:url('/stationgouwe.jpg');background-position:center center;filter:brightness(0.45)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🚉 Station Gouda</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
                 Van station<br><span class="text-[#f5c518]">naar uw deur</span>
             </h2>
