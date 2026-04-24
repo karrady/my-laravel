@@ -10,7 +10,7 @@
 
     {{-- Slide 1: Airport --}}
     <div class="hero-slide active" id="slide-0">
-        <div class="hero-slide-bg" style="background-image:url('/images/slide1.svg');filter:brightness(0.5)"></div>
+        <div class="hero-slide-bg" style="background-image:url('/vliegveld.jpg');filter:brightness(0.5)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.8) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
