@@ -41,7 +41,6 @@
         <div class="hero-slide-bg" style="background-image:url('/oudstadhuisgouda.jpg');filter:brightness(0.42)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🗺 Regiovervoer</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
                 Taxi in Gouda<br><span class="text-[#f5c518]">& omgeving</span>
             </h2>
