@@ -89,34 +89,7 @@
         </div>
     </div>
 
-    {{-- Slide 4: Avond & Nacht --}}
-    <div class="hero-slide" id="slide-3">
-        <div class="hero-slide-bg" style="background-image:url('/stationgouwe.jpg');background-position:center center;filter:brightness(0.45)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
-        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Van station<br><span class="text-[#f5c518]">naar uw deur</span>
-            </h2>
-            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Aankomst in Gouda? Wij staan voor u klaar. Snel, comfortabel en altijd op tijd — dag en nacht.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-10">
-                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
-                    Direct Boeken
-                </a>
-                <a href="tel:+31XXXXXXXXX" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
-                    Bel Ons
-                </a>
-            </div>
-            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
-                <div><div class="text-2xl font-black text-[#f5c518]">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Rijden</div></div>
-                <div><div class="text-2xl font-black text-white">Veilig</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Vervoer</div></div>
-                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Tarief</div></div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Slide 5: Schoolvervoer --}}
+    {{-- Slide 4: Schoolvervoer --}}
     <div class="hero-slide" id="slide-4">
         <div class="hero-slide-bg" style="background-image:url('/Gemini_Generated_Image_y6uy9qy6uy9qy6uy.png');background-position:center center;filter:brightness(0.45)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.75) 100%)"></div>
@@ -159,7 +132,6 @@
         <button class="carousel-dot" data-index="1"></button>
         <button class="carousel-dot" data-index="2"></button>
         <button class="carousel-dot" data-index="3"></button>
-        <button class="carousel-dot" data-index="4"></button>
     </div>
 
 </section>
