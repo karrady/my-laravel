@@ -5,29 +5,37 @@
 
 @section('content')
 
-{{-- Hero met slideshow --}}
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+{{-- Hero Carousel --}}
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
 
-    {{-- Slides --}}
-    <div class="absolute inset-0" id="hero-slides">
-        <div class="hero-slide absolute inset-0 transition-opacity duration-1000" data-slide="0">
-            <img src="/images/slide1.svg" alt="" class="absolute inset-0 w-full h-full object-cover">
+    {{-- Carousel track --}}
+    <div class="absolute inset-0 flex" id="carousel-track" style="transition: transform 0.7s cubic-bezier(0.77,0,0.18,1);">
+
+        {{-- Slide 1: Airport SVG --}}
+        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
+            <img src="/images/slide1.svg" alt="Luchthaven" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/45"></div>
         </div>
-        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="1">
-            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0f1a 0%, #0f1c2e 50%, #080d15 100%);"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 60%, rgba(245,197,24,0.14) 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 50%);"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-1/2" style="background: linear-gradient(to top, rgba(245,197,24,0.06), transparent);"></div>
+
+        {{-- Slide 2: Nacht stad --}}
+        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg,#060a14 0%,#0d1829 60%,#060d1a 100%)"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 55%,rgba(245,197,24,.16) 0%,transparent 55%), radial-gradient(ellipse at 75% 20%,rgba(59,130,246,.07) 0%,transparent 45%)"></div>
+            {{-- Stad lichten effect --}}
+            <div class="absolute bottom-0 left-0 right-0 h-2/5" style="background: linear-gradient(to top,rgba(245,197,24,.08),transparent)"></div>
         </div>
-        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="2">
-            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0d0a00 0%, #1a1200 50%, #0a0800 100%);"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 30%, rgba(245,197,24,0.22) 0%, transparent 50%);"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 0% 100%, rgba(245,197,24,0.08) 0%, transparent 40%);"></div>
+
+        {{-- Slide 3: Zonsopgang weg --}}
+        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
+            <div class="absolute inset-0" style="background: linear-gradient(160deg,#0e0900 0%,#1c1100 45%,#0a0700 100%)"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 55% 25%,rgba(245,197,24,.26) 0%,transparent 48%)"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 5% 90%,rgba(245,197,24,.09) 0%,transparent 38%)"></div>
         </div>
+
     </div>
 
-    {{-- Donkere overlay voor leesbaarheid --}}
-    <div class="absolute inset-0 bg-black/30"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5c518]/40 to-transparent"></div>
+    {{-- Gouden lijn onderaan --}}
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5c518]/50 to-transparent z-10"></div>
 
     {{-- Content --}}
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
@@ -36,12 +44,12 @@
             <span class="text-[#f5c518] text-sm font-medium">24/7 Beschikbaar</span>
         </div>
 
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-none text-white">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-none text-white drop-shadow-lg">
             Altijd op tijd,<br>
             <span class="text-[#f5c518]">altijd comfortabel.</span>
         </h1>
 
-        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow">
             Professioneel taxivervoer met vaste prijzen en betrouwbare chauffeurs. Boek in 60 seconden — wij doen de rest.
         </p>
 
@@ -73,50 +81,62 @@
         </div>
     </div>
 
-    {{-- Slide navigatie dots --}}
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
-        <button class="slide-dot w-2.5 h-2.5 rounded-full bg-[#f5c518] transition-all" data-target="0"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all" data-target="1"></button>
-        <button class="slide-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all" data-target="2"></button>
+    {{-- Pijl links --}}
+    <button id="carousel-prev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 hover:border-white/50 flex items-center justify-center text-white transition-all backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+
+    {{-- Pijl rechts --}}
+    <button id="carousel-next" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 hover:border-white/50 flex items-center justify-center text-white transition-all backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    {{-- Dots --}}
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+        <button class="carousel-dot w-8 h-1.5 rounded-full bg-[#f5c518] transition-all duration-300" data-index="0"></button>
+        <button class="carousel-dot w-4 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-index="1"></button>
+        <button class="carousel-dot w-4 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-index="2"></button>
     </div>
 </section>
 
+<style>
+#carousel-track { height: 100%; }
+.carousel-slide { height: 100vh; }
+</style>
+
 <script>
-(function() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.slide-dot');
-    let current = 0;
-    let timer;
+(function () {
+    const track = document.getElementById('carousel-track');
+    const dots  = document.querySelectorAll('.carousel-dot');
+    const total = 3;
+    let current = 0, timer, startX = 0, isDragging = false;
 
-    function goTo(index) {
-        slides[current].classList.add('opacity-0');
-        dots[current].classList.remove('bg-[#f5c518]', 'w-2.5', 'h-2.5');
-        dots[current].classList.add('bg-white/40', 'w-2', 'h-2');
-
-        current = index;
-
-        slides[current].classList.remove('opacity-0');
-        dots[current].classList.add('bg-[#f5c518]', 'w-2.5', 'h-2.5');
-        dots[current].classList.remove('bg-white/40', 'w-2', 'h-2');
-    }
-
-    function next() {
-        goTo((current + 1) % slides.length);
-    }
-
-    function startTimer() {
-        timer = setInterval(next, 5000);
-    }
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            clearInterval(timer);
-            goTo(parseInt(dot.dataset.target));
-            startTimer();
+    function goTo(i) {
+        current = (i + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) => {
+            d.classList.toggle('bg-[#f5c518]', idx === current);
+            d.classList.toggle('w-8', idx === current);
+            d.classList.toggle('bg-white/40', idx !== current);
+            d.classList.toggle('w-4', idx !== current);
         });
+    }
+
+    function restart() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
+
+    document.getElementById('carousel-prev').addEventListener('click', () => { goTo(current - 1); restart(); });
+    document.getElementById('carousel-next').addEventListener('click', () => { goTo(current + 1); restart(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); restart(); }));
+
+    // Swipe
+    const hero = document.getElementById('hero');
+    hero.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend',   e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); restart(); }
     });
 
-    startTimer();
+    restart();
 })();
 </script>
 
