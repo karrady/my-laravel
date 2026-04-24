@@ -9,7 +9,7 @@ class BookingController extends Controller
 {
     public function create()
     {
-        return view('boeken');
+        return view('reserveren');
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class BookingController extends Controller
 
         Booking::create($validated);
 
-        return redirect()->route('boeken')->with('success',
+        return redirect()->route('reserveren')->with('success',
             'Bedankt! Uw boeking is ontvangen. We nemen zo snel mogelijk contact met u op ter bevestiging.'
         );
     }

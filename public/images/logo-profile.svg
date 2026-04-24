@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+
+  <!-- Achtergrond met afgeronde hoeken -->
+  <rect width="400" height="400" rx="40" fill="#0f0f0f"/>
+
+  <!-- Buitenste ring -->
+  <circle cx="200" cy="200" r="168" fill="none" stroke="#f5c518" stroke-width="20"/>
+
+  <!-- Subtiele binnenste ring -->
+  <circle cx="200" cy="200" r="148" fill="none" stroke="#f5c518" stroke-width="1.5" opacity="0.15"/>
+
+  <!-- Spaak boven: van hub (r=58) naar ring-binnen (r=142) -->
+  <line x1="200" y1="142" x2="200" y2="58" stroke="#f5c518" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Spaak rechtsonder (120° met klok mee) -->
+  <!-- sin120=0.866  cos120=0.5  (SVG y-down) -->
+  <line x1="250" y1="229" x2="323" y2="271" stroke="#f5c518" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Spaak linksonder (240°) -->
+  <line x1="150" y1="229" x2="77" y2="271" stroke="#f5c518" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Hub cirkel -->
+  <circle cx="200" cy="200" r="58" fill="#f5c518"/>
+
+  <!-- Subtiele hub schaduw -->
+  <circle cx="200" cy="200" r="52" fill="none" stroke="#0f0f0f" stroke-width="3" opacity="0.12"/>
+
+  <!-- T monogram -->
+  <text x="200" y="224"
+        font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="900"
+        font-size="62"
+        fill="#0f0f0f"
+        text-anchor="middle">T</text>
+
+  <!-- TAXI onder de hub, binnen de ring -->
+  <text x="200" y="312"
+        font-family="Arial, 'Helvetica Neue', sans-serif"
+        font-weight="700"
+        font-size="22"
+        letter-spacing="8"
+        fill="#f5c518"
+        text-anchor="middle">TAXI</text>
+
+</svg>

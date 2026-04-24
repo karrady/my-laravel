@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/diensten', [PageController::class, 'diensten'])->name('diensten');
+Route::get('/airport-service', [PageController::class, 'airportService'])->name('airport-service');
 Route::get('/over-ons', [PageController::class, 'overOns'])->name('over-ons');
 
-Route::get('/boeken', [BookingController::class, 'create'])->name('boeken');
-Route::post('/boeken', [BookingController::class, 'store'])->name('boeken.store');
+Route::get('/reserveren', [BookingController::class, 'create'])->name('reserveren');
+Route::post('/reserveren', [BookingController::class, 'store'])->name('reserveren.store');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

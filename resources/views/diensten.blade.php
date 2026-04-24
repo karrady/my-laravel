@@ -43,7 +43,7 @@
                     </li>
                     @endforeach
                 </ul>
-                <a href="{{ route('boeken') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
+                <a href="{{ route('reserveren') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
                     Boek Luchthavenrit
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -103,7 +103,7 @@
                 <p class="text-gray-400 leading-relaxed mb-6">
                     Uw zakenpartner verdient het beste. Wij bieden representatief en punctueel vervoer voor meetings, congressen en zakenreizen. Discrete chauffeurs, luxe voertuigen en altijd op tijd.
                 </p>
-                <a href="{{ route('boeken') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
+                <a href="{{ route('reserveren') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
                     Zakelijke Rit Boeken
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -135,7 +135,7 @@
                     </div>
                     <h3 class="font-bold text-white mb-2">{{ $dienst['title'] }}</h3>
                     <p class="text-gray-500 text-sm leading-relaxed mb-4">{{ $dienst['desc'] }}</p>
-                    <a href="{{ route('boeken') }}" class="text-[#f5c518] text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+                    <a href="{{ route('reserveren') }}" class="text-[#f5c518] text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
                         Boek nu <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
                 </div>
@@ -151,7 +151,7 @@
         <h2 class="text-4xl font-black text-black mb-4">Direct een rit boeken?</h2>
         <p class="text-black/70 text-lg mb-8">Vul het formulier in of bel ons direct. Wij zijn 24/7 bereikbaar.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="{{ route('boeken') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
+            <a href="{{ route('reserveren') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
                 Online Boeken
             </a>
             <a href="tel:+31XXXXXXXXX" class="bg-black/10 hover:bg-black/20 text-black font-bold px-10 py-4 rounded-xl transition-all text-lg border-2 border-black/20">

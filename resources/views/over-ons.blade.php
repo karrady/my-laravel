@@ -89,7 +89,7 @@
         <h2 class="text-4xl font-black text-black mb-4">Maak kennis met onze service</h2>
         <p class="text-black/70 text-lg mb-8">Boek uw eerste rit en ervaar het verschil zelf.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="{{ route('boeken') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
+            <a href="{{ route('reserveren') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
                 Boek Nu
             </a>
             <a href="{{ route('contact') }}" class="bg-black/10 hover:bg-black/20 text-black font-bold px-10 py-4 rounded-xl transition-all text-lg border-2 border-black/20">

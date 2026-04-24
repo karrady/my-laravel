@@ -57,7 +57,8 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Home</a>
                     <a href="{{ route('diensten') }}" class="nav-link {{ request()->routeIs('diensten') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Diensten</a>
-                    <a href="{{ route('over-ons') }}" class="nav-link {{ request()->routeIs('over-ons') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Over ons</a>
+                    <a href="{{ route('airport-service') }}" class="nav-link {{ request()->routeIs('airport-service') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Airport Service</a>
+                    <a href="{{ route('reserveren') }}" class="nav-link {{ request()->routeIs('reserveren') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Reserveren</a>
                     <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'text-[#f5c518]' : 'text-gray-300 hover:text-white' }} text-sm font-medium transition-colors">Contact</a>
                 </div>
 
@@ -69,7 +70,7 @@
                         </svg>
                         +31 XX XXX XXXX
                     </a>
-                    <a href="{{ route('boeken') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-yellow-500/25 hover:-translate-y-0.5">
+                    <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-yellow-500/25 hover:-translate-y-0.5">
                         Nu Boeken
                     </a>
                 </div>
@@ -89,10 +90,11 @@
             <div class="px-4 py-4 space-y-3">
                 <a href="{{ route('home') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Home</a>
                 <a href="{{ route('diensten') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Diensten</a>
-                <a href="{{ route('over-ons') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Over ons</a>
+                <a href="{{ route('airport-service') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Airport Service</a>
+                <a href="{{ route('reserveren') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Reserveren</a>
                 <a href="{{ route('contact') }}" class="block text-gray-300 hover:text-white py-2 text-sm font-medium">Contact</a>
                 <div class="pt-2 border-t border-white/10">
-                    <a href="{{ route('boeken') }}" class="block w-full text-center bg-[#f5c518] text-black font-semibold text-sm px-5 py-3 rounded-lg">
+                    <a href="{{ route('reserveren') }}" class="block w-full text-center bg-[#f5c518] text-black font-semibold text-sm px-5 py-3 rounded-lg">
                         Nu Boeken
                     </a>
                 </div>
@@ -131,7 +133,7 @@
                     <ul class="space-y-3">
                         <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Home</a></li>
                         <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Diensten</a></li>
-                        <li><a href="{{ route('boeken') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Boeken</a></li>
+                        <li><a href="{{ route('reserveren') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Boeken</a></li>
                         <li><a href="{{ route('over-ons') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Over ons</a></li>
                         <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
                     </ul>

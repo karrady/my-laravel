@@ -20,4 +20,9 @@ class PageController extends Controller
     {
         return view('over-ons');
     }
+
+    public function airportService()
+    {
+        return view('airport-service');
+    }
 }
