@@ -94,7 +94,7 @@
 
     {{-- Slide 4: Avond & Nacht --}}
     <div class="hero-slide" id="slide-3">
-        <div class="hero-slide-bg" style="background-image:url('/stadhuisnew.jpg');background-position:center top;filter:brightness(0.38)"></div>
+        <div class="hero-slide-bg" style="background-image:url('/stationgouwe.jpg');background-position:center center;filter:brightness(0.45)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🚉 Station Gouda</span>
