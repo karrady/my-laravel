@@ -6,120 +6,170 @@
 @section('content')
 
 {{-- Hero Carousel --}}
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+<section class="relative overflow-hidden" id="hero" style="height:100vh;min-height:600px">
 
-    {{-- Carousel track --}}
-    <div class="absolute inset-0 flex" id="carousel-track" style="transition: transform 0.7s cubic-bezier(0.77,0,0.18,1);">
-
-        {{-- Slide 1: Airport SVG --}}
-        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
-            <img src="/images/slide1.svg" alt="Luchthaven" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/45"></div>
+    {{-- Slide 1: Airport --}}
+    <div class="hero-slide active absolute inset-0" id="slide-0">
+        <img src="/images/slide1.svg" alt="Schiphol" class="hero-slide-bg absolute inset-0 w-full h-full object-cover" style="filter:brightness(0.5)">
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.8) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
+            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">✈ Airport Service</span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
+                Uw taxi naar<br><span class="text-[#f5c518]">alle luchthavens</span>
+            </h1>
+            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
+                Betrouwbaar, punctueel en comfortabel naar Schiphol, Rotterdam en meer. 24/7 beschikbaar.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-10">
+                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
+                    Direct Boeken
+                </a>
+                <a href="{{ route('airport-service') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
+                    Bekijk Tarieven
+                </a>
+            </div>
+            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
+                <div><div class="text-2xl font-black text-[#f5c518]">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beschikbaar</div></div>
+                <div><div class="text-2xl font-black text-white">€79,-</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Vanaf Gouda</div></div>
+                <div><div class="text-2xl font-black text-white">6+</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Luchthavens</div></div>
+            </div>
         </div>
-
-        {{-- Slide 2: Nacht stad --}}
-        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
-            <div class="absolute inset-0" style="background: linear-gradient(135deg,#060a14 0%,#0d1829 60%,#060d1a 100%)"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 55%,rgba(245,197,24,.16) 0%,transparent 55%), radial-gradient(ellipse at 75% 20%,rgba(59,130,246,.07) 0%,transparent 45%)"></div>
-            {{-- Stad lichten effect --}}
-            <div class="absolute bottom-0 left-0 right-0 h-2/5" style="background: linear-gradient(to top,rgba(245,197,24,.08),transparent)"></div>
-        </div>
-
-        {{-- Slide 3: Zonsopgang weg --}}
-        <div class="carousel-slide relative flex-shrink-0 w-full h-full" style="min-width:100%">
-            <div class="absolute inset-0" style="background: linear-gradient(160deg,#0e0900 0%,#1c1100 45%,#0a0700 100%)"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 55% 25%,rgba(245,197,24,.26) 0%,transparent 48%)"></div>
-            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 5% 90%,rgba(245,197,24,.09) 0%,transparent 38%)"></div>
-        </div>
-
     </div>
 
-    {{-- Gouden lijn onderaan --}}
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5c518]/50 to-transparent z-10"></div>
-
-    {{-- Content --}}
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
-        <div class="inline-flex items-center gap-2 bg-[#f5c518]/15 border border-[#f5c518]/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
-            <div class="w-2 h-2 bg-[#f5c518] rounded-full animate-pulse"></div>
-            <span class="text-[#f5c518] text-sm font-medium">24/7 Beschikbaar</span>
+    {{-- Slide 2: Gouda regio --}}
+    <div class="hero-slide absolute inset-0" id="slide-1">
+        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(135deg,#0a0f1e 0%,#131929 60%,#0a0d1a 100%)">
+            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 25% 60%,rgba(245,197,24,0.18) 0%,transparent 50%)"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-2/5" style="background:linear-gradient(to top,rgba(245,197,24,0.07),transparent)"></div>
         </div>
-
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-none text-white drop-shadow-lg">
-            Altijd op tijd,<br>
-            <span class="text-[#f5c518]">altijd comfortabel.</span>
-        </h1>
-
-        <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow">
-            Professioneel taxivervoer met vaste prijzen en betrouwbare chauffeurs. Boek in 60 seconden — wij doen de rest.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="{{ route('reserveren') }}" class="group bg-[#f5c518] hover:bg-yellow-400 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-yellow-500/40 hover:-translate-y-1 flex items-center gap-3">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                Direct Boeken
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-            <a href="tel:+31XXXXXXXXX" class="flex items-center gap-3 border border-white/30 hover:border-white/60 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:-translate-y-1 hover:bg-white/10 backdrop-blur-sm">
-                <svg class="w-5 h-5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Bel direct
-            </a>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
+            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🗺 Regiovervoer</span>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
+                Taxi in Gouda<br><span class="text-[#f5c518]">& omgeving</span>
+            </h2>
+            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
+                Van station Gouda naar uw bestemming, of door heel de regio. Snel, betrouwbaar en altijd op tijd.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-10">
+                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
+                    Rit Boeken
+                </a>
+                <a href="{{ route('diensten') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
+                    Meer Info
+                </a>
+            </div>
+            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
+                <div><div class="text-2xl font-black text-[#f5c518]">Gouda</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">& Omgeving</div></div>
+                <div><div class="text-2xl font-black text-white">Snel</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Op Tijd</div></div>
+                <div><div class="text-2xl font-black text-white">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Bereikbaar</div></div>
+            </div>
         </div>
+    </div>
 
-        <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto">
-            <div class="text-center">
-                <div class="text-3xl font-black text-[#f5c518]">24/7</div>
-                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Bereikbaar</div>
+    {{-- Slide 3: Zakelijk --}}
+    <div class="hero-slide absolute inset-0" id="slide-2">
+        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(160deg,#0e0900 0%,#1c1200 45%,#0a0700 100%)">
+            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 60% 30%,rgba(245,197,24,0.22) 0%,transparent 50%)"></div>
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
+            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">💼 Zakelijk Vervoer</span>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
+                Zakelijk vervoer<br><span class="text-[#f5c518]">op maat</span>
+            </h2>
+            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
+                Representatief en betrouwbaar voor uw zakelijke afspraken. Altijd netjes, altijd op tijd.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-10">
+                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
+                    Zakelijk Boeken
+                </a>
+                <a href="{{ route('contact') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
+                    Neem Contact Op
+                </a>
             </div>
-            <div class="text-center border-x border-white/20">
-                <div class="text-3xl font-black text-white">100%</div>
-                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Vaste prijzen</div>
+            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
+                <div><div class="text-2xl font-black text-[#f5c518]">100%</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Betrouwbaar</div></div>
+                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Tarief</div></div>
+                <div><div class="text-2xl font-black text-white">5★</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beoordeling</div></div>
             </div>
-            <div class="text-center">
-                <div class="text-3xl font-black text-white">5★</div>
-                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Beoordeling</div>
+        </div>
+    </div>
+
+    {{-- Slide 4: Avond & Nacht --}}
+    <div class="hero-slide absolute inset-0" id="slide-3">
+        <div class="hero-slide-bg absolute inset-0" style="background:linear-gradient(135deg,#070b14 0%,#0d1520 55%,#060a10 100%)">
+            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 40% 70%,rgba(245,197,24,0.12) 0%,transparent 45%),radial-gradient(ellipse at 80% 20%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
+            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🌙 Avond & Nacht</span>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
+                Veilig thuis,<br><span class="text-[#f5c518]">dag en nacht</span>
+            </h2>
+            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
+                Veilig thuiskomen na een avondje uit of vroeg vertrek naar het vliegveld. Wij rijden 24/7 voor u.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-10">
+                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
+                    Direct Boeken
+                </a>
+                <a href="tel:+31XXXXXXXXX" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
+                    Bel Ons
+                </a>
+            </div>
+            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
+                <div><div class="text-2xl font-black text-[#f5c518]">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Rijden</div></div>
+                <div><div class="text-2xl font-black text-white">Veilig</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Vervoer</div></div>
+                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Tarief</div></div>
             </div>
         </div>
     </div>
 
     {{-- Pijl links --}}
-    <button id="carousel-prev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 hover:border-white/50 flex items-center justify-center text-white transition-all backdrop-blur-sm">
+    <button id="carousel-prev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all backdrop-blur-sm" style="background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2)">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
     </button>
 
     {{-- Pijl rechts --}}
-    <button id="carousel-next" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 hover:border-white/50 flex items-center justify-center text-white transition-all backdrop-blur-sm">
+    <button id="carousel-next" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all backdrop-blur-sm" style="background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2)">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </button>
 
-    {{-- Dots --}}
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-        <button class="carousel-dot w-8 h-1.5 rounded-full bg-[#f5c518] transition-all duration-300" data-index="0"></button>
-        <button class="carousel-dot w-4 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-index="1"></button>
-        <button class="carousel-dot w-4 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300" data-index="2"></button>
+    {{-- Dots (rechtsonder) --}}
+    <div class="absolute bottom-8 right-8 sm:right-16 z-20 flex items-center gap-2">
+        <button class="carousel-dot active" data-index="0"></button>
+        <button class="carousel-dot" data-index="1"></button>
+        <button class="carousel-dot" data-index="2"></button>
+        <button class="carousel-dot" data-index="3"></button>
     </div>
+
 </section>
 
 <style>
-#carousel-track { height: 100%; }
-.carousel-slide { height: 100vh; }
+.hero-slide          { opacity: 0; transition: opacity 1.2s ease; }
+.hero-slide.active   { opacity: 1; }
+.hero-slide-bg       { transform: scale(1.08); transition: transform 8s ease; }
+.hero-slide.active .hero-slide-bg { transform: scale(1); }
+.carousel-dot        { width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;transition:all 0.3s; }
+.carousel-dot.active { background:#f5c518;transform:scale(1.35); }
+#carousel-prev:hover,#carousel-next:hover { background:#f5c518 !important;border-color:#f5c518 !important;color:#000; }
 </style>
 
 <script>
 (function () {
-    const track = document.getElementById('carousel-track');
-    const dots  = document.querySelectorAll('.carousel-dot');
-    const total = 3;
-    let current = 0, timer, startX = 0, isDragging = false;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.carousel-dot');
+    const total  = slides.length;
+    let current  = 0, timer, startX = 0;
 
     function goTo(i) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
         current = (i + total) % total;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, idx) => {
-            d.classList.toggle('bg-[#f5c518]', idx === current);
-            d.classList.toggle('w-8', idx === current);
-            d.classList.toggle('bg-white/40', idx !== current);
-            d.classList.toggle('w-4', idx !== current);
-        });
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
     }
 
     function restart() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
@@ -128,10 +178,9 @@
     document.getElementById('carousel-next').addEventListener('click', () => { goTo(current + 1); restart(); });
     dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); restart(); }));
 
-    // Swipe
     const hero = document.getElementById('hero');
     hero.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    hero.addEventListener('touchend',   e => {
+    hero.addEventListener('touchend', e => {
         const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); restart(); }
     });
