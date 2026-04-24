@@ -118,9 +118,7 @@
 
     {{-- Slide 5: Schoolvervoer --}}
     <div class="hero-slide" id="slide-4">
-        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#0a1628 0%,#0f2040 50%,#081020 100%)">
-            <div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 40%,rgba(245,197,24,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
-        </div>
+        <div class="hero-slide-bg" style="background-image:url('/Gemini_Generated_Image_y6uy9qy6uy9qy6uy.png');background-position:center center;filter:brightness(0.45)"></div>
         <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.75) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
