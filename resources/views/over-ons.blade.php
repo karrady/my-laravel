@@ -5,12 +5,12 @@
 
 @section('content')
 
-<section class="relative pt-40 pb-24 bg-gradient-to-b from-[#111] to-[#0f0f0f]">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,197,24,0.08)_0%,_transparent_60%)]"></div>
+<section class="relative pt-40 pb-24 bg-gradient-to-b from-gray-50 to-white">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,197,24,0.06)_0%,_transparent_60%)]"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Wie zijn wij</span>
-        <h1 class="text-5xl sm:text-6xl font-black mt-3 mb-6">Over Ons</h1>
-        <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+        <h1 class="text-5xl sm:text-6xl font-black mt-3 mb-6 text-gray-900">Over Ons</h1>
+        <p class="text-gray-500 text-xl max-w-2xl mx-auto">
             Betrouwbaar, professioneel en altijd klaar voor u. Dat is TaxiCentrale.
         </p>
     </div>
@@ -22,8 +22,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
                 <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Ons verhaal</span>
-                <h2 class="text-4xl font-black mt-3 mb-6">Passie voor vervoer, oog voor detail</h2>
-                <div class="space-y-4 text-gray-400 leading-relaxed">
+                <h2 class="text-4xl font-black mt-3 mb-6 text-gray-900">Passie voor vervoer, oog voor detail</h2>
+                <div class="space-y-4 text-gray-500 leading-relaxed">
                     <p>
                         TaxiCentrale is opgericht met één doel: betrouwbaar en professioneel vervoer bieden aan iedereen die dat nodig heeft. Of u nu een airport transfer zoekt, zakelijk vervoer nodig heeft of gewoon een rit naar huis wilt — wij staan voor u klaar.
                     </p>
@@ -44,10 +44,10 @@
                     ['number' => '100%', 'label' => 'Vaste prijzen', 'desc' => 'Geen verrassingen achteraf'],
                     ['number' => '∞', 'label' => 'Toewijding', 'desc' => 'Altijd de beste service'],
                 ] as $stat)
-                <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 text-center">
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
                     <div class="text-4xl font-black text-[#f5c518] mb-1">{{ $stat['number'] }}</div>
-                    <div class="text-white font-bold text-sm mb-1">{{ $stat['label'] }}</div>
-                    <div class="text-gray-500 text-xs">{{ $stat['desc'] }}</div>
+                    <div class="text-gray-900 font-bold text-sm mb-1">{{ $stat['label'] }}</div>
+                    <div class="text-gray-400 text-xs">{{ $stat['desc'] }}</div>
                 </div>
                 @endforeach
             </div>
@@ -56,11 +56,11 @@
 </section>
 
 {{-- Waarden --}}
-<section class="py-24 bg-[#0a0a0a]">
+<section class="py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Waar wij voor staan</span>
-            <h2 class="text-4xl font-black mt-3">Onze Waarden</h2>
+            <h2 class="text-4xl font-black mt-3 text-gray-900">Onze Waarden</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -75,8 +75,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $waarde['icon'] }}"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold mb-3">{{ $waarde['title'] }}</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">{{ $waarde['desc'] }}</p>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">{{ $waarde['title'] }}</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">{{ $waarde['desc'] }}</p>
             </div>
             @endforeach
         </div>

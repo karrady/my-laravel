@@ -36,7 +36,7 @@
         font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
         font-weight="900"
         font-size="28"
-        fill="white">TAXI</text>
+        fill="#0f0f0f">TAXI</text>
 
   <!-- CENTRALE -->
   <text x="97" y="60"
