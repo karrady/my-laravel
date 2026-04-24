@@ -11,7 +11,7 @@
     {{-- Slides --}}
     <div class="absolute inset-0" id="hero-slides">
         <div class="hero-slide absolute inset-0 transition-opacity duration-1000" data-slide="0">
-            <div class="absolute inset-0" style="background: url('/images/slide1.svg') center center / cover no-repeat;"></div>
+            <img src="/images/slide1.svg" alt="" class="absolute inset-0 w-full h-full object-cover">
         </div>
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="1">
             <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0f1a 0%, #0f1c2e 50%, #080d15 100%);"></div>
