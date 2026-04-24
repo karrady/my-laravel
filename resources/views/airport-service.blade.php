@@ -1,165 +1,215 @@
 @extends('layouts.app')
 
 @section('title', 'Airport Service — TaxiCentrale')
-@section('description', 'Professioneel luchthavenvervoer van en naar Schiphol, Rotterdam The Hague Airport en Eindhoven Airport. Vluchten worden gevolgd, vaste tarieven, 24/7 beschikbaar.')
+@section('description', 'Betrouwbaar luchthavenvervoer van en naar Schiphol, Rotterdam The Hague Airport en meer. Vaste tarieven, 24/7 beschikbaar, vluchten worden gevolgd.')
 
 @section('content')
 
 {{-- Hero --}}
 <section class="relative pt-40 pb-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] via-[#111] to-[#1a1a1a]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,197,24,0.10)_0%,_transparent_55%)]"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-flex items-center gap-2 bg-[#f5c518]/10 border border-[#f5c518]/20 rounded-full px-4 py-2 mb-6">
-                    <svg class="w-4 h-4 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-                    </svg>
-                    <span class="text-[#f5c518] text-sm font-medium">Airport Service</span>
-                </div>
-                <h1 class="text-5xl sm:text-6xl font-black leading-tight mb-6">
-                    Zorgeloos naar<br><span class="text-[#f5c518]">het vliegveld.</span>
-                </h1>
-                <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-lg">
-                    Wij halen u op aan de voordeur en brengen u stressloos naar uw luchthaven. Bij aankomst staan wij in de aankomsthal voor u klaar — ongeacht vertraging.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{{ route('reserveren') }}" class="inline-flex items-center justify-center gap-3 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-1">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                        Airport Transfer Boeken
-                    </a>
-                    <a href="tel:+31XXXXXXXXX" class="inline-flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:bg-white/5">
-                        <svg class="w-5 h-5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        Direct bellen
-                    </a>
-                </div>
-            </div>
-
-            {{-- USP kaarten --}}
-            <div class="grid grid-cols-2 gap-4">
-                @foreach([
-                    ['icon' => 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z', 'title' => 'Vlucht Tracking', 'desc' => 'Wij volgen uw vlucht live en passen ophaal­tijd aan'],
-                    ['icon' => 'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z', 'title' => '24/7 Beschikbaar', 'desc' => 'Vroege vluchten, late aankomsten — wij zijn er altijd'],
-                    ['icon' => 'M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5l1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2.22-3c-.55-.61-1.33-1-2.22-1s-1.67.39-2.22 1H3V6h12v9H8.22zM18 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z', 'title' => 'Deur-tot-deur', 'desc' => 'Ophalen bij uw adres, afzetten aan de terminal'],
-                    ['icon' => 'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z', 'title' => 'Vaste Prijs', 'desc' => 'U weet van tevoren wat u betaalt — geen verrassingen'],
-                ] as $usp)
-                <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-5">
-                    <div class="w-10 h-10 bg-[#f5c518]/10 rounded-xl flex items-center justify-center mb-3">
-                        <svg class="w-5 h-5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="{{ $usp['icon'] }}"/></svg>
-                    </div>
-                    <h3 class="font-bold text-white text-sm mb-1">{{ $usp['title'] }}</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed">{{ $usp['desc'] }}</p>
-                </div>
-                @endforeach
-            </div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,197,24,0.1)_0%,_transparent_60%)]"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex items-center gap-2 text-[#f5c518] text-sm font-semibold uppercase tracking-widest mb-4">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            Luchthavenvervoer
+        </span>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+            Airport <span class="text-[#f5c518]">Service</span>
+        </h1>
+        <p class="text-gray-400 text-xl max-w-2xl mx-auto mb-10">
+            Zorgeloos naar het vliegveld. Vaste tarieven, geen verrassingen — dag en nacht voor u klaar.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/25 text-lg">
+                Direct Reserveren
+            </a>
+            <a href="tel:+31XXXXXXXXX" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all text-lg">
+                <svg class="w-5 h-5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                Bel Ons
+            </a>
         </div>
     </div>
 </section>
 
-{{-- Luchthavens --}}
-<section class="py-24 bg-[#0a0a0a]">
+{{-- USPs --}}
+<section class="py-16 border-y border-white/5 bg-[#0a0a0a]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Wij rijden u naar</span>
-            <h2 class="text-4xl sm:text-5xl font-black mt-3 mb-3">Alle Luchthavens</h2>
-            <p class="text-gray-400 max-w-xl mx-auto">Van Nederland tot België — wij kennen de weg en zijn op tijd.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             @foreach([
-                ['name' => 'Amsterdam Schiphol', 'code' => 'AMS', 'desc' => 'De grootste luchthaven van Nederland. Wij rijden u naar alle terminals.', 'time' => 'Afhankelijk van locatie'],
-                ['name' => 'Rotterdam The Hague', 'code' => 'RTM', 'desc' => 'Compact vliegveld, ideaal voor Europese bestemmingen.', 'time' => 'Afhankelijk van locatie'],
-                ['name' => 'Eindhoven Airport', 'code' => 'EIN', 'desc' => 'Populaire luchthaven voor zuidelijk Nederland en low-cost vluchten.', 'time' => 'Afhankelijk van locatie'],
-                ['name' => 'Brussels Airport', 'code' => 'BRU', 'desc' => 'Internationale hub in België, op aanvraag beschikbaar.', 'time' => 'Op aanvraag'],
-                ['name' => 'Düsseldorf Airport', 'code' => 'DUS', 'desc' => 'Groot Duits vliegveld met uitstekende verbindingen.', 'time' => 'Op aanvraag'],
-                ['name' => 'Andere luchthaven', 'code' => '???', 'desc' => 'Vliegt u vanaf een andere luchthaven? Neem contact op voor een offerte.', 'time' => 'Op aanvraag'],
-            ] as $airport)
-            <div class="group bg-[#1a1a1a] border border-white/5 hover:border-[#f5c518]/20 rounded-2xl p-6 transition-all hover:-translate-y-1">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="w-14 h-14 bg-[#f5c518]/10 rounded-xl flex items-center justify-center group-hover:bg-[#f5c518]/20 transition-colors">
-                        <span class="text-[#f5c518] font-black text-sm tracking-tight">{{ $airport['code'] }}</span>
-                    </div>
-                    <span class="text-gray-600 text-xs bg-white/5 px-2 py-1 rounded-full">{{ $airport['time'] }}</span>
+                ['icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'title' => 'Vaste Tarieven', 'desc' => 'Geen verborgen kosten'],
+                ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => '24/7 Beschikbaar', 'desc' => 'Dag en nacht voor u'],
+                ['icon' => 'M5 3l14 9-14 9V3z', 'title' => 'Vlucht Tracking', 'desc' => 'Wij volgen uw vlucht'],
+                ['icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Deur tot Deur', 'desc' => 'Thuis opgehaald'],
+            ] as $usp)
+            <div class="flex flex-col items-center text-center p-6 bg-[#1a1a1a] rounded-2xl border border-white/5">
+                <div class="w-12 h-12 bg-[#f5c518]/10 rounded-xl flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-[#f5c518]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $usp['icon'] }}"/>
+                    </svg>
                 </div>
-                <h3 class="font-bold text-white text-lg mb-2">{{ $airport['name'] }}</h3>
-                <p class="text-gray-500 text-sm leading-relaxed mb-4">{{ $airport['desc'] }}</p>
-                <a href="{{ route('reserveren') }}?service_type=luchthaven" class="text-[#f5c518] text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                    Boek transfer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
+                <div class="font-bold text-white text-sm mb-1">{{ $usp['title'] }}</div>
+                <div class="text-gray-500 text-xs">{{ $usp['desc'] }}</div>
             </div>
             @endforeach
         </div>
     </div>
 </section>
 
-{{-- Hoe werkt het --}}
+{{-- Prijstabellen --}}
 <section class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <div class="text-center mb-16">
-            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Zo simpel is het</span>
-            <h2 class="text-4xl font-black mt-3">Uw Airport Transfer in 3 Stappen</h2>
+            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Tarieven</span>
+            <h2 class="text-4xl font-black mt-3 mb-4">Vaste Prijzen per Luchthaven</h2>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm">Alle tarieven zijn voor 1 t/m 4 personen. Prijzen gelden bij boeking minimaal <strong class="text-white">24 uur van tevoren</strong>.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach([
-                ['num' => '01', 'title' => 'Boek Online of Bel', 'desc' => 'Geef uw vertrek­adres, luchthaven, datum en vlucht­nummer op. Wij bevestigen binnen 2 uur.'],
-                ['num' => '02', 'title' => 'Wij Staan Klaar', 'desc' => 'Op de afgesproken tijd staat onze chauffeur bij u voor de deur, ruim op tijd voor vertrek.'],
-                ['num' => '03', 'title' => 'Zorgeloos Vliegen', 'desc' => 'Comfortabel naar de luchthaven. Bij terugkomst halen wij u op na het doorlopen van de douane.'],
-            ] as $step)
-            <div class="relative text-center">
-                <div class="w-16 h-16 bg-[#f5c518] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-yellow-500/20">
-                    <span class="text-black font-black text-lg">{{ $step['num'] }}</span>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            {{-- Schiphol --}}
+            <div class="bg-[#1a1a1a] border border-white/5 rounded-3xl overflow-hidden">
+                <div class="bg-[#f5c518] px-8 py-5 flex items-center gap-3">
+                    <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                    <div>
+                        <h3 class="text-black font-black text-xl">Amsterdam Schiphol</h3>
+                        <p class="text-black/70 text-xs font-medium">1 t/m 4 personen</p>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">{{ $step['title'] }}</h3>
-                <p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">{{ $step['desc'] }}</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- Baggage info --}}
-<section class="py-16 bg-[#0a0a0a]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-                <h2 class="text-3xl font-black mb-5">Wat mag u meenemen?</h2>
-                <div class="space-y-4">
+                <div class="divide-y divide-white/5">
                     @foreach([
-                        ['title' => 'Handbagage', 'desc' => 'Kleine tassen, rugzakken, laptops — geen probleem.'],
-                        ['title' => 'Koffers & grote bagage', 'desc' => 'Ruime voertuigen voor meerdere grote koffers.'],
-                        ['title' => 'Ski\'s & sportuitrusting', 'desc' => 'Vertel ons van tevoren wat u meeneemt.'],
-                        ['title' => 'Kinderzitjes', 'desc' => 'Op aanvraag regelen wij een passend kinderzitje.'],
-                    ] as $item)
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 bg-[#f5c518]/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg class="w-3.5 h-3.5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        </div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">{{ $item['title'] }}</span>
-                            <span class="text-gray-500 text-sm"> — {{ $item['desc'] }}</span>
-                        </div>
+                        ['plaats' => 'Ammerstol',               'prijs' => '€115'],
+                        ['plaats' => 'Bergambacht',             'prijs' => '€105'],
+                        ['plaats' => 'Berkenwoude',             'prijs' => '€110'],
+                        ['plaats' => 'Bodegraven',              'prijs' => '€85'],
+                        ['plaats' => 'Boskoop',                 'prijs' => '€85'],
+                        ['plaats' => 'Gouda',                   'prijs' => '€85'],
+                        ['plaats' => 'Gouderak',                'prijs' => '€100'],
+                        ['plaats' => 'Haastrecht',              'prijs' => '€100'],
+                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€130'],
+                        ['plaats' => 'Lekkerkerk',              'prijs' => '€130'],
+                        ['plaats' => 'Moordrecht',              'prijs' => '€95'],
+                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€110'],
+                        ['plaats' => 'Ouderkerk a/d IJssel',    'prijs' => '€120'],
+                        ['plaats' => 'Oudewater',               'prijs' => '€120'],
+                        ['plaats' => 'Reeuwijk',                'prijs' => '€85'],
+                        ['plaats' => 'Reeuwijk Sluipwijk',      'prijs' => '€95'],
+                        ['plaats' => 'Schoonhoven',             'prijs' => '€125'],
+                        ['plaats' => 'Stolwijk',                'prijs' => '€100'],
+                        ['plaats' => 'Vlist',                   'prijs' => '€110'],
+                        ['plaats' => 'Waddinxveen',             'prijs' => '€85'],
+                        ['plaats' => 'Waddinxveen Zuidplas',    'prijs' => '€90'],
+                        ['plaats' => 'Zevenhuizen/Moerkapelle', 'prijs' => '€110'],
+                    ] as $i => $rij)
+                    <div class="flex items-center justify-between px-8 py-3.5 {{ $i % 2 === 0 ? '' : 'bg-white/[0.02]' }} hover:bg-white/5 transition-colors">
+                        <span class="text-gray-300 text-sm">{{ $rij['plaats'] }}</span>
+                        <span class="text-[#f5c518] font-bold text-sm">{{ $rij['prijs'] }}</span>
                     </div>
                     @endforeach
                 </div>
             </div>
 
-            <div class="bg-[#1a1a1a] border border-[#f5c518]/20 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-[#f5c518] rounded-xl flex items-center justify-center">
-                        <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            {{-- Rotterdam --}}
+            <div class="bg-[#1a1a1a] border border-white/5 rounded-3xl overflow-hidden">
+                <div class="bg-[#f5c518] px-8 py-5 flex items-center gap-3">
+                    <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                    <div>
+                        <h3 class="text-black font-black text-xl">Rotterdam The Hague Airport</h3>
+                        <p class="text-black/70 text-xs font-medium">1 t/m 4 personen</p>
                     </div>
-                    <h3 class="font-bold text-white text-lg">Handige Tips</h3>
                 </div>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li class="flex items-start gap-2"><span class="text-[#f5c518] font-bold flex-shrink-0">→</span>Boek minimaal 24 uur van tevoren voor de beste beschikbaarheid</li>
-                    <li class="flex items-start gap-2"><span class="text-[#f5c518] font-bold flex-shrink-0">→</span>Geef uw vluchtnummer op zodat wij uw vlucht kunnen volgen</li>
-                    <li class="flex items-start gap-2"><span class="text-[#f5c518] font-bold flex-shrink-0">→</span>Reken op extra tijd bij Schiphol: aanwezig zijn 3 uur voor vertrek</li>
-                    <li class="flex items-start gap-2"><span class="text-[#f5c518] font-bold flex-shrink-0">→</span>Bij terugkomst wachten wij op u in de aankomsthal</li>
-                    <li class="flex items-start gap-2"><span class="text-[#f5c518] font-bold flex-shrink-0">→</span>Betalen kan cash of pin bij de chauffeur</li>
-                </ul>
+                <div class="divide-y divide-white/5">
+                    @foreach([
+                        ['plaats' => 'Ammerstol',               'prijs' => '€100'],
+                        ['plaats' => 'Bergambacht',             'prijs' => '€95'],
+                        ['plaats' => 'Berkenwoude',             'prijs' => '€100'],
+                        ['plaats' => 'Bodegraven',              'prijs' => '€95'],
+                        ['plaats' => 'Boskoop',                 'prijs' => '€100'],
+                        ['plaats' => 'Gouda',                   'prijs' => '€75'],
+                        ['plaats' => 'Gouderak',                'prijs' => '€85'],
+                        ['plaats' => 'Haastrecht',              'prijs' => '€85'],
+                        ['plaats' => 'Krimpen a/d IJssel',      'prijs' => '€100'],
+                        ['plaats' => 'Lekkerkerk',              'prijs' => '€100'],
+                        ['plaats' => 'Moordrecht',              'prijs' => '€75'],
+                        ['plaats' => 'Moerkapelle',             'prijs' => '€95'],
+                        ['plaats' => 'Nieuwerkerk a/d IJssel',  'prijs' => '€75'],
+                        ['plaats' => 'Ouderkerk a/d IJssel',    'prijs' => '€100'],
+                        ['plaats' => 'Oudewater',               'prijs' => '€115'],
+                        ['plaats' => 'Reeuwijk',                'prijs' => '€85'],
+                        ['plaats' => 'Reeuwijk Sluipwijk',      'prijs' => '€95'],
+                        ['plaats' => 'Schoonhoven',             'prijs' => '€115'],
+                        ['plaats' => 'Stolwijk',                'prijs' => '€90'],
+                        ['plaats' => 'Vlist',                   'prijs' => '€95'],
+                        ['plaats' => 'Waddinxveen',             'prijs' => '€85'],
+                        ['plaats' => 'Waddinxveen Noord',       'prijs' => '€90'],
+                        ['plaats' => 'Zevenhuizen',             'prijs' => '€90'],
+                    ] as $i => $rij)
+                    <div class="flex items-center justify-between px-8 py-3.5 {{ $i % 2 === 0 ? '' : 'bg-white/[0.02]' }} hover:bg-white/5 transition-colors">
+                        <span class="text-gray-300 text-sm">{{ $rij['plaats'] }}</span>
+                        <span class="text-[#f5c518] font-bold text-sm">{{ $rij['prijs'] }}</span>
+                    </div>
+                    @endforeach
+                </div>
             </div>
+
+        </div>
+
+        {{-- 24u notice --}}
+        <div class="mt-8 flex items-start gap-4 bg-[#f5c518]/10 border border-[#f5c518]/20 rounded-2xl px-6 py-5">
+            <svg class="w-5 h-5 text-[#f5c518] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <p class="text-gray-300 text-sm leading-relaxed">
+                <strong class="text-white">Let op:</strong> Bovenstaande prijzen zijn alleen van toepassing indien u de taxi <strong class="text-[#f5c518]">minimaal 24 uur van tevoren</strong> bestelt. Bij last-minute boekingen neem contact op via telefoon.
+            </p>
+        </div>
+
+        {{-- Andere luchthavens --}}
+        <div class="mt-6 flex items-start gap-4 bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-5">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+            </svg>
+            <p class="text-gray-400 text-sm leading-relaxed">
+                Rijdt u naar <strong class="text-white">Eindhoven, Brussel, Düsseldorf of een andere luchthaven?</strong> Bel ons voor een offerte op maat.
+                <a href="tel:+31XXXXXXXXX" class="text-[#f5c518] font-semibold hover:underline ml-1">+31 XX XXX XXXX</a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+{{-- Andere diensten op aanvraag --}}
+<section class="py-24 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Meer vervoer</span>
+            <h2 class="text-4xl font-black mt-3 mb-4">Andere Diensten</h2>
+            <p class="text-gray-400">Alle overige ritten zijn beschikbaar op aanvraag — bel ons voor een prijs op maat.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach([
+                ['icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', 'title' => 'Zakelijk Vervoer', 'desc' => 'Representatief vervoer voor vergaderingen, events en zakenreizen.'],
+                ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Groepsvervoer', 'desc' => 'Vervoer voor groepen — vraag naar de mogelijkheden.'],
+                ['icon' => 'M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.499-12.99l.75-1.3m-6.751 16.58l.25-1.498m5.002-12.997l.25-1.498m-4.253 14.745l-.25-1.497m3.002-12.998l-.25-1.497', 'title' => 'Ritten op Maat', 'desc' => 'Stad, ziekenhuis, evenement of anders — wij rijden overal naartoe.'],
+            ] as $dienst)
+            <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-8 flex flex-col gap-5">
+                <div class="w-12 h-12 bg-[#f5c518]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-[#f5c518]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $dienst['icon'] }}"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-2">{{ $dienst['title'] }}</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">{{ $dienst['desc'] }}</p>
+                    <a href="tel:+31XXXXXXXXX" class="inline-flex items-center gap-2 text-[#f5c518] text-sm font-semibold hover:gap-3 transition-all">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Op aanvraag — bel ons
+                    </a>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -167,14 +217,14 @@
 {{-- CTA --}}
 <section class="py-20 bg-[#f5c518]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl sm:text-5xl font-black text-black mb-4">Klaar voor uw vlucht?</h2>
-        <p class="text-black/70 text-lg mb-8">Boek uw airport transfer en vlieg zorgeloos.</p>
+        <h2 class="text-4xl font-black text-black mb-4">Klaar voor vertrek?</h2>
+        <p class="text-black/70 text-lg mb-8">Reserveer uw taxi online of bel ons direct — wij staan 24/7 voor u klaar.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="{{ route('reserveren') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
-                Nu Reserveren
+                Online Reserveren
             </a>
             <a href="tel:+31XXXXXXXXX" class="bg-black/10 hover:bg-black/20 text-black font-bold px-10 py-4 rounded-xl transition-all text-lg border-2 border-black/20">
-                Bel Direct
+                +31 XX XXX XXXX
             </a>
         </div>
     </div>

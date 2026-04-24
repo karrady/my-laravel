@@ -1,143 +1,69 @@
 @extends('layouts.app')
 
-@section('title', 'Onze Diensten — TaxiCentrale')
-@section('description', 'Luchthavenvervoer, zakelijk vervoer, groepsvervoer en ritten op maat. Professioneel taxivervoer voor elk doel. Bekijk onze diensten en boek direct online.')
+@section('title', 'Diensten — TaxiCentrale')
+@section('description', 'Onze taxidiensten: luchthavenvervoer naar Schiphol en Rotterdam met vaste tarieven. Zakelijk vervoer, groepsvervoer en andere ritten op aanvraag.')
 
 @section('content')
 
-{{-- Page Header --}}
+{{-- Hero --}}
 <section class="relative pt-40 pb-24 bg-gradient-to-b from-[#111] to-[#0f0f0f]">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,197,24,0.08)_0%,_transparent_60%)]"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Wat wij bieden</span>
         <h1 class="text-5xl sm:text-6xl font-black mt-3 mb-6">Onze Diensten</h1>
         <p class="text-gray-400 text-xl max-w-2xl mx-auto">
-            Van luchthaven naar hotel, van thuis naar kantoor — professioneel vervoer voor elke situatie.
+            Betrouwbaar vervoer voor elk moment. Airport service met vaste tarieven — overige ritten op aanvraag.
         </p>
     </div>
 </section>
 
-{{-- Diensten detail --}}
+{{-- Hoofddienst: Airport Service --}}
 <section class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-
-        {{-- Luchthavenvervoer --}}
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-                <div class="w-16 h-16 bg-[#f5c518]/10 rounded-2xl flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-                    </svg>
-                </div>
-                <h2 class="text-3xl font-black mb-4">Luchthavenvervoer</h2>
+                <span class="inline-flex items-center gap-2 text-[#f5c518] text-sm font-semibold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                    Onze hoofddienst
+                </span>
+                <h2 class="text-4xl font-black mb-6">Airport Service</h2>
                 <p class="text-gray-400 leading-relaxed mb-6">
-                    Stressvrij reizen begint met een betrouwbare transfer. Wij volgen uw vlucht live en passen de ophaaltime aan bij vertraging. U hoeft nergens op te wachten — wij wachten op u.
+                    Zorgeloos naar het vliegveld. Wij brengen u van deur tot deur — we volgen uw vlucht zodat u nooit te vroeg of te laat hoeft te wachten. Vaste tarieven, geen verrassingen.
                 </p>
                 <ul class="space-y-3 mb-8">
-                    @foreach(['Vlucht tracking inbegrepen', 'Ophalen bij aankomsthal', 'Hulp bij bagage', 'Alle luchthavens in Nederland', 'Vaste prijs vooraf'] as $feature)
+                    @foreach(['Vaste tarieven vooraf', 'Vlucht tracking inbegrepen', '24/7 beschikbaar', 'Deur-tot-deur service', 'Minimaal 24u van tevoren boeken'] as $punt)
                     <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <div class="w-5 h-5 bg-[#f5c518]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <svg class="w-3 h-3 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        </div>
-                        {{ $feature }}
+                        <svg class="w-5 h-5 text-[#f5c518] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ $punt }}
                     </li>
                     @endforeach
                 </ul>
-                <a href="{{ route('reserveren') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
-                    Boek Luchthavenrit
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-            <div class="bg-[#1a1a1a] border border-white/5 rounded-3xl p-8">
-                <h3 class="font-bold text-white mb-6 text-lg">Vaste Luchthavenprijzen</h3>
-                <div class="space-y-4">
-                    @foreach([
-                        ['from' => 'Naar Schiphol', 'price' => 'Op aanvraag'],
-                        ['from' => 'Naar Rotterdam The Hague Airport', 'price' => 'Op aanvraag'],
-                        ['from' => 'Naar Eindhoven Airport', 'price' => 'Op aanvraag'],
-                        ['from' => 'Naar Brussels Airport', 'price' => 'Op aanvraag'],
-                    ] as $price)
-                    <div class="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
-                        <span class="text-gray-400 text-sm">{{ $price['from'] }}</span>
-                        <span class="text-[#f5c518] font-bold">{{ $price['price'] }}</span>
-                    </div>
-                    @endforeach
-                </div>
-                <p class="text-gray-600 text-xs mt-4">* Prijzen zijn vaste tarieven inclusief BTW. Vraag een offerte aan voor exacte prijzen.</p>
-            </div>
-        </div>
-
-        <div class="border-t border-white/5"></div>
-
-        {{-- Zakelijk vervoer --}}
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="order-2 lg:order-1 bg-[#1a1a1a] border border-white/5 rounded-3xl p-8">
-                <h3 class="font-bold text-white mb-6 text-lg">Zakelijke Voordelen</h3>
-                <div class="space-y-4">
-                    @foreach([
-                        ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Factuur op bedrijfsnaam'],
-                        ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Vaste zakelijke tarieven'],
-                        ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Maandelijkse facturatie mogelijk'],
-                        ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Representatieve luxe voertuigen'],
-                        ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Prioriteit planning en bevestiging'],
-                    ] as $voordeel)
-                    <div class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#f5c518] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $voordeel['icon'] }}"/>
-                        </svg>
-                        <span class="text-gray-300 text-sm">{{ $voordeel['text'] }}</span>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="mt-6 pt-6 border-t border-white/10">
-                    <a href="{{ route('contact') }}" class="text-[#f5c518] text-sm font-semibold hover:underline">Vraag zakelijk account aan →</a>
-                </div>
-            </div>
-            <div class="order-1 lg:order-2">
-                <div class="w-16 h-16 bg-[#f5c518]/10 rounded-2xl flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 7h-4V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 5h4v2h-4V5zm10 15H4v-2h16v2zm0-5H4V9h16v6z"/>
-                    </svg>
-                </div>
-                <h2 class="text-3xl font-black mb-4">Zakelijk Vervoer</h2>
-                <p class="text-gray-400 leading-relaxed mb-6">
-                    Uw zakenpartner verdient het beste. Wij bieden representatief en punctueel vervoer voor meetings, congressen en zakenreizen. Discrete chauffeurs, luxe voertuigen en altijd op tijd.
-                </p>
-                <a href="{{ route('reserveren') }}" class="inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
-                    Zakelijke Rit Boeken
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="border-t border-white/5"></div>
-
-        {{-- Overige diensten grid --}}
-        <div>
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black mb-3">Meer Diensten</h2>
-                <p class="text-gray-400">Voor elk vervoersvraagstuk hebben wij een passende oplossing.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach([
-                    ['title' => 'Groepsvervoer', 'desc' => 'Bruiloften, feesten, uitstapjes. Comfortabel samen reizen in onze ruime voertuigen.', 'icon' => 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'],
-                    ['title' => 'Medisch Vervoer', 'desc' => 'Vervoer naar dokter, ziekenhuis of fysiotherapeut. Rustig, veilig en met alle tijd.', 'icon' => 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z'],
-                    ['title' => 'Avond & Nacht', 'desc' => 'Veilig thuiskomen na een avond uit. Wij zijn er altijd, ook midden in de nacht.', 'icon' => 'M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z'],
-                    ['title' => 'Lange Afstand', 'desc' => 'Comfortabel reizen door heel Nederland en naar Belgische of Duitse steden.', 'icon' => 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'],
-                    ['title' => 'Ritten op Maat', 'desc' => 'Geen standaarddienst die past? Neem contact op en wij denken met u mee.', 'icon' => 'M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z'],
-                    ['title' => 'Toeristische Trips', 'desc' => 'Stadsbezoeken, daguitstapjes of rondleidingen met een lokale chauffeur als gids.', 'icon' => 'M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3z'],
-                ] as $dienst)
-                <div class="group bg-[#1a1a1a] hover:bg-[#1f1f1f] border border-white/5 hover:border-[#f5c518]/20 rounded-2xl p-6 transition-all hover:-translate-y-1">
-                    <div class="w-12 h-12 bg-[#f5c518]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#f5c518]/20 transition-colors">
-                        <svg class="w-6 h-6 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="{{ $dienst['icon'] }}"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">{{ $dienst['title'] }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-4">{{ $dienst['desc'] }}</p>
-                    <a href="{{ route('reserveren') }}" class="text-[#f5c518] text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                        Boek nu <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ route('airport-service') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-8 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25">
+                        Bekijk Tarieven
                     </a>
+                    <a href="{{ route('reserveren') }}" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold px-8 py-3.5 rounded-xl transition-all">
+                        Direct Reserveren
+                    </a>
+                </div>
+            </div>
+
+            {{-- Luchthavens --}}
+            <div class="grid grid-cols-2 gap-4">
+                @foreach([
+                    ['naam' => 'Amsterdam Schiphol', 'code' => 'AMS', 'info' => 'Vaste tarieven beschikbaar'],
+                    ['naam' => 'Rotterdam The Hague', 'code' => 'RTM', 'info' => 'Vaste tarieven beschikbaar'],
+                    ['naam' => 'Eindhoven Airport', 'code' => 'EIN', 'info' => 'Op aanvraag'],
+                    ['naam' => 'Brussel Zaventem', 'code' => 'BRU', 'info' => 'Op aanvraag'],
+                    ['naam' => 'Düsseldorf Airport', 'code' => 'DUS', 'info' => 'Op aanvraag'],
+                    ['naam' => 'Andere luchthaven', 'code' => '···', 'info' => 'Bel voor offerte'],
+                ] as $vliegveld)
+                <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-5">
+                    <div class="text-2xl font-black text-[#f5c518] mb-1">{{ $vliegveld['code'] }}</div>
+                    <div class="text-white font-semibold text-sm mb-1">{{ $vliegveld['naam'] }}</div>
+                    <div class="text-gray-500 text-xs">{{ $vliegveld['info'] }}</div>
                 </div>
                 @endforeach
             </div>
@@ -145,17 +71,47 @@
     </div>
 </section>
 
-{{-- CTA --}}
-<section class="py-20 bg-[#f5c518]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-black text-black mb-4">Direct een rit boeken?</h2>
-        <p class="text-black/70 text-lg mb-8">Vul het formulier in of bel ons direct. Wij zijn 24/7 bereikbaar.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="{{ route('reserveren') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
-                Online Boeken
-            </a>
-            <a href="tel:+31XXXXXXXXX" class="bg-black/10 hover:bg-black/20 text-black font-bold px-10 py-4 rounded-xl transition-all text-lg border-2 border-black/20">
-                Bel Direct
+{{-- Overige diensten op aanvraag --}}
+<section class="py-24 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Overige diensten</span>
+            <h2 class="text-4xl font-black mt-3 mb-4">Op Aanvraag</h2>
+            <p class="text-gray-400 max-w-xl mx-auto">Voor onderstaande diensten kunt u telefonisch contact opnemen. Wij geven u direct een prijs op maat.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            @foreach([
+                ['icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', 'title' => 'Zakelijk Vervoer', 'desc' => 'Representatief vervoer voor uw vergadering, event of zakenreis. Professionele chauffeurs, op tijd.'],
+                ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Groepsvervoer', 'desc' => 'Heeft u een grotere groep? Neem contact op en wij zorgen voor een passende oplossing.'],
+                ['icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Ritten op Maat', 'desc' => 'Ziekenhuis, treinstation, evenement of een ander adres — wij rijden overal naartoe.'],
+            ] as $dienst)
+            <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-8">
+                <div class="w-12 h-12 bg-[#f5c518]/10 rounded-xl flex items-center justify-center mb-5">
+                    <svg class="w-6 h-6 text-[#f5c518]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $dienst['icon'] }}"/>
+                    </svg>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-3">{{ $dienst['title'] }}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-5">{{ $dienst['desc'] }}</p>
+                <a href="tel:+31XXXXXXXXX" class="inline-flex items-center gap-2 text-[#f5c518] text-sm font-semibold hover:gap-3 transition-all">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Bel voor een offerte
+                </a>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- Bel CTA --}}
+        <div class="bg-[#1a1a1a] border border-[#f5c518]/20 rounded-3xl p-10 text-center">
+            <div class="w-16 h-16 bg-[#f5c518]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <h3 class="text-2xl font-black mb-3">Vragen of een speciale rit?</h3>
+            <p class="text-gray-400 mb-6">Bel ons direct — wij zijn 24/7 bereikbaar en helpen u graag verder.</p>
+            <a href="tel:+31XXXXXXXXX" class="inline-flex items-center gap-3 bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-500/25 text-lg">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +31 XX XXX XXXX
             </a>
         </div>
     </div>
