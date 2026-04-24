@@ -38,9 +38,8 @@
 
     {{-- Slide 2: Gouda regio --}}
     <div class="hero-slide" id="slide-1">
-        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#0a0f1e 0%,#131929 60%,#0a0d1a 100%)"></div>
-        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 25% 60%,rgba(245,197,24,0.18) 0%,transparent 50%)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="hero-slide-bg" style="background-image:url('/oudstadhuisgouda.jpg');filter:brightness(0.42)"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🗺 Regiovervoer</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
@@ -67,9 +66,8 @@
 
     {{-- Slide 3: Zakelijk --}}
     <div class="hero-slide" id="slide-2">
-        <div class="hero-slide-bg" style="background:linear-gradient(160deg,#0e0900 0%,#1c1200 45%,#0a0700 100%)"></div>
-        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 60% 30%,rgba(245,197,24,0.22) 0%,transparent 50%)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="hero-slide-bg" style="background-image:url('/newstadhuis.jpg');filter:brightness(0.38)"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
             <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">💼 Zakelijk Vervoer</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
@@ -96,16 +94,15 @@
 
     {{-- Slide 4: Avond & Nacht --}}
     <div class="hero-slide" id="slide-3">
-        <div class="hero-slide-bg" style="background:linear-gradient(135deg,#070b14 0%,#0d1520 55%,#060a10 100%)"></div>
-        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 40% 70%,rgba(245,197,24,0.12) 0%,transparent 45%),radial-gradient(ellipse at 80% 20%,rgba(245,197,24,0.08) 0%,transparent 40%)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%)"></div>
+        <div class="hero-slide-bg" style="background-image:url('/stadhuisnew.jpg');background-position:center top;filter:brightness(0.38)"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🌙 Avond & Nacht</span>
+            <span class="inline-block border border-[#f5c518]/60 text-[#f5c518] text-[11px] font-semibold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm">🚉 Station Gouda</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Veilig thuis,<br><span class="text-[#f5c518]">dag en nacht</span>
+                Van station<br><span class="text-[#f5c518]">naar uw deur</span>
             </h2>
             <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Veilig thuiskomen na een avondje uit of vroeg vertrek naar het vliegveld. Wij rijden 24/7 voor u.
+                Aankomst in Gouda? Wij staan voor u klaar. Snel, comfortabel en altijd op tijd — dag en nacht.
             </p>
             <div class="flex flex-wrap gap-3 mb-10">
                 <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
