@@ -63,7 +63,7 @@
         <div class="text-center mb-16">
             <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Tarieven</span>
             <h2 class="text-4xl font-black mt-3 mb-4 text-gray-900">Vaste Prijzen per Luchthaven</h2>
-            <p class="text-gray-500 max-w-xl mx-auto text-sm">Alle tarieven zijn voor 1 t/m 4 personen. Prijzen gelden bij boeking minimaal <strong class="text-gray-900">24 uur van tevoren</strong>.</p>
+            <p class="text-gray-500 max-w-xl mx-auto text-sm">Alle tarieven zijn <strong class="text-gray-900">enkele reis</strong> voor 1 t/m 4 personen, van uw startlocatie naar de luchthaven. Prijzen gelden bij boeking minimaal <strong class="text-gray-900">24 uur van tevoren</strong>.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -74,7 +74,7 @@
                     <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
                     <div>
                         <h3 class="text-black font-black text-xl">Amsterdam Schiphol</h3>
-                        <p class="text-black/70 text-xs font-medium">1 t/m 4 personen</p>
+                        <p class="text-black/70 text-xs font-medium">Enkele reis · 1 t/m 4 personen · van startlocatie naar airport</p>
                     </div>
                 </div>
                 <div class="divide-y divide-gray-100">
@@ -117,7 +117,7 @@
                     <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
                     <div>
                         <h3 class="text-black font-black text-xl">Rotterdam The Hague Airport</h3>
-                        <p class="text-black/70 text-xs font-medium">1 t/m 4 personen</p>
+                        <p class="text-black/70 text-xs font-medium">Enkele reis · 1 t/m 4 personen · van startlocatie naar airport</p>
                     </div>
                 </div>
                 <div class="divide-y divide-gray-100">
