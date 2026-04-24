@@ -5,35 +5,55 @@
 
 @section('content')
 
-{{-- Hero --}}
+{{-- Hero met slideshow --}}
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-white"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,197,24,0.12)_0%,_transparent_60%)]"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5c518]/30 to-transparent"></div>
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px); background-size: 50px 50px;"></div>
 
+    {{-- Slides --}}
+    <div class="absolute inset-0" id="hero-slides">
+        <div class="hero-slide absolute inset-0 transition-opacity duration-1000" data-slide="0">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0d0d0d 100%);"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 40%, rgba(245,197,24,0.18) 0%, transparent 60%);"></div>
+            <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        </div>
+        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="1">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0f1a 0%, #0f1c2e 50%, #080d15 100%);"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 60%, rgba(245,197,24,0.14) 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 50%);"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-1/2" style="background: linear-gradient(to top, rgba(245,197,24,0.06), transparent);"></div>
+        </div>
+        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-slide="2">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, #0d0a00 0%, #1a1200 50%, #0a0800 100%);"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 30%, rgba(245,197,24,0.22) 0%, transparent 50%);"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 0% 100%, rgba(245,197,24,0.08) 0%, transparent 40%);"></div>
+        </div>
+    </div>
+
+    {{-- Donkere overlay voor leesbaarheid --}}
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5c518]/40 to-transparent"></div>
+
+    {{-- Content --}}
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
-        <div class="inline-flex items-center gap-2 bg-[#f5c518]/10 border border-[#f5c518]/20 rounded-full px-4 py-2 mb-8">
+        <div class="inline-flex items-center gap-2 bg-[#f5c518]/15 border border-[#f5c518]/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
             <div class="w-2 h-2 bg-[#f5c518] rounded-full animate-pulse"></div>
             <span class="text-[#f5c518] text-sm font-medium">24/7 Beschikbaar</span>
         </div>
 
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-none text-gray-900">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-none text-white">
             Altijd op tijd,<br>
             <span class="text-[#f5c518]">altijd comfortabel.</span>
         </h1>
 
-        <p class="text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed">
             Professioneel taxivervoer met vaste prijzen en betrouwbare chauffeurs. Boek in 60 seconden — wij doen de rest.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="{{ route('reserveren') }}" class="group bg-[#f5c518] hover:bg-yellow-400 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-1 flex items-center gap-3">
+            <a href="{{ route('reserveren') }}" class="group bg-[#f5c518] hover:bg-yellow-400 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-yellow-500/40 hover:-translate-y-1 flex items-center gap-3">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
                 Direct Boeken
                 <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="tel:+31XXXXXXXXX" class="flex items-center gap-3 border border-gray-300 hover:border-gray-400 text-gray-700 font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:-translate-y-1 hover:bg-gray-50">
+            <a href="tel:+31XXXXXXXXX" class="flex items-center gap-3 border border-white/30 hover:border-white/60 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:-translate-y-1 hover:bg-white/10 backdrop-blur-sm">
                 <svg class="w-5 h-5 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 Bel direct
             </a>
@@ -42,24 +62,65 @@
         <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto">
             <div class="text-center">
                 <div class="text-3xl font-black text-[#f5c518]">24/7</div>
-                <div class="text-gray-400 text-xs mt-1 uppercase tracking-wider">Bereikbaar</div>
+                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Bereikbaar</div>
             </div>
-            <div class="text-center border-x border-gray-200">
-                <div class="text-3xl font-black text-gray-900">100%</div>
-                <div class="text-gray-400 text-xs mt-1 uppercase tracking-wider">Vaste prijzen</div>
+            <div class="text-center border-x border-white/20">
+                <div class="text-3xl font-black text-white">100%</div>
+                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Vaste prijzen</div>
             </div>
             <div class="text-center">
-                <div class="text-3xl font-black text-gray-900">5★</div>
-                <div class="text-gray-400 text-xs mt-1 uppercase tracking-wider">Beoordeling</div>
+                <div class="text-3xl font-black text-white">5★</div>
+                <div class="text-white/50 text-xs mt-1 uppercase tracking-wider">Beoordeling</div>
             </div>
         </div>
     </div>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400">
-        <span class="text-xs uppercase tracking-widest">Scroll</span>
-        <div class="w-px h-8 bg-gradient-to-b from-gray-400 to-transparent animate-pulse"></div>
+    {{-- Slide navigatie dots --}}
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+        <button class="slide-dot w-2.5 h-2.5 rounded-full bg-[#f5c518] transition-all" data-target="0"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all" data-target="1"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all" data-target="2"></button>
     </div>
 </section>
+
+<script>
+(function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    let current = 0;
+    let timer;
+
+    function goTo(index) {
+        slides[current].classList.add('opacity-0');
+        dots[current].classList.remove('bg-[#f5c518]', 'w-2.5', 'h-2.5');
+        dots[current].classList.add('bg-white/40', 'w-2', 'h-2');
+
+        current = index;
+
+        slides[current].classList.remove('opacity-0');
+        dots[current].classList.add('bg-[#f5c518]', 'w-2.5', 'h-2.5');
+        dots[current].classList.remove('bg-white/40', 'w-2', 'h-2');
+    }
+
+    function next() {
+        goTo((current + 1) % slides.length);
+    }
+
+    function startTimer() {
+        timer = setInterval(next, 5000);
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            clearInterval(timer);
+            goTo(parseInt(dot.dataset.target));
+            startTimer();
+        });
+    });
+
+    startTimer();
+})();
+</script>
 
 {{-- USPs --}}
 <section class="py-20 bg-gray-50">
