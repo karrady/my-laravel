@@ -152,7 +152,7 @@
             </div>
 
             <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} TaxiCentrale. Alle rechten voorbehouden.</p>
+                <p class="text-gray-500 text-sm">{{ date('Y') }} YAS taxicentrale alle rechten voorbehouden</p>
                 <p class="text-gray-600 text-xs">24/7 beschikbaar &mdash; Altijd op tijd</p>
             </div>
         </div>

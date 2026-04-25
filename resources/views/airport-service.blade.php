@@ -64,6 +64,22 @@
             <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Tarieven</span>
             <h2 class="text-4xl font-black mt-3 mb-4 text-gray-900">Vaste Prijzen per Luchthaven</h2>
             <p class="text-gray-500 max-w-xl mx-auto text-sm">Alle tarieven zijn <strong class="text-gray-900">enkele reis</strong> voor 1 t/m 4 personen, van uw startlocatie naar de luchthaven. Prijzen gelden bij boeking minimaal <strong class="text-gray-900">24 uur van tevoren</strong>.</p>
+
+            <div class="mt-6 inline-flex items-center gap-4 bg-[#f5c518]/10 border border-[#f5c518]/30 rounded-2xl px-6 py-4 max-w-xl mx-auto">
+                <svg class="w-5 h-5 text-[#f5c518] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-sm text-gray-700 text-left">Staat uw startlocatie er niet bij? <strong class="text-gray-900">Bel of stuur een bericht</strong>, wij maken altijd een prijs op maat.
+                    <span class="flex gap-3 mt-2">
+                        <a href="tel:+31XXXXXXXXX" class="inline-flex items-center gap-1.5 text-[#f5c518] font-semibold text-xs hover:underline">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            Bel ons
+                        </a>
+                        <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 text-[#f5c518] font-semibold text-xs hover:underline">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                            Stuur een bericht
+                        </a>
+                    </span>
+                </p>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">

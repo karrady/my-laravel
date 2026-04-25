@@ -10,119 +10,91 @@
 
     {{-- Slide 1: Airport --}}
     <div class="hero-slide active" id="slide-0">
-        <div class="hero-slide-bg" style="background-image:url('/vliegveld.jpg');filter:brightness(0.5)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.8) 100%)"></div>
-        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Uw taxi naar<br><span class="text-[#f5c518]">alle luchthavens</span>
-            </h1>
-            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Betrouwbaar, punctueel en comfortabel naar Schiphol, Rotterdam en meer. 24/7 beschikbaar.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-10">
-                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
-                    Direct Boeken
-                </a>
-                <a href="{{ route('airport-service') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
-                    Bekijk Tarieven
-                </a>
+        <img class="hero-slide-img" src="/vliegveld.jpg" alt="Airport" style="filter:brightness(0.5)">
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 100%)"></div>
+        <div class="hero-content">
+            <span class="hero-label">Airport Transfer</span>
+            <h1 class="hero-title">Uw taxi naar<br><span class="hero-accent">alle luchthavens</span></h1>
+            <p class="hero-sub">Betrouwbaar, punctueel en comfortabel naar Schiphol, Rotterdam en meer. 24/7 beschikbaar.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="hero-stat-val accent">24/7</span><span class="hero-stat-lbl">Beschikbaar</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">€79,-</span><span class="hero-stat-lbl">Vanaf Gouda</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">6+</span><span class="hero-stat-lbl">Luchthavens</span></div>
             </div>
-            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
-                <div><div class="text-2xl font-black text-[#f5c518]">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beschikbaar</div></div>
-                <div><div class="text-2xl font-black text-white">€79,-</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Vanaf Gouda</div></div>
-                <div><div class="text-2xl font-black text-white">6+</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Luchthavens</div></div>
+            <div class="hero-btns">
+                <a href="{{ route('reserveren') }}" class="hero-btn-primary">Direct Boeken</a>
+                <a href="{{ route('airport-service') }}" class="hero-btn-secondary">Bekijk Tarieven</a>
             </div>
         </div>
     </div>
 
     {{-- Slide 2: Gouda regio --}}
     <div class="hero-slide" id="slide-1">
-        <div class="hero-slide-bg" style="background-image:url('/gemini%20gouda.png');filter:brightness(0.45)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
-        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Taxi in Gouda<br><span class="text-[#f5c518]">& omgeving</span>
-            </h2>
-            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Van station Gouda naar uw bestemming, of door heel de regio. Snel, betrouwbaar en altijd op tijd.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-10">
-                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
-                    Rit Boeken
-                </a>
-                <a href="{{ route('diensten') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
-                    Meer Info
-                </a>
+        <img class="hero-slide-img" src="/gouda stad.png" alt="Gouda" style="filter:brightness(0.5)">
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 100%)"></div>
+        <div class="hero-content">
+            <span class="hero-label">Lokaal Vervoer</span>
+            <h2 class="hero-title">Taxi in Gouda<br><span class="hero-accent">& omgeving</span></h2>
+            <p class="hero-sub">Van station Gouda naar uw bestemming, of door heel de regio. Snel, betrouwbaar en altijd op tijd.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="hero-stat-val accent">Gouda</span><span class="hero-stat-lbl">& Omgeving</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">Snel</span><span class="hero-stat-lbl">Op Tijd</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">24/7</span><span class="hero-stat-lbl">Bereikbaar</span></div>
             </div>
-            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
-                <div><div class="text-2xl font-black text-[#f5c518]">Gouda</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">& Omgeving</div></div>
-                <div><div class="text-2xl font-black text-white">Snel</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Op Tijd</div></div>
-                <div><div class="text-2xl font-black text-white">24/7</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Bereikbaar</div></div>
+            <div class="hero-btns">
+                <a href="{{ route('reserveren') }}" class="hero-btn-primary">Rit Boeken</a>
+                <a href="{{ route('diensten') }}" class="hero-btn-secondary">Meer Info</a>
             </div>
         </div>
     </div>
 
     {{-- Slide 3: Zakelijk --}}
     <div class="hero-slide" id="slide-2">
-        <div class="hero-slide-bg" style="background-image:url('/Gemini%20zakelijk.png');filter:brightness(0.5)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.72) 100%)"></div>
-        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Zakelijk vervoer<br><span class="text-[#f5c518]">op maat</span>
-            </h2>
-            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Representatief en betrouwbaar voor uw zakelijke afspraken. Altijd netjes, altijd op tijd.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-10">
-                <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
-                    Zakelijk Boeken
-                </a>
-                <a href="{{ route('contact') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
-                    Neem Contact Op
-                </a>
+        <img class="hero-slide-img" src="/Gemini zakelijk.png" alt="Zakelijk" style="filter:brightness(0.5)">
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 100%)"></div>
+        <div class="hero-content">
+            <span class="hero-label">Zakelijk Vervoer</span>
+            <h2 class="hero-title">Zakelijk vervoer<br><span class="hero-accent">op maat</span></h2>
+            <p class="hero-sub">Representatief en betrouwbaar voor uw zakelijke afspraken. Altijd netjes, altijd op tijd.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="hero-stat-val accent">100%</span><span class="hero-stat-lbl">Betrouwbaar</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">Vast</span><span class="hero-stat-lbl">Tarief</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">Punctueel</span><span class="hero-stat-lbl">Gegarandeerd</span></div>
             </div>
-            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
-                <div><div class="text-2xl font-black text-[#f5c518]">100%</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Betrouwbaar</div></div>
-                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Tarief</div></div>
-                <div><div class="text-2xl font-black text-white">5★</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beoordeling</div></div>
+            <div class="hero-btns">
+                <a href="{{ route('reserveren') }}" class="hero-btn-primary">Zakelijk Boeken</a>
+                <a href="{{ route('contact') }}" class="hero-btn-secondary">Neem Contact Op</a>
             </div>
         </div>
     </div>
 
     {{-- Slide 4: Schoolvervoer --}}
     <div class="hero-slide" id="slide-4">
-        <div class="hero-slide-bg" style="background-image:url('/Gemini_Generated_Image_y6uy9qy6uy9qy6uy.png');background-position:center center;filter:brightness(0.45)"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0.75) 100%)"></div>
-        <div class="absolute bottom-0 left-0 right-0 px-8 sm:px-16 pb-16 z-10">
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                Veilig naar school,<br><span class="text-[#f5c518]">elke dag weer</span>
-            </h2>
-            <p class="text-white/75 text-base sm:text-lg max-w-lg mb-7 font-light leading-relaxed">
-                Betrouwbaar schoolvervoer voor uw kind. Vaste chauffeur, vaste tijden en altijd veilig op de bestemming. U hoeft zich geen zorgen te maken.
-            </p>
-            <div class="flex flex-wrap gap-3 mb-10">
-                <a href="tel:+31XXXXXXXXX" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm">
-                    Info Aanvragen
-                </a>
-                <a href="{{ route('contact') }}" class="border border-white/40 hover:border-[#f5c518]/70 text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 text-sm backdrop-blur-sm">
-                    Meer Info
-                </a>
+        <img class="hero-slide-img" src="/Gemini_Generated_Image_y6uy9qy6uy9qy6uy.png" alt="Schoolvervoer" style="filter:brightness(0.5)">
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 100%)"></div>
+        <div class="hero-content">
+            <span class="hero-label">Schoolvervoer</span>
+            <h2 class="hero-title">Veilig naar school,<br><span class="hero-accent">elke dag weer</span></h2>
+            <p class="hero-sub">Betrouwbaar schoolvervoer voor uw kind. Vaste chauffeur, vaste tijden, altijd veilig op de bestemming.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="hero-stat-val accent">Veilig</span><span class="hero-stat-lbl">Gegarandeerd</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">Vast</span><span class="hero-stat-lbl">Chauffeur</span></div>
+                <div class="hero-stat"><span class="hero-stat-val">Dagelijks</span><span class="hero-stat-lbl">Beschikbaar</span></div>
             </div>
-            <div class="flex gap-10 pt-5" style="border-top:1px solid rgba(255,255,255,0.15)">
-                <div><div class="text-2xl font-black text-[#f5c518]">Veilig</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Gegarandeerd</div></div>
-                <div><div class="text-2xl font-black text-white">Vast</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Chauffeur</div></div>
-                <div><div class="text-2xl font-black text-white">Dagelijks</div><div class="text-white/50 text-[10px] uppercase tracking-wider mt-0.5">Beschikbaar</div></div>
+            <div class="hero-btns">
+                <a href="tel:+31XXXXXXXXX" class="hero-btn-primary">Info Aanvragen</a>
+                <a href="{{ route('contact') }}" class="hero-btn-secondary">Meer Info</a>
             </div>
         </div>
     </div>
 
     {{-- Pijl links --}}
-    <button id="carousel-prev" class="carousel-arrow" style="left:1.5rem">
+    <button id="carousel-prev" class="carousel-arrow" style="left:1.5rem;display:none">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
     </button>
 
     {{-- Pijl rechts --}}
-    <button id="carousel-next" class="carousel-arrow" style="right:1.5rem">
+    <button id="carousel-next" class="carousel-arrow" style="right:1.5rem;display:none">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </button>
 
@@ -137,11 +109,72 @@
 </section>
 
 <style>
-#hero { position:relative; width:100%; height:100vh; min-height:600px; overflow:hidden; }
+#hero { position:relative; width:100%; height:78vh; min-height:520px; overflow:hidden; }
 .hero-slide          { position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease; }
 .hero-slide.active   { opacity:1; }
-.hero-slide-bg       { position:absolute; inset:0; transform:scale(1.08); transition:transform 8s ease; background-size:cover; background-position:center; }
-.hero-slide.active .hero-slide-bg { transform:scale(1); }
+.hero-slide          { background:#000; }
+.hero-slide-img      { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+
+/* Content layout */
+.hero-content {
+    position:absolute; inset:0; z-index:10;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 4rem;
+    max-width:720px;
+}
+.hero-label {
+    display:inline-block; margin-bottom:0.75rem;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase;
+    color:#f5c518; border:1px solid rgba(245,197,24,0.4);
+    padding:0.25rem 0.75rem; border-radius:4px;
+    background:rgba(245,197,24,0.08);
+    width:fit-content;
+}
+.hero-title {
+    font-size:clamp(2rem,4.5vw,3.5rem); font-weight:900; line-height:1.1;
+    color:#fff; margin-bottom:1rem;
+    text-shadow:0 2px 8px rgba(0,0,0,0.5);
+}
+.hero-accent { color:#f5c518; }
+.hero-sub {
+    font-size:1rem; color:#e5e7eb; font-weight:400; line-height:1.65;
+    max-width:480px; margin-bottom:1.5rem;
+    text-shadow:0 1px 4px rgba(0,0,0,0.6);
+}
+.hero-btns { display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.75rem; }
+.hero-btn-primary {
+    background:#f5c518; color:#111; font-weight:700;
+    padding:0.75rem 2rem; border-radius:9999px; font-size:0.9rem;
+    transition:background 0.2s, transform 0.2s; text-decoration:none;
+}
+.hero-btn-primary:hover { background:#fdd835; transform:translateY(-2px); }
+.hero-btn-secondary {
+    border:1.5px solid rgba(255,255,255,0.45); color:#fff; font-weight:600;
+    padding:0.75rem 2rem; border-radius:9999px; font-size:0.9rem;
+    transition:border-color 0.2s, transform 0.2s; text-decoration:none;
+    backdrop-filter:blur(4px); background:rgba(30,30,30,0.5);
+}
+.hero-btn-secondary:hover { border-color:#f5c518; color:#f5c518; transform:translateY(-2px); }
+.hero-stats {
+    display:flex; gap:2rem;
+    padding-bottom:1.25rem; border-bottom:1px solid rgba(255,255,255,0.2);
+    margin-bottom:1.5rem;
+}
+.hero-stat { display:flex; flex-direction:column; }
+.hero-stat-val {
+    font-size:1.35rem; font-weight:900; color:#fff;
+    text-shadow:0 1px 4px rgba(0,0,0,0.5);
+}
+.hero-stat-val.accent { color:#f5c518; }
+.hero-stat-lbl {
+    font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:rgba(255,255,255,0.75); margin-top:2px;
+    text-shadow:0 1px 3px rgba(0,0,0,0.6);
+}
+@media(max-width:640px){
+    .hero-content { padding:0 1.5rem; }
+    .hero-title { font-size:1.75rem; }
+}
 
 /* Arrows */
 .carousel-arrow {
@@ -292,51 +325,6 @@
             <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-10 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-yellow-500/30 hover:-translate-y-1 inline-block text-lg">
                 Start nu met boeken
             </a>
-        </div>
-    </div>
-</section>
-
-{{-- Reviews --}}
-<section class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Klantervaringen</span>
-            <h2 class="text-4xl sm:text-5xl font-black mt-3 mb-2 text-gray-900">Wat klanten zeggen</h2>
-            <div class="flex items-center justify-center gap-2 mt-4">
-                <div class="flex text-[#f5c518]">
-                    @for($i = 0; $i < 5; $i++)
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    @endfor
-                </div>
-                <span class="text-gray-900 font-semibold">4.9 / 5</span>
-                <span class="text-gray-400 text-sm">gebaseerd op klantreviews</span>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach([
-                ['name' => 'Mohammed Al-Rashid', 'text' => 'Fantastische service! De chauffeur was precies op tijd voor mijn vlucht naar Schiphol. Heel professioneel en vriendelijk. Zeker voor herhaling vatbaar.', 'city' => 'Amsterdam'],
-                ['name' => 'Sandra de Vries', 'text' => 'Al meerdere keren gebruik gemaakt van deze taxicentrale. Altijd stipt, altijd schone auto en altijd een vriendelijke chauffeur. Absoluut aanrader!', 'city' => 'Utrecht'],
-                ['name' => 'Pieter Janssen', 'text' => 'Geweldig bedrijf voor zakelijke ritten. Zeer representatief, punctueel en ze denken mee. Mijn vaste taxibedrijf voor alle zakenreizen.', 'city' => 'Rotterdam'],
-            ] as $review)
-            <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-                <div class="flex text-[#f5c518] mb-4">
-                    @for($i = 0; $i < 5; $i++)
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    @endfor
-                </div>
-                <p class="text-gray-600 text-sm leading-relaxed mb-6">"{{ $review['text'] }}"</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#f5c518]/20 rounded-full flex items-center justify-center text-[#f5c518] font-bold text-sm">
-                        {{ substr($review['name'], 0, 1) }}
-                    </div>
-                    <div>
-                        <div class="text-gray-900 font-semibold text-sm">{{ $review['name'] }}</div>
-                        <div class="text-gray-400 text-xs">{{ $review['city'] }}</div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
         </div>
     </div>
 </section>
