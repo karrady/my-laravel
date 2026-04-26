@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — TaxiCentrale')
-@section('description', 'Neem contact op met TaxiCentrale. Bel ons, stuur een e-mail of gebruik het contactformulier. 24/7 bereikbaar voor al uw taxivragen.')
+@section('title', __('site.contact_meta_title'))
+@section('description', __('site.contact_meta_desc'))
 
 @section('content')
 
 <section class="relative pt-40 pb-24 bg-gradient-to-b from-gray-50 to-white">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,197,24,0.06)_0%,_transparent_60%)]"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Neem contact op</span>
-        <h1 class="text-5xl sm:text-6xl font-black mt-3 mb-6 text-gray-900">Contact</h1>
-        <p class="text-gray-500 text-xl max-w-xl mx-auto">Bel, mail of stuur een bericht. Wij reageren snel.</p>
+        <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">{{ __('site.contact_hero_label') }}</span>
+        <h1 class="text-5xl sm:text-6xl font-black mt-3 mb-6 text-gray-900">{{ __('site.contact_hero_title') }}</h1>
+        <p class="text-gray-500 text-xl max-w-xl mx-auto">{{ __('site.contact_hero_sub') }}</p>
     </div>
 </section>
 
@@ -21,7 +21,7 @@
             {{-- Contact info --}}
             <div class="lg:col-span-2 space-y-6">
                 <div>
-                    <h2 class="text-2xl font-black mb-6 text-gray-900">Bereikbaarheid</h2>
+                    <h2 class="text-2xl font-black mb-6 text-gray-900">{{ __('site.contact_reach_title') }}</h2>
                 </div>
 
                 <a href="tel:+31XXXXXXXXX" class="flex items-start gap-4 bg-white border border-gray-200 hover:border-[#f5c518]/40 rounded-2xl p-6 transition-all hover:-translate-y-0.5 group shadow-sm">
@@ -31,9 +31,9 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-gray-900 font-semibold mb-1">Telefoon</div>
+                        <div class="text-gray-900 font-semibold mb-1">{{ __('site.contact_phone_label') }}</div>
                         <div class="text-[#f5c518] font-bold text-lg">+31 XX XXX XXXX</div>
-                        <div class="text-gray-400 text-xs mt-1">24 uur per dag, 7 dagen per week</div>
+                        <div class="text-gray-400 text-xs mt-1">{{ __('site.contact_phone_hours') }}</div>
                     </div>
                 </a>
 
@@ -44,9 +44,9 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-gray-900 font-semibold mb-1">E-mail</div>
+                        <div class="text-gray-900 font-semibold mb-1">{{ __('site.contact_email_label') }}</div>
                         <div class="text-[#f5c518] font-bold">info@taxicentrale.nl</div>
-                        <div class="text-gray-400 text-xs mt-1">Reactie binnen 24 uur</div>
+                        <div class="text-gray-400 text-xs mt-1">{{ __('site.contact_email_response') }}</div>
                     </div>
                 </a>
 
@@ -57,9 +57,9 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-gray-900 font-semibold mb-1">Werkgebied</div>
-                        <div class="text-gray-700 text-sm">Heel Nederland</div>
-                        <div class="text-gray-400 text-xs mt-1">En op aanvraag ook internationaal</div>
+                        <div class="text-gray-900 font-semibold mb-1">{{ __('site.contact_area_label') }}</div>
+                        <div class="text-gray-700 text-sm">{{ __('site.contact_area_value') }}</div>
+                        <div class="text-gray-400 text-xs mt-1">{{ __('site.contact_area_intl') }}</div>
                     </div>
                 </div>
 
@@ -70,9 +70,9 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-gray-900 font-semibold mb-1">Openingstijden</div>
-                        <div class="text-gray-700 text-sm">Maandag — Zondag</div>
-                        <div class="text-[#f5c518] text-sm font-semibold">00:00 — 24:00 uur</div>
+                        <div class="text-gray-900 font-semibold mb-1">{{ __('site.contact_hours_label') }}</div>
+                        <div class="text-gray-700 text-sm">{{ __('site.contact_hours_days') }}</div>
+                        <div class="text-[#f5c518] text-sm font-semibold">{{ __('site.contact_hours_time') }}</div>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             {{-- Contact form --}}
             <div class="lg:col-span-3">
                 <div class="bg-white border border-gray-200 rounded-3xl p-8 sm:p-10 shadow-sm">
-                    <h2 class="text-2xl font-black mb-8 text-gray-900">Stuur een bericht</h2>
+                    <h2 class="text-2xl font-black mb-8 text-gray-900">{{ __('site.contact_form_title') }}</h2>
 
                     @if(session('success'))
                     <div class="mb-6 bg-green-50 border border-green-200 rounded-2xl p-5 flex items-start gap-3">
@@ -95,14 +95,14 @@
                         @csrf
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Naam *</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('site.contact_label_name') }}</label>
                                 <input type="text" name="name" value="{{ old('name') }}" required
                                     class="w-full bg-gray-50 border border-gray-200 focus:border-[#f5c518] rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none text-sm"
-                                    placeholder="Uw naam">
+                                    placeholder="{{ __('site.contact_placeholder_name') }}">
                                 @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Telefoon</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('site.contact_label_phone') }}</label>
                                 <input type="tel" name="phone" value="{{ old('phone') }}"
                                     class="w-full bg-gray-50 border border-gray-200 focus:border-[#f5c518] rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none text-sm"
                                     placeholder="+31 6 ...">
@@ -111,38 +111,38 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">E-mailadres *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('site.contact_label_email') }}</label>
                             <input type="email" name="email" value="{{ old('email') }}" required
                                 class="w-full bg-gray-50 border border-gray-200 focus:border-[#f5c518] rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none text-sm"
-                                placeholder="uw@email.nl">
+                                placeholder="{{ __('site.contact_placeholder_email') }}">
                             @error('email')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Onderwerp *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('site.contact_label_subject') }}</label>
                             <select name="subject" required
                                 class="w-full bg-gray-50 border border-gray-200 focus:border-[#f5c518] rounded-xl px-4 py-3 text-gray-900 transition-colors outline-none text-sm">
-                                <option value="">Kies een onderwerp</option>
-                                <option value="Boeking aanvraag" {{ old('subject') == 'Boeking aanvraag' ? 'selected' : '' }}>Boeking aanvraag</option>
-                                <option value="Prijsopgave" {{ old('subject') == 'Prijsopgave' ? 'selected' : '' }}>Prijsopgave</option>
-                                <option value="Zakelijk account" {{ old('subject') == 'Zakelijk account' ? 'selected' : '' }}>Zakelijk account</option>
-                                <option value="Vraag over diensten" {{ old('subject') == 'Vraag over diensten' ? 'selected' : '' }}>Vraag over diensten</option>
-                                <option value="Overig" {{ old('subject') == 'Overig' ? 'selected' : '' }}>Overig</option>
+                                <option value="">{{ __('site.contact_subject_choose') }}</option>
+                                <option value="booking" {{ old('subject') == 'booking' ? 'selected' : '' }}>{{ __('site.contact_subject_booking') }}</option>
+                                <option value="quote" {{ old('subject') == 'quote' ? 'selected' : '' }}>{{ __('site.contact_subject_quote') }}</option>
+                                <option value="business" {{ old('subject') == 'business' ? 'selected' : '' }}>{{ __('site.contact_subject_business') }}</option>
+                                <option value="services" {{ old('subject') == 'services' ? 'selected' : '' }}>{{ __('site.contact_subject_services') }}</option>
+                                <option value="other" {{ old('subject') == 'other' ? 'selected' : '' }}>{{ __('site.contact_subject_other') }}</option>
                             </select>
                             @error('subject')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Bericht *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('site.contact_label_message') }}</label>
                             <textarea name="message" rows="5" required
                                 class="w-full bg-gray-50 border border-gray-200 focus:border-[#f5c518] rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none text-sm resize-none"
-                                placeholder="Uw bericht...">{{ old('message') }}</textarea>
+                                placeholder="{{ __('site.contact_placeholder_msg') }}">{{ old('message') }}</textarea>
                             @error('message')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <button type="submit"
                             class="w-full bg-[#f5c518] hover:bg-yellow-400 text-black font-bold py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-yellow-500/30 hover:-translate-y-0.5 text-sm">
-                            Bericht Versturen
+                            {{ __('site.contact_btn_send') }}
                         </button>
                     </form>
                 </div>

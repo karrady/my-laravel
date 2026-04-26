@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Boek een Taxi — TaxiCentrale')
+@section('title', 'Boek een Taxi | TaxiCentrale')
 @section('description', 'Boek eenvoudig en snel online een taxi. Vaste prijzen, directe bevestiging en professionele chauffeurs. 24/7 beschikbaar.')
 
 @section('content')

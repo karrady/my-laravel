@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Airport Service — TaxiCentrale')
+@section('title', 'Airport Service | TaxiCentrale')
 @section('description', 'Betrouwbaar luchthavenvervoer van en naar Schiphol, Rotterdam The Hague Airport en meer. Vaste tarieven, 24/7 beschikbaar, vluchten worden gevolgd.')
 
 @section('content')
@@ -18,7 +18,7 @@
             Airport <span class="text-[#f5c518]">Service</span>
         </h1>
         <p class="text-gray-500 text-xl max-w-2xl mx-auto mb-10">
-            Zorgeloos naar het vliegveld. Vaste tarieven, geen verrassingen — dag en nacht voor u klaar.
+            Zorgeloos naar het vliegveld. Vaste tarieven, geen verrassingen. Dag en nacht voor u klaar.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/25 text-lg">
@@ -203,14 +203,14 @@
         <div class="text-center mb-12">
             <span class="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Meer vervoer</span>
             <h2 class="text-4xl font-black mt-3 mb-4 text-gray-900">Andere Diensten</h2>
-            <p class="text-gray-500">Alle overige ritten zijn beschikbaar op aanvraag — bel ons voor een prijs op maat.</p>
+            <p class="text-gray-500">Alle overige ritten zijn beschikbaar op aanvraag. Bel ons voor een prijs op maat.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach([
                 ['icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', 'title' => 'Zakelijk Vervoer', 'desc' => 'Representatief vervoer voor vergaderingen, events en zakenreizen.'],
-                ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Groepsvervoer', 'desc' => 'Vervoer voor groepen — vraag naar de mogelijkheden.'],
-                ['icon' => 'M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.499-12.99l.75-1.3m-6.751 16.58l.25-1.498m5.002-12.997l.25-1.498m-4.253 14.745l-.25-1.497m3.002-12.998l-.25-1.497', 'title' => 'Ritten op Maat', 'desc' => 'Stad, ziekenhuis, evenement of anders — wij rijden overal naartoe.'],
+                ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'title' => 'Groepsvervoer', 'desc' => 'Vervoer voor groepen. Vraag naar de mogelijkheden.'],
+                ['icon' => 'M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.499-12.99l.75-1.3m-6.751 16.58l.25-1.498m5.002-12.997l.25-1.498m-4.253 14.745l-.25-1.497m3.002-12.998l-.25-1.497', 'title' => 'Ritten op Maat', 'desc' => 'Stad, ziekenhuis, evenement of anders. Wij rijden overal naartoe.'],
             ] as $dienst)
             <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm flex flex-col gap-5">
                 <div class="w-12 h-12 bg-[#f5c518]/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -223,7 +223,7 @@
                     <p class="text-gray-500 text-sm leading-relaxed mb-4">{{ $dienst['desc'] }}</p>
                     <a href="tel:+31XXXXXXXXX" class="inline-flex items-center gap-2 text-[#f5c518] text-sm font-semibold hover:gap-3 transition-all">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        Op aanvraag — bel ons
+                        Op aanvraag, bel ons
                     </a>
                 </div>
             </div>
@@ -236,7 +236,7 @@
 <section class="py-20 bg-[#f5c518]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-4xl font-black text-black mb-4">Klaar voor vertrek?</h2>
-        <p class="text-black/70 text-lg mb-8">Reserveer uw taxi online of bel ons direct — wij staan 24/7 voor u klaar.</p>
+        <p class="text-black/70 text-lg mb-8">Reserveer uw taxi online of bel ons direct. Wij staan 24/7 voor u klaar.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="{{ route('reserveren') }}" class="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl text-lg">
                 Online Reserveren

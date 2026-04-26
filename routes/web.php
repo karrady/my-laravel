@@ -15,3 +15,10 @@ Route::post('/reserveren', [BookingController::class, 'store'])->name('reservere
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::post('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['nl', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('language.switch');

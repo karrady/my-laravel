@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#08111f"/>
+      <stop offset="60%" stop-color="#0f1e38"/>
+      <stop offset="100%" stop-color="#162645"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f5c518" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="roadGlow" x="-20%" y="-200%" width="140%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.018)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="600" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid -->
+  <rect width="1440" height="600" fill="url(#grid)"/>
+
+  <!-- === ROAD NETWORK === -->
+
+  <!-- A4/A12 motorway (main horizontal) -->
+  <path d="M-20,310 C200,295 500,308 720,300 C940,292 1200,305 1460,298"
+        stroke="rgba(255,255,255,0.06)" stroke-width="28" fill="none"/>
+  <path d="M-20,310 C200,295 500,308 720,300 C940,292 1200,305 1460,298"
+        stroke="rgba(255,255,255,0.12)" stroke-width="2" fill="none" filter="url(#roadGlow)"/>
+  <!-- Road dashes -->
+  <path d="M-20,310 C200,295 500,308 720,300 C940,292 1200,305 1460,298"
+        stroke="rgba(245,197,24,0.22)" stroke-width="1.5" fill="none" stroke-dasharray="45,35"/>
+
+  <!-- N-road diagonal left -->
+  <path d="M80,0 C220,120 310,220 420,310 C520,390 560,460 560,600"
+        stroke="rgba(255,255,255,0.04)" stroke-width="14" fill="none"/>
+  <path d="M80,0 C220,120 310,220 420,310 C520,390 560,460 560,600"
+        stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+
+  <!-- N-road diagonal right -->
+  <path d="M1100,0 C1020,150 960,250 880,310 C800,370 760,470 720,600"
+        stroke="rgba(255,255,255,0.035)" stroke-width="12" fill="none"/>
+  <path d="M1100,0 C1020,150 960,250 880,310 C800,370 760,470 720,600"
+        stroke="rgba(255,255,255,0.065)" stroke-width="1" fill="none"/>
+
+  <!-- Local road - upper arc -->
+  <path d="M300,80 C480,140 620,180 720,200 C820,220 1050,190 1260,130"
+        stroke="rgba(255,255,255,0.03)" stroke-width="8" fill="none"/>
+  <path d="M300,80 C480,140 620,180 720,200 C820,220 1050,190 1260,130"
+        stroke="rgba(255,255,255,0.055)" stroke-width="0.8" fill="none"/>
+
+  <!-- Local road - lower arc -->
+  <path d="M100,480 C280,440 480,420 650,410 C820,400 1000,430 1200,480"
+        stroke="rgba(255,255,255,0.03)" stroke-width="8" fill="none"/>
+
+  <!-- === CITY CONNECTION LINES === -->
+  <line x1="480" y1="300" x2="220" y2="270" stroke="#f5c518" stroke-width="0.8" opacity="0.18"/>
+  <line x1="480" y1="300" x2="720" y2="200" stroke="#f5c518" stroke-width="0.8" opacity="0.18"/>
+  <line x1="480" y1="300" x2="390" y2="390" stroke="#f5c518" stroke-width="0.7" opacity="0.14"/>
+  <line x1="480" y1="300" x2="620" y2="380" stroke="#f5c518" stroke-width="0.7" opacity="0.14"/>
+  <line x1="220" y1="270" x2="165" y2="390" stroke="#f5c518" stroke-width="0.6" opacity="0.11"/>
+  <line x1="220" y1="270" x2="190" y2="160" stroke="#f5c518" stroke-width="0.6" opacity="0.11"/>
+  <line x1="720" y1="200" x2="920" y2="300" stroke="#f5c518" stroke-width="0.6" opacity="0.11"/>
+  <line x1="920" y1="300" x2="1080" y2="210" stroke="#f5c518" stroke-width="0.5" opacity="0.1"/>
+
+  <!-- === CITY NODES === -->
+
+  <!-- Gouda (main hub) -->
+  <circle cx="480" cy="300" r="60" fill="url(#nodeGlow)" opacity="0.9"/>
+  <circle cx="480" cy="300" r="14" fill="#f5c518" opacity="0.95" filter="url(#softGlow)"/>
+  <circle cx="480" cy="300" r="26" fill="none" stroke="#f5c518" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="480" cy="300" r="42" fill="none" stroke="#f5c518" stroke-width="0.8" opacity="0.2"/>
+
+  <!-- Rotterdam -->
+  <circle cx="220" cy="270" r="40" fill="url(#nodeGlow)" opacity="0.7"/>
+  <circle cx="220" cy="270" r="10" fill="#f5c518" opacity="0.8" filter="url(#softGlow)"/>
+  <circle cx="220" cy="270" r="20" fill="none" stroke="#f5c518" stroke-width="1.2" opacity="0.35"/>
+  <circle cx="220" cy="270" r="34" fill="none" stroke="#f5c518" stroke-width="0.6" opacity="0.15"/>
+
+  <!-- Utrecht -->
+  <circle cx="720" cy="200" r="35" fill="url(#nodeGlow)" opacity="0.65"/>
+  <circle cx="720" cy="200" r="9" fill="#f5c518" opacity="0.75" filter="url(#softGlow)"/>
+  <circle cx="720" cy="200" r="18" fill="none" stroke="#f5c518" stroke-width="1" opacity="0.3"/>
+  <circle cx="720" cy="200" r="30" fill="none" stroke="#f5c518" stroke-width="0.5" opacity="0.13"/>
+
+  <!-- Den Haag -->
+  <circle cx="165" cy="390" r="9" fill="#f5c518" opacity="0.65" filter="url(#softGlow)"/>
+  <circle cx="165" cy="390" r="18" fill="none" stroke="#f5c518" stroke-width="0.9" opacity="0.25"/>
+
+  <!-- Alphen aan den Rijn -->
+  <circle cx="390" cy="390" r="7" fill="#f5c518" opacity="0.6" filter="url(#softGlow)"/>
+  <circle cx="390" cy="390" r="15" fill="none" stroke="#f5c518" stroke-width="0.8" opacity="0.22"/>
+
+  <!-- Zoetermeer -->
+  <circle cx="280" cy="175" r="6" fill="#f5c518" opacity="0.5" filter="url(#softGlow)"/>
+  <circle cx="280" cy="175" r="13" fill="none" stroke="#f5c518" stroke-width="0.7" opacity="0.2"/>
+
+  <!-- Leiden -->
+  <circle cx="190" cy="155" r="7" fill="#f5c518" opacity="0.55" filter="url(#softGlow)"/>
+  <circle cx="190" cy="155" r="14" fill="none" stroke="#f5c518" stroke-width="0.7" opacity="0.2"/>
+
+  <!-- Bodegraven -->
+  <circle cx="620" cy="375" r="5" fill="#f5c518" opacity="0.45" filter="url(#softGlow)"/>
+  <circle cx="620" cy="375" r="11" fill="none" stroke="#f5c518" stroke-width="0.6" opacity="0.18"/>
+
+  <!-- Woerden -->
+  <circle cx="920" cy="300" r="7" fill="#f5c518" opacity="0.55" filter="url(#softGlow)"/>
+  <circle cx="920" cy="300" r="14" fill="none" stroke="#f5c518" stroke-width="0.7" opacity="0.2"/>
+
+  <!-- Schoonhoven -->
+  <circle cx="1080" cy="210" r="5" fill="#f5c518" opacity="0.4" filter="url(#softGlow)"/>
+
+  <!-- Delft (small) -->
+  <circle cx="110" cy="310" r="4" fill="#f5c518" opacity="0.35" filter="url(#softGlow)"/>
+
+  <!-- Far right filler dots -->
+  <circle cx="1220" cy="340" r="4" fill="#f5c518" opacity="0.3"/>
+  <circle cx="1350" cy="260" r="3" fill="#f5c518" opacity="0.25"/>
+
+  <!-- === TAXI CAR (subtle, right side) === -->
+  <g transform="translate(1010, 278) scale(0.9)" opacity="0.22">
+    <!-- Shadow -->
+    <ellipse cx="85" cy="82" rx="90" ry="8" fill="rgba(0,0,0,0.4)"/>
+    <!-- Body -->
+    <rect x="5" y="32" width="160" height="44" rx="8" fill="#e8e8e8"/>
+    <!-- Roof cabin -->
+    <path d="M35,32 L50,10 L120,10 L135,32 Z" fill="#d0d0d0"/>
+    <!-- Windshield -->
+    <path d="M54,32 L62,13 L108,13 L116,32 Z" fill="rgba(150,200,255,0.5)"/>
+    <!-- Side windows -->
+    <rect x="138" y="15" width="30" height="17" rx="3" fill="rgba(150,200,255,0.4)"/>
+    <!-- Headlights -->
+    <rect x="158" y="40" width="10" height="7" rx="2" fill="#fffde0"/>
+    <rect x="158" y="50" width="10" height="5" rx="2" fill="rgba(255,100,100,0.8)"/>
+    <!-- Taxi sign on roof -->
+    <rect x="68" y="3" width="34" height="9" rx="3" fill="#f5c518"/>
+    <!-- Wheels -->
+    <circle cx="42" cy="78" r="16" fill="#222"/>
+    <circle cx="42" cy="78" r="10" fill="#444"/>
+    <circle cx="42" cy="78" r="4" fill="#666"/>
+    <circle cx="130" cy="78" r="16" fill="#222"/>
+    <circle cx="130" cy="78" r="10" fill="#444"/>
+    <circle cx="130" cy="78" r="4" fill="#666"/>
+    <!-- Door line -->
+    <line x1="90" y1="33" x2="90" y2="74" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+  </g>
+
+  <!-- === LIGHT RAYS (depth effect) === -->
+  <radialGradient id="leftLight" cx="0%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="#f5c518" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#f5c518" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1440" height="600" fill="url(#leftLight)"/>
+
+  <!-- === RIGHT FADE (content area protection) === -->
+  <linearGradient id="rightFade" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#08111f" stop-opacity="0.0"/>
+    <stop offset="55%" stop-color="#08111f" stop-opacity="0.0"/>
+    <stop offset="100%" stop-color="#08111f" stop-opacity="0.15"/>
+  </linearGradient>
+  <rect width="1440" height="600" fill="url(#rightFade)"/>
+</svg>

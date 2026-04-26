@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
+<html lang="{{ app()->getLocale() }}" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{-- SEO --}}
-    <title>@yield('title', 'TaxiCentrale — Betrouwbaar en Snel Taxivervoer')</title>
-    <meta name="description" content="@yield('description', 'Professioneel taxivervoer 24/7 beschikbaar. Airport transfers, zakelijk vervoer en meer. Boek eenvoudig online.')">
+    <title>@yield('title', __('site.meta_title_default'))</title>
+    <meta name="description" content="@yield('description', __('site.meta_desc_default'))">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
 
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'TaxiCentrale — Betrouwbaar en Snel Taxivervoer')">
-    <meta property="og:description" content="@yield('description', 'Professioneel taxivervoer 24/7 beschikbaar.')">
+    <meta property="og:title" content="@yield('title', __('site.meta_title_default'))">
+    <meta property="og:description" content="@yield('description', __('site.meta_og_desc_default'))">
 
     {{-- Schema.org LocalBusiness --}}
     <script type="application/ld+json">
@@ -55,15 +55,31 @@
 
                 {{-- Desktop nav --}}
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">Home</a>
-                    <a href="{{ route('diensten') }}" class="nav-link {{ request()->routeIs('diensten') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">Diensten</a>
-                    <a href="{{ route('airport-service') }}" class="nav-link {{ request()->routeIs('airport-service') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">Airport Service</a>
-                    <a href="{{ route('reserveren') }}" class="nav-link {{ request()->routeIs('reserveren') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">Reserveren</a>
-                    <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">Contact</a>
+                    <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">{{ __('site.nav_home') }}</a>
+                    <a href="{{ route('diensten') }}" class="nav-link {{ request()->routeIs('diensten') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">{{ __('site.nav_diensten') }}</a>
+                    <a href="{{ route('airport-service') }}" class="nav-link {{ request()->routeIs('airport-service') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">{{ __('site.nav_airport') }}</a>
+                    <a href="{{ route('reserveren') }}" class="nav-link {{ request()->routeIs('reserveren') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">{{ __('site.nav_reserveren') }}</a>
+                    <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'text-[#f5c518]' : 'text-gray-600 hover:text-gray-900' }} text-sm font-medium transition-colors">{{ __('site.nav_contact') }}</a>
                 </div>
 
-                {{-- CTA --}}
+                {{-- CTA + Language switcher --}}
                 <div class="hidden md:flex items-center gap-4">
+                    {{-- Language switcher --}}
+                    <div class="flex items-center gap-1">
+                        @foreach(['nl', 'en'] as $lang)
+                        <form action="{{ route('language.switch', $lang) }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="text-xs font-bold px-2 py-1 rounded transition-colors
+                                    {{ app()->getLocale() === $lang
+                                        ? 'bg-[#f5c518] text-black'
+                                        : 'text-gray-400 hover:text-gray-700' }}">
+                                {{ strtoupper($lang) }}
+                            </button>
+                        </form>
+                        @endforeach
+                    </div>
+
                     <a href="tel:+31XXXXXXXXX" class="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">
                         <svg class="w-4 h-4 text-[#f5c518]" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
@@ -71,7 +87,7 @@
                         +31 XX XXX XXXX
                     </a>
                     <a href="{{ route('reserveren') }}" class="bg-[#f5c518] hover:bg-yellow-400 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-yellow-500/25 hover:-translate-y-0.5">
-                        Nu Boeken
+                        {{ __('site.nav_book_now') }}
                     </a>
                 </div>
 
@@ -88,14 +104,31 @@
         {{-- Mobile menu --}}
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="px-4 py-4 space-y-3">
-                <a href="{{ route('home') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">Home</a>
-                <a href="{{ route('diensten') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">Diensten</a>
-                <a href="{{ route('airport-service') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">Airport Service</a>
-                <a href="{{ route('reserveren') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">Reserveren</a>
-                <a href="{{ route('contact') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">Contact</a>
+                <a href="{{ route('home') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">{{ __('site.nav_home') }}</a>
+                <a href="{{ route('diensten') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">{{ __('site.nav_diensten') }}</a>
+                <a href="{{ route('airport-service') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">{{ __('site.nav_airport') }}</a>
+                <a href="{{ route('reserveren') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">{{ __('site.nav_reserveren') }}</a>
+                <a href="{{ route('contact') }}" class="block text-gray-600 hover:text-gray-900 py-2 text-sm font-medium">{{ __('site.nav_contact') }}</a>
+
+                {{-- Mobile language switcher --}}
+                <div class="flex items-center gap-2 pt-1">
+                    @foreach(['nl', 'en'] as $lang)
+                    <form action="{{ route('language.switch', $lang) }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="text-xs font-bold px-3 py-1.5 rounded transition-colors
+                                {{ app()->getLocale() === $lang
+                                    ? 'bg-[#f5c518] text-black'
+                                    : 'bg-gray-100 text-gray-500 hover:text-gray-700' }}">
+                            {{ strtoupper($lang) }}
+                        </button>
+                    </form>
+                    @endforeach
+                </div>
+
                 <div class="pt-2 border-t border-gray-200">
                     <a href="{{ route('reserveren') }}" class="block w-full text-center bg-[#f5c518] text-black font-semibold text-sm px-5 py-3 rounded-lg">
-                        Nu Boeken
+                        {{ __('site.nav_book_now') }}
                     </a>
                 </div>
             </div>
@@ -117,7 +150,7 @@
                         <img src="/images/logo.svg" alt="TaxiCentrale" class="h-9 w-auto brightness-0 invert">
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Betrouwbaar, professioneel en 24/7 beschikbaar. Wij zorgen dat u altijd op tijd en comfortabel op uw bestemming aankomt.
+                        {{ __('site.footer_tagline') }}
                     </p>
                     <div class="flex gap-4 mt-6">
                         <a href="tel:+31XXXXXXXXX" class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
@@ -129,31 +162,31 @@
 
                 {{-- Links --}}
                 <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Navigatie</h3>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{{ __('site.footer_nav_title') }}</h3>
                     <ul class="space-y-3">
-                        <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Home</a></li>
-                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Diensten</a></li>
-                        <li><a href="{{ route('airport-service') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Airport Service</a></li>
-                        <li><a href="{{ route('reserveren') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Reserveren</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
+                        <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.nav_home') }}</a></li>
+                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.nav_diensten') }}</a></li>
+                        <li><a href="{{ route('airport-service') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.nav_airport') }}</a></li>
+                        <li><a href="{{ route('reserveren') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.nav_reserveren') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.nav_contact') }}</a></li>
                     </ul>
                 </div>
 
                 {{-- Diensten --}}
                 <div>
-                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Diensten</h3>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{{ __('site.footer_services_title') }}</h3>
                     <ul class="space-y-3">
-                        <li><a href="{{ route('airport-service') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Luchthavenvervoer</a></li>
-                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Zakelijk vervoer</a></li>
-                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Groepsvervoer</a></li>
-                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Ritten op maat</a></li>
+                        <li><a href="{{ route('airport-service') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.footer_service_airport') }}</a></li>
+                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.footer_service_business') }}</a></li>
+                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.footer_service_group') }}</a></li>
+                        <li><a href="{{ route('diensten') }}" class="text-gray-400 hover:text-white text-sm transition-colors">{{ __('site.footer_service_custom') }}</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p class="text-gray-500 text-sm">{{ date('Y') }} YAS taxicentrale alle rechten voorbehouden</p>
-                <p class="text-gray-600 text-xs">24/7 beschikbaar &mdash; Altijd op tijd</p>
+                <p class="text-gray-500 text-sm">{{ __('site.footer_copyright', ['year' => date('Y')]) }}</p>
+                <p class="text-gray-600 text-xs">{{ __('site.footer_available') }}</p>
             </div>
         </div>
     </footer>
