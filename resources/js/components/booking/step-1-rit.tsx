@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { AddressAutocomplete } from "@/components/address-autocomplete";
-import { FlightLookup, FlightDirection } from "@/components/booking/flight-lookup";
+import { FlightLookup } from "@/components/booking/flight-lookup";
+import type { FlightDirection } from "@/components/booking/flight-lookup";
 import { Button } from "@/components/base/buttons/button";
 import { useBookingStore } from "@/stores/booking-store";
 import { ArrowRight, Plane } from "@untitledui/icons";
@@ -148,27 +149,20 @@ export function Step1Rit({ onNext }: Step1Props) {
                 <FlightLookup
                     direction={flightDirection}
                     date={flightDate}
-                    onResult={(res) => {
-                        if (res) {
-                            setStep1({
-                                flightNumber: res.flight.flight_number,
-                                flightDirection: res.direction,
-                                flightAirportIata: res.flight.arrival_iata || res.flight.departure_iata,
-                                flightScheduledAt: res.flight.scheduled_arrival_at ?? res.flight.scheduled_departure_at,
-                                flightPickupAt: res.pickup_at,
-                                pickupAt: res.pickup_at
-                                    ? res.pickup_at.slice(0, 16)
-                                    : step1.pickupAt,
-                            });
-                        } else {
-                            setStep1({
-                                flightNumber: "",
-                                flightDirection: null,
-                                flightAirportIata: null,
-                                flightScheduledAt: null,
-                                flightPickupAt: null,
-                            });
-                        }
+                    pickupLat={step1.pickupLat}
+                    pickupLng={step1.pickupLng}
+                    onFlightFound={(flightNumber, res) => {
+                        setStep1({
+                            flightNumber,
+                            flightDirection: res.direction,
+                            flightAirportIata: res.flight.arrival_iata || res.flight.departure_iata,
+                            flightScheduledAt: res.flight.scheduled_departure_at ?? res.flight.scheduled_arrival_at ?? null,
+                            flightPickupAt: res.advice.advised_at ?? null,
+                            // Geen auto-fill van pickupAt — klant kiest zelf de definitieve tijd
+                        });
+                    }}
+                    onFlightCleared={() => {
+                        setStep1({ flightNumber: "", flightDirection: null, flightAirportIata: null, flightScheduledAt: null, flightPickupAt: null });
                     }}
                 />
             )}
