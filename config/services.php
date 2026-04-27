@@ -40,4 +40,8 @@ return [
         'administration_id' => env('MONEYBIRD_ADMINISTRATION_ID'),
     ],
 
+    'aerodatabox' => [
+        'key' => env('AERODATABOX_API_KEY'),
+    ],
+
 ];

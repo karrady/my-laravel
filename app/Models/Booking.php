@@ -15,19 +15,27 @@ class Booking extends Model
         'distance_km', 'duration_min',
         'price_cents', 'return_price_cents',
         'customer_name', 'customer_email', 'customer_phone',
-        'flight_number', 'notes', 'wants_sms',
+        'flight_number', 'flight_direction', 'flight_airport_iata',
+        'flight_status', 'flight_scheduled_at', 'flight_actual_at',
+        'flight_delay_minutes', 'flight_last_tracked_at', 'driver_departure_at',
+        'notes', 'wants_sms',
         'payment_method', 'payment_status', 'status',
         'moneybird_contact_id', 'moneybird_invoice_id',
     ];
 
     protected $casts = [
-        'pickup_at'       => 'datetime',
-        'return_at'       => 'datetime',
-        'wants_sms'       => 'boolean',
-        'pickup_lat'      => 'float',
-        'pickup_lng'      => 'float',
-        'destination_lat' => 'float',
-        'destination_lng' => 'float',
+        'pickup_at'              => 'datetime',
+        'return_at'              => 'datetime',
+        'flight_scheduled_at'   => 'datetime',
+        'flight_actual_at'      => 'datetime',
+        'flight_last_tracked_at'=> 'datetime',
+        'driver_departure_at'   => 'datetime',
+        'wants_sms'             => 'boolean',
+        'pickup_lat'            => 'float',
+        'pickup_lng'            => 'float',
+        'destination_lat'       => 'float',
+        'destination_lng'       => 'float',
+        'flight_delay_minutes'  => 'integer',
     ];
 
     protected static function booted(): void

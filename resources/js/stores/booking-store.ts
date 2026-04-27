@@ -4,6 +4,8 @@ import { persist } from "zustand/middleware";
 export type VehicleType = "sedan" | "business" | "taxibus";
 export type PaymentMethod = "in_taxi_pin" | "in_taxi_cash";
 
+export type FlightDirection = "to_airport" | "from_airport";
+
 export interface BookingStep1 {
   pickupAddress: string;
   pickupLat: number | null;
@@ -14,6 +16,12 @@ export interface BookingStep1 {
   pickupAt: string; // ISO datetime string
   returnAt: string | null;
   passengers: number;
+  // Flight tracking (optional)
+  flightNumber: string;
+  flightDirection: FlightDirection | null;
+  flightAirportIata: string | null;
+  flightScheduledAt: string | null;
+  flightPickupAt: string | null;
 }
 
 export interface BookingStep2 {
@@ -64,6 +72,11 @@ const initialStep1: BookingStep1 = {
   pickupAt: "",
   returnAt: null,
   passengers: 1,
+  flightNumber: "",
+  flightDirection: null,
+  flightAirportIata: null,
+  flightScheduledAt: null,
+  flightPickupAt: null,
 };
 
 const initialStep2: BookingStep2 = {
