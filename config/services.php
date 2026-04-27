@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'moneybird' => [
+        'token'             => env('MONEYBIRD_API_TOKEN'),
+        'administration_id' => env('MONEYBIRD_ADMINISTRATION_ID'),
+    ],
+
 ];

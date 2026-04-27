@@ -1,58 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# YAS TaxiCentrale
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Professionele taxiwebsite voor YAS TaxiCentrale in Gouda. Gebouwd als een React 19 SPA op een Laravel 13 backend.
 
-## About Laravel
+## Tech Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Laag | Technologie |
+|------|-------------|
+| Frontend | React 19 + TypeScript, Untitled UI Pro, Tailwind CSS v4 |
+| Routing | React Router 7 (lazy-loaded pagina's) |
+| State | Zustand v5 + localStorage persistentie |
+| Backend | Laravel 13 (PHP 8.3) |
+| Database | MySQL / MariaDB (via DBngin) |
+| HTTP | Laravel Sanctum (token auth, toekomstig) |
+| Mailing | Kerio Connect via mail.worxone.nl |
+| Facturatie | MoneyBird API (draft facturen) |
+| Kaarten | Nominatim (adresautocomplete) + OSRM (routering) |
+| Tests | Pest PHP |
+| Lokaal | Laravel Herd + Vite dev server |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pagina's
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Route | Pagina |
+|-------|--------|
+| `/` | Homepage (hero carousel, diensten, reviews, FAQ, CTA) |
+| `/diensten` | Dienstenoverzicht |
+| `/airport-service` | Luchthavenprijzen per bestemming |
+| `/over-ons` | Bedrijfsverhaal en waarden |
+| `/contact` | Contactformulier |
+| `/reserveren` | 4-staps boekingswizard |
 
-## Learning Laravel
+## API Endpoints
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Methode | Endpoint | Omschrijving |
+|---------|----------|--------------|
+| GET | `/api/v1/vehicles` | Alle voertuigtypen met tarieven |
+| POST | `/api/v1/bookings/estimate` | Prijsberekening (vaste prijs of OSRM) |
+| POST | `/api/v1/bookings` | Nieuwe boeking aanmaken |
+| POST | `/contact` | Contactbericht opslaan |
+| POST | `/language/{locale}` | Taalwissel (nl / en) |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Lokale installatie
 
 ```bash
-composer require laravel/boost --dev
+git clone git@github.com:karrady/my-laravel.git
+cd my-laravel
 
-php artisan boost:install
+composer install
+npm install
+
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+
+npm run dev
+# of voor productie:
+npm run build
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Vereist Laravel Herd (php artisan serve werkt ook).
 
-## Contributing
+## Tests
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan test
+```
 
-## Code of Conduct
+Huidige status: **75 passed, 7 skipped** (EP04 Google Reviews — Sprint 3), 0 failed.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Omgevingsvariabelen
 
-## Security Vulnerabilities
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=yas_taxi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+MAIL_MAILER=smtp
+MAIL_HOST=mail.worxone.nl
+MAIL_PORT=465
+MAIL_USERNAME=info@yastaxicentrale.nl
+MAIL_PASSWORD=
 
-## License
+MONEYBIRD_API_TOKEN=
+MONEYBIRD_ADMINISTRATION_ID=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Projectstructuur
+
+```
+app/
+├── Http/Controllers/
+│   ├── Api/BookingApiController.php
+│   ├── Api/PriceController.php
+│   └── ContactController.php
+├── Models/
+│   ├── Booking.php          # Auto-genereert YAS-XXXXXX booking_number
+│   ├── ContactMessage.php
+│   ├── Faq.php
+│   ├── FixedPrice.php       # Vaste routeprijzen (bidirectioneel)
+│   ├── Review.php
+│   ├── ServiceArea.php
+│   └── Vehicle.php          # sedan / business / taxibus
+└── Services/
+    ├── MoneybirdService.php  # Draft factuur aanmaken
+    ├── OsrmService.php       # Routeberekening (fallback)
+    └── PriceCalculator.php   # Vaste prijs → OSRM fallback
+
+resources/js/
+├── components/
+│   ├── address-autocomplete.tsx   # Nominatim (NL, 350ms debounce)
+│   ├── booking/
+│   │   ├── step-1-rit.tsx
+│   │   ├── step-2-voertuig.tsx
+│   │   ├── step-3-contact.tsx
+│   │   ├── step-4-bevestiging.tsx
+│   │   └── step-indicator.tsx
+│   └── layout/
+│       ├── yas-header.tsx
+│       └── yas-footer.tsx
+├── pages/
+│   ├── home.tsx
+│   ├── diensten.tsx
+│   ├── airport-service.tsx
+│   ├── over-ons.tsx
+│   ├── contact.tsx
+│   └── reserveren.tsx
+└── stores/
+    └── booking-store.ts       # Zustand + localStorage
+```
+
+## Sprint Planning
+
+| Sprint | Status | Inhoud |
+|--------|--------|--------|
+| Sprint 1 | ✅ Klaar | Publieke website, formulieren, meertaligheid, SEO |
+| Sprint 2 | ✅ Klaar | React SPA, boekingswizard, backend API, brand kleuren |
+| Sprint 3 | 📋 Gepland | Google Reviews API, bevestigingsmails |
+| Sprint 4 | 📋 Gepland | Google Maps, performance, admin panel |
