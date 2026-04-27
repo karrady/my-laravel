@@ -18,7 +18,7 @@ const contactInfo = [
         icon: Phone,
         title: "Telefoon",
         value: "+31 (0)6 12 34 56 78",
-        href: "tel:+31612345678",
+        href: "tel:+31852128302",
         sub: "Ma–Zo, 06:00–23:00",
     },
     {
@@ -76,8 +76,8 @@ const Contact = () => {
                         </h1>
                         <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                             Heeft u een vraag of wilt u een rit bespreken? Stuur ons een bericht of bel direct op{" "}
-                            <Button color="link-color" size="xl" href="tel:+31612345678" className="text-lg font-medium md:text-xl">
-                                +31 6 12 34 56 78
+                            <Button color="link-color" size="xl" href="tel:+31852128302" className="text-lg font-medium md:text-xl">
+                                085 212 83 02
                             </Button>
                         </p>
 

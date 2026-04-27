@@ -38,10 +38,10 @@ const Reserveren = () => {
                                     Boek uw taxi online in 4 eenvoudige stappen. Vaste prijs, direct bevestigd.
                                     Liever bellen?{" "}
                                     <a
-                                        href="tel:+31182123456"
+                                        href="tel:+31852128302"
                                         className="font-semibold text-brand-primary underline underline-offset-4"
                                     >
-                                        +31 (0)182 12 34 56
+                                        085 212 83 02
                                     </a>
                                 </p>
                             </div>

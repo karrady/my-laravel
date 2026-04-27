@@ -468,11 +468,11 @@ const FaqSection = () => (
                         Staat uw vraag er niet bij? Wij helpen u graag via telefoon.
                     </p>
                     <a
-                        href="tel:+31182123456"
+                        href="tel:+31852128302"
                         className="flex w-fit items-center gap-2 font-semibold text-brand-secondary hover:text-brand-secondary_hover"
                     >
                         <Phone className="size-5" aria-hidden />
-                        +31 (0)182 12 34 56
+                        085 212 83 02
                     </a>
                 </div>
 
@@ -522,10 +522,10 @@ const CtaSection = () => (
             <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 md:text-xl">
                 Reserveer direct online of bel ons op{" "}
                 <a
-                    href="tel:+31182123456"
+                    href="tel:+31852128302"
                     className="font-semibold text-white underline underline-offset-4"
                 >
-                    +31 (0)182 12 34 56
+                    085 212 83 02
                 </a>
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row md:mt-12">

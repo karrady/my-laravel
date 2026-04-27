@@ -252,7 +252,7 @@ const AirportService = () => {
                                 <Button color="secondary" size="md" href="/contact">
                                     Stuur een bericht
                                 </Button>
-                                <Button size="md" href="tel:+31612345678">
+                                <Button size="md" href="tel:+31852128302">
                                     Bel ons direct
                                 </Button>
                             </div>

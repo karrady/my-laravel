@@ -5,8 +5,15 @@ $ldJson = json_encode([
     'name'        => 'YAS TaxiCentrale',
     'description' => 'Betrouwbaar taxivervoer in Gouda en omgeving.',
     'url'         => config('app.url'),
-    'telephone'   => '+31182123456',
-    'areaServed'  => ['@type' => 'City', 'name' => 'Gouda'],
+    'telephone'   => '+31852128302',
+    'areaServed'  => [
+        ['@type' => 'City', 'name' => 'Gouda'],
+        ['@type' => 'City', 'name' => 'Alphen aan den Rijn'],
+        ['@type' => 'City', 'name' => 'Waddinxveen'],
+        ['@type' => 'City', 'name' => 'Boskoop'],
+        ['@type' => 'City', 'name' => 'Bodegraven'],
+        ['@type' => 'City', 'name' => 'Reeuwijk'],
+    ],
     'address'     => ['@type' => 'PostalAddress', 'addressLocality' => 'Gouda', 'addressCountry' => 'NL'],
     'priceRange'  => '€€',
     'openingHours' => 'Mo-Su 00:00-24:00',
@@ -19,14 +26,14 @@ $ldJson = json_encode([
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>YAS TaxiCentrale — Betrouwbaar Taxivervoer in Gouda</title>
-    <meta name="description" content="YAS TaxiCentrale biedt betrouwbaar taxivervoer in Gouda en omgeving. Luchthaventransfers, zakelijk vervoer, 24/7 beschikbaar. Vaste prijzen, direct boeken.">
+    <title>YAS TaxiCentrale — Taxivervoer in Gouda & Rijn en Gouwe</title>
+    <meta name="description" content="YAS TaxiCentrale: betrouwbaar taxivervoer in Gouda, Alphen aan den Rijn, Waddinxveen, Boskoop en de hele Rijn en Gouwe regio. Luchthaventransfers, zakelijk vervoer, 24/7. Bel 085 212 83 02.">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">{!! $ldJson !!}</script>
 

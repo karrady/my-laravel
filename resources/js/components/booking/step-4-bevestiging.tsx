@@ -109,11 +109,11 @@ export function Step4Bevestiging() {
       <div className="flex flex-col items-center gap-3">
         <p className="text-sm text-tertiary">Vragen? Bel ons:</p>
         <a
-          href="tel:+31182123456"
+          href="tel:+31852128302"
           className="flex items-center gap-2 text-lg font-semibold text-brand-secondary hover:text-brand-secondary_hover"
         >
           <Phone className="size-5" aria-hidden />
-          +31 (0)182 12 34 56
+          085 212 83 02
         </a>
         <Button color="secondary" onClick={reset}>
           Nieuwe boeking maken
