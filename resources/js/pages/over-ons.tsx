@@ -2,7 +2,6 @@ import { CheckCircle, Heart, MarkerPin01, Shield01, Star01, ThumbsUp } from "@un
 
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
-import { StarIcon } from "@/components/foundations/rating-stars";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
 
@@ -35,24 +34,6 @@ const team = [
         role: "Oprichter & Directeur",
         initials: "YA",
         bio: "Met meer dan 10 jaar ervaring in de taxibranche richtte Yassine YAS TaxiCentrale op met één doel: betrouwbaar en betaalbaar vervoer voor iedereen in de regio Gouda.",
-    },
-];
-
-const reviews = [
-    {
-        name: "Mohammed R.",
-        role: "Zakenreiziger",
-        text: "Elke maand naar Schiphol en terug — YAS is altijd op tijd en de auto is altijd schoon. Echt een vaste partner voor mijn reizen.",
-    },
-    {
-        name: "Anita V.",
-        role: "Particuliere klant",
-        text: "Na een operatie had ik regelmatig vervoer nodig naar het LUMC. YAS reed me altijd rustig en zorgzaam. Een aanrader voor iedereen met een zorgvraag.",
-    },
-    {
-        name: "Peter B.",
-        role: "Directeur, Gouda",
-        text: "Voor onze zakelijke gasten boeken we altijd YAS. Professioneel, discreet en nooit te laat. Onze klanten zijn altijd onder de indruk.",
     },
 ];
 
@@ -155,28 +136,11 @@ const OverOns = () => (
             </div>
         </section>
 
-        {/* Reviews */}
+        {/* Google Reviews — widget te koppelen via Google Business Profile */}
         <section className="bg-secondary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Wat onze klanten zeggen</h2>
-                <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-                    {reviews.map(({ name, role, text }) => (
-                        <figure key={name} className="flex flex-col gap-6 rounded-2xl border border-secondary bg-primary p-8">
-                            <div className="flex gap-1" aria-label="5 sterren">
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                            </div>
-                            <blockquote className="text-md text-primary">"{text}"</blockquote>
-                            <figcaption>
-                                <p className="text-md font-semibold text-primary">{name}</p>
-                                <cite className="text-sm text-tertiary not-italic">{role}</cite>
-                            </figcaption>
-                        </figure>
-                    ))}
-                </div>
+                <div id="google-reviews-widget" className="mt-12 w-full" />
             </div>
         </section>
 

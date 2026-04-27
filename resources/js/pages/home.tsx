@@ -15,7 +15,6 @@ import {
 
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
-import { StarIcon } from "@/components/foundations/rating-stars";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
 
@@ -366,62 +365,21 @@ const ServiceRegioSection = () => (
     </section>
 );
 
-/* ─── 7. Reviews ─────────────────────────────────────────────── */
-const REVIEWS = [
-    {
-        name: "Ahmed El Mansouri",
-        location: "Gouda",
-        rating: 5,
-        content:
-            "Uitstekende service! De chauffeur was op tijd en zeer vriendelijk. De auto was schoon en comfortabel. Zeker een aanrader voor luchthavenvervoer.",
-    },
-    {
-        name: "Petra van der Berg",
-        location: "Waddinxveen",
-        rating: 5,
-        content:
-            "Al meerdere keren gebruik gemaakt van YAS TaxiCentrale. Altijd stipt op tijd, vriendelijke chauffeurs en een eerlijke prijs. Mijn vaste taxi voor Schiphol!",
-    },
-    {
-        name: "Mark Janssen",
-        location: "Gouda",
-        rating: 5,
-        content:
-            "Zakelijk gebruik ik YAS regelmatig voor klantbezoeken. Professioneel, betrouwbaar en de business class is echt top.",
-    },
-];
-
+/* ─── 7. Google Reviews ───────────────────────────────────────── */
+/* Google Reviews widget — te koppelen via Google Business Profile embed */
 const ReviewsSection = () => (
     <section className="bg-primary py-16 md:py-24">
         <div className="mx-auto max-w-container px-4 md:px-8">
-            <div className="mb-12 flex flex-col items-center text-center md:mb-16">
+            <div className="flex flex-col items-center text-center">
                 <span className="text-sm font-semibold text-brand-secondary md:text-md">Wat klanten zeggen</span>
                 <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
-                    Beoordeeld met 4.9 sterren
+                    Google Recensies
                 </h2>
                 <p className="mt-4 max-w-xl text-lg text-tertiary">
-                    Onze klanten waarderen onze betrouwbaarheid, punctualiteit en vriendelijke service.
+                    Bekijk onze beoordelingen op Google.
                 </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {REVIEWS.map((r) => (
-                    <figure
-                        key={r.name}
-                        className="flex flex-col gap-5 rounded-2xl border border-secondary bg-primary p-6 shadow-xs"
-                    >
-                        <div aria-label={`${r.rating} van 5 sterren`} className="flex gap-1">
-                            {Array.from({ length: r.rating }).map((_, i) => (
-                                <StarIcon key={i} />
-                            ))}
-                        </div>
-                        <blockquote className="flex-1 text-md text-primary">"{r.content}"</blockquote>
-                        <figcaption>
-                            <p className="font-semibold text-primary">{r.name}</p>
-                            <cite className="text-sm text-tertiary not-italic">{r.location}</cite>
-                        </figcaption>
-                    </figure>
-                ))}
+                {/* Google Reviews widget wordt hier geplaatst */}
+                <div id="google-reviews-widget" className="mt-10 w-full" />
             </div>
         </div>
     </section>
