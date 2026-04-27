@@ -1,6 +1,6 @@
 @theme {
     /* FONT FAMILY */
-    --font-body: "Roboto", -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-body: "Source Sans 3", -apple-system, "Segoe UI", Arial, sans-serif;
     --font-display: "Montserrat", -apple-system, "Segoe UI", Arial, sans-serif;
     --font-mono: ui-monospace, "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
@@ -121,18 +121,18 @@
     --color-alpha-white: rgb(255 255 255);
     --color-alpha-black: rgb(0 0 0);
 
-    --color-brand-25:  rgb(255 253 240);
-    --color-brand-50:  rgb(255 250 215);
-    --color-brand-100: rgb(254 241 150);
-    --color-brand-200: rgb(253 224 72);
-    --color-brand-300: rgb(250 207 22);
-    --color-brand-400: rgb(245 197 24);  /* #f5c518 — taxi geel */
-    --color-brand-500: rgb(212 150 6);
-    --color-brand-600: rgb(163 102 4);   /* primaire knoppen */
-    --color-brand-700: rgb(30 30 30);    /* donker antraciet */
-    --color-brand-800: rgb(15 15 15);   /* hero/CTA achtergrond */
-    --color-brand-900: rgb(8 8 8);
-    --color-brand-950: rgb(0 0 0);      /* zwart */
+    --color-brand-25:  rgb(255 252 230);  /* geel tint — achtergrond */
+    --color-brand-50:  rgb(255 248 179);
+    --color-brand-100: rgb(255 241 102);
+    --color-brand-200: rgb(255 228 92);   /* #FFE45C — licht accent */
+    --color-brand-300: rgb(255 218 50);
+    --color-brand-400: rgb(255 210 0);    /* #FFD200 — BuurtBuzz taxi geel */
+    --color-brand-500: rgb(220 181 0);
+    --color-brand-600: rgb(201 163 0);    /* #C9A300 — hover/knoppen */
+    --color-brand-700: rgb(74 74 74);     /* #4A4A4A — antraciet grijs */
+    --color-brand-800: rgb(42 42 42);     /* #2A2A2A — diepe vlakken */
+    --color-brand-900: rgb(14 14 14);     /* #0E0E0E — YAS zwart */
+    --color-brand-950: rgb(8 8 8);        /* diepste zwart */
 
     /* LIGHT MODE VARIABLES */
 
