@@ -1,4 +1,4 @@
-import { Car01, CheckCircle, Clock, MarkerPin01, Phone, Shield01, Star01 } from "@untitledui/icons";
+import { Car01, CheckCircle, Clock, MarkerPin01, Phone, Shield01 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
@@ -85,7 +85,6 @@ const TaxiSchiphol = () => (
                         </tbody>
                     </table>
                 </div>
-                <p className="mt-3 text-sm text-quaternary">Retourrit? Boek heen- en terugreis en ontvang 5% korting.</p>
             </div>
         </section>
 
@@ -116,7 +115,6 @@ const TaxiSchiphol = () => (
                         {[
                             { icon: Clock, title: "Vluchtvolging", text: "Wij monitoren uw vlucht live en passen de ophaaltijd automatisch aan bij vertragingen." },
                             { icon: Shield01, title: "Vaste prijs garantie", text: "Geen taximeter, geen files-opslag. U betaalt nooit meer dan het afgesproken tarief." },
-                            { icon: Star01, title: "4.9/5 beoordeeld", text: "Honderden klanten uit Gouda gingen u al voor. Lees de reviews op Google." },
                             { icon: MarkerPin01, title: "Deur-tot-deur", text: "Wij halen u op bij uw voordeur en brengen u direct tot aan de vertrekhal op Schiphol." },
                         ].map(({ icon, title, text }) => (
                             <div key={title} className="flex gap-4">

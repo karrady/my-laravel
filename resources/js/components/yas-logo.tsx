@@ -1,11 +1,13 @@
+import type React from "react";
 import { cx } from "@/utils/cx";
 
 interface YasLogoProps {
     className?: string;
     dark?: boolean;
+    style?: React.CSSProperties;
 }
 
-export const YasLogo = ({ className, dark }: YasLogoProps) => (
+export const YasLogo = ({ className, dark, style }: YasLogoProps) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 270 36"
@@ -13,6 +15,7 @@ export const YasLogo = ({ className, dark }: YasLogoProps) => (
         role="img"
         aria-label="YAS TaxiCentrale"
         className={cx("overflow-visible", className)}
+        style={style}
     >
         <text
             y="28"
