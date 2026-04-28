@@ -73,42 +73,29 @@ const OverOns = () => (
             </div>
         </section>
 
-        {/* Metrics */}
-        <section className="bg-primary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <dl className="grid gap-x-4 gap-y-8 md:grid-cols-2 md:border-y md:border-secondary md:py-16 lg:grid-cols-4">
-                    {[
-                        { value: "2014", label: "Opgericht" },
-                        { value: "10+", label: "Jaar actief" },
-                        { value: "5000+", label: "Ritten per jaar" },
-                    ].map((item) => (
-                        <div key={item.value} className="flex flex-1 flex-col-reverse gap-3 text-center">
-                            <dt className="text-lg font-semibold text-primary">{item.label}</dt>
-                            <dd className="text-display-lg font-semibold text-primary md:text-display-xl">{item.value}</dd>
-                        </div>
-                    ))}
-                </dl>
-            </div>
-        </section>
 
         {/* Verhaal */}
         <section className="bg-secondary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="mx-auto max-w-3xl">
-                    <span className="text-sm font-semibold text-brand-secondary md:text-md">Ons verhaal</span>
-                    <h2 className="mt-3 text-display-xs font-semibold text-primary md:text-display-sm">
-                        Geboren uit een passie voor service
-                    </h2>
-                    <div className="mt-6 space-y-4 text-lg text-tertiary">
+                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Over YAS TaxiCentrale</h2>
+                    <div className="mt-6 space-y-5 text-lg text-tertiary">
                         <p>
-                            YAS TaxiCentrale werd in 2014 opgericht door Yassine, een Goudenaar met een diepe overtuiging dat klanten meer verdienen dan een gewone taxirit. Vanuit een eenmanszaak groeide het bedrijf uit tot een vertrouwde naam in de regio.
+                            YAS TaxiCentrale is opgericht vanuit een eenvoudig idee: vervoer in Gouda en omstreken kan persoonlijker, eerlijker en transparanter. Geen ondoorzichtige meterprijzen, geen anonieme apps. Gewoon een lokaal aanspreekpunt dat zijn klanten kent en de regio begrijpt.
                         </p>
                         <p>
-                            Wat begon met luchthaventransfers is uitgegroeid tot een volledig dienstenpakket: van zakelijk vervoer tot zorgritten. Elk jaar bedienen wij duizenden klanten die terugkeren vanwege onze betrouwbaarheid en persoonlijke aanpak.
+                            Als Gouwenaar in hart en nieren weet ik wat de regio nodig heeft: betrouwbaar vervoer met vaste prijzen, vertrouwde chauffeurs en directe communicatie via telefoon of WhatsApp maken wij van iedere rit een prettige ervaring. Dichtbij of ver weg, wij brengen u.
                         </p>
                         <p>
-                            Als lokaal bedrijf investeren wij ook in de gemeenschap. Wij werken samen met lokale zorginstanties en bieden speciale tarieven aan voor regelmatige zorgritten.
+                            Wij verzorgen vervoer voor particulieren, zakelijke klanten en zorginstellingen, met speciale tarieven voor wie regelmatig vervoer nodig heeft.
                         </p>
+                        <p>
+                            Klaar om te boeken? Vraag direct uw rit aan via onze website, of bel of app ons. Wij denken graag met u mee.
+                        </p>
+                    </div>
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        <Button size="lg" href="/reserveren">Nu reserveren</Button>
+                        <Button size="lg" color="secondary" href="/contact">Neem contact op</Button>
                     </div>
                 </div>
             </div>
