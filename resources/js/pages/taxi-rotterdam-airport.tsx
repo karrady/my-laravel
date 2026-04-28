@@ -7,12 +7,12 @@ const YELLOW = "rgb(255,210,0)";
 const DARK   = "#0E0E0E";
 
 const routes = [
-    { from: "Gouda Centrum", price: "€ 55", popular: true },
-    { from: "Gouda Station", price: "€ 53" },
-    { from: "Waddinxveen", price: "€ 60" },
-    { from: "Bodegraven", price: "€ 65" },
-    { from: "Alphen aan den Rijn", price: "€ 70" },
-    { from: "Reeuwijk", price: "€ 58" },
+    { from: "Gouda Centrum", price: "€ 55,-", popular: true },
+    { from: "Gouda Station", price: "€ 53,-" },
+    { from: "Waddinxveen", price: "€ 60,-" },
+    { from: "Bodegraven", price: "€ 65,-" },
+    { from: "Alphen aan den Rijn", price: "€ 70,-" },
+    { from: "Reeuwijk", price: "€ 58,-" },
 ];
 
 const TaxiRotterdamAirport = () => (
@@ -25,7 +25,7 @@ const TaxiRotterdamAirport = () => (
                 <div className="max-w-3xl">
                     <span className="text-sm font-semibold" style={{ color: YELLOW }}>Taxi Rotterdam Airport</span>
                     <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                        Taxi Rotterdam The Hague Airport — vaste prijs vanuit Gouda
+                        Taxi Rotterdam The Hague Airport, vaste prijs vanuit Gouda
                     </h1>
                     <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                         Betrouwbaar taxivervoer van Gouda en omstreken naar Rotterdam The Hague Airport (RTM). Sneller dan Schiphol, vaste prijs, vluchtvolging inbegrepen.
@@ -92,9 +92,9 @@ const TaxiRotterdamAirport = () => (
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Voordelen Rotterdam Airport boven Schiphol</h2>
                 <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
                     {[
-                        { icon: Clock, title: "Kortere reistijd", text: "Rotterdam Airport ligt dichter bij Gouda dan Schiphol — u bent sneller ter plaatse en heeft minder stress." },
+                        { icon: Clock, title: "Kortere reistijd", text: "Rotterdam Airport ligt dichter bij Gouda dan Schiphol, u bent sneller ter plaatse en heeft minder stress." },
                         { icon: Shield01, title: "Rustigere terminal", text: "Rotterdam heeft kortere wachtrijen bij security en bij bagageafhandeling." },
-                        { icon: Star01, title: "Lagere prijs", text: "Taxi naar Rotterdam Airport is goedkoper dan naar Schiphol — bespaar op uw reiskosten." },
+                        { icon: Star01, title: "Lagere prijs", text: "Taxi naar Rotterdam Airport is goedkoper dan naar Schiphol, bespaar op uw reiskosten." },
                     ].map(({ icon, title, text }) => (
                         <div key={title} className="flex gap-4">
                             <FeaturedIcon icon={icon} size="md" color="brand" theme="light" className="shrink-0" />

@@ -65,11 +65,6 @@ export function RouteMap({ origin, destination, onRouteCalculated, onRouteClear,
             maxZoom: 19,
         }).addTo(map);
 
-        // Kleine attributie rechtsonder
-        L.control.attribution({ prefix: false, position: "bottomright" })
-            .addAttribution('&copy; <a href="https://carto.com">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>')
-            .addTo(map);
-
         mapRef.current = map;
 
         return () => {

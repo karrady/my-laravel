@@ -279,7 +279,7 @@ const TrustBadges: FC = () => (
         {[
             { icon: CheckCircle, label: "Vaste prijs" },
             { icon: Clock,       label: "24/7 beschikbaar" },
-            { icon: Star01,      label: "4.9 ★ — 500+ ritten" },
+            { icon: Star01,      label: "4.9 ★ 500+ ritten" },
         ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-1.5 text-xs" style={{ color: "#777" }}>
                 <Icon className="size-3.5 shrink-0" style={{ color: YELLOW }} aria-hidden="true" />
@@ -348,7 +348,7 @@ export const YasHero: FC = () => {
                             style={{ borderColor: "#2a2a2a", color: YELLOW, background: "rgba(255,210,0,0.07)" }}
                         >
                             <span className="inline-block w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: YELLOW }} />
-                            Schiphol Taxi Specialist — Gouda &amp; regio
+                            Schiphol Taxi Specialist · Gouda &amp; regio
                         </motion.span>
 
                         <motion.h1
@@ -361,7 +361,7 @@ export const YasHero: FC = () => {
                             <span style={{ color: YELLOW }}>A</span>
                             {" "}naar{" "}
                             <span style={{ color: YELLOW }}>B</span>
-                            {" "}— altijd op tijd.
+                            {" "}altijd op tijd.
                         </motion.h1>
 
                         <motion.p

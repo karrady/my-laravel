@@ -7,14 +7,14 @@ const YELLOW = "rgb(255,210,0)";
 const DARK   = "#0E0E0E";
 
 const routes = [
-    { from: "Gouda Centrum", price: "€ 75", popular: true },
-    { from: "Gouda Station", price: "€ 73" },
-    { from: "Waddinxveen", price: "€ 80" },
-    { from: "Bodegraven", price: "€ 85" },
-    { from: "Alphen aan den Rijn", price: "€ 90" },
-    { from: "Reeuwijk", price: "€ 80" },
-    { from: "Stolwijk", price: "€ 82" },
-    { from: "Boskoop", price: "€ 88" },
+    { from: "Gouda Centrum", price: "€ 75,-", popular: true },
+    { from: "Gouda Station", price: "€ 73,-" },
+    { from: "Waddinxveen", price: "€ 80,-" },
+    { from: "Bodegraven", price: "€ 85,-" },
+    { from: "Alphen aan den Rijn", price: "€ 90,-" },
+    { from: "Reeuwijk", price: "€ 80,-" },
+    { from: "Stolwijk", price: "€ 82,-" },
+    { from: "Boskoop", price: "€ 88,-" },
 ];
 
 const TaxiSchiphol = () => (
@@ -27,7 +27,7 @@ const TaxiSchiphol = () => (
                 <div className="max-w-3xl">
                     <span className="text-sm font-semibold" style={{ color: YELLOW }}>Taxi naar Schiphol</span>
                     <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                        Taxi Schiphol vanuit Gouda en omgeving — vaste prijs
+                        Taxi Schiphol vanuit Gouda en omgeving, vaste prijs
                     </h1>
                     <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                         YAS TaxiCentrale brengt u stressvrij van Gouda naar Amsterdam Schiphol Airport. Vaste prijs, vluchtvolging inbegrepen, gratis wachttijd tot 60 minuten bij vertraging.
@@ -39,7 +39,7 @@ const TaxiSchiphol = () => (
                         </Button>
                     </div>
                     <div className="mt-6 flex flex-wrap gap-4 text-sm" style={{ color: "#777" }}>
-                        {["Vluchtvolging inbegrepen", "Gratis wachttijd 60 min", "Vaste prijs — geen meter"].map((t) => (
+                        {["Vluchtvolging inbegrepen", "Gratis wachttijd 60 min", "Vaste prijs, geen meter"].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
                                 <CheckCircle className="size-4 shrink-0" style={{ color: YELLOW }} aria-hidden /> {t}
                             </span>
@@ -95,13 +95,13 @@ const TaxiSchiphol = () => (
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
                     <div>
                         <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Alles inbegrepen</h2>
-                        <p className="mt-4 text-lg text-tertiary">Bij YAS TaxiCentrale betaalt u de vaste prijs — geen extra's achteraf.</p>
+                        <p className="mt-4 text-lg text-tertiary">Bij YAS TaxiCentrale betaalt u de vaste prijs, geen extra's achteraf.</p>
                         <ul className="mt-8 flex flex-col gap-4">
                             {[
-                                "Vluchtvolging — wij weten wanneer u landt",
+                                "Vluchtvolging: wij weten wanneer u landt",
                                 "Gratis wachttijd tot 60 minuten bij vertraging",
                                 "Ruimte voor koffers en handbagage",
-                                "Deur-tot-deur service — geen overstap",
+                                "Deur-tot-deur service, geen overstap",
                                 "Kinderzitje op aanvraag",
                                 "Stille rit of muziek naar keuze",
                             ].map((item) => (

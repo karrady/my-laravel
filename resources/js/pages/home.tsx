@@ -26,7 +26,7 @@ const DIENSTEN = [
     {
         icon: Car01,
         title: "Luchthavenvervoer",
-        text: "Stressvrij van deur tot gate. Wij rijden u naar Schiphol, Rotterdam The Hague Airport en meer — altijd op tijd.",
+        text: "Stressvrij van deur tot gate. Wij rijden u naar Schiphol, Rotterdam The Hague Airport en meer, altijd op tijd.",
         href: "/airport-service",
         cta: "Bekijk tarieven",
     },
@@ -40,7 +40,7 @@ const DIENSTEN = [
     {
         icon: MarkerPin01,
         title: "Regionaal vervoer",
-        text: "Stations, ziekenhuizen, winkels of afspraken — snel en betrouwbaar door heel Gouda en de regio.",
+        text: "Stations, ziekenhuizen, winkels of afspraken, snel en betrouwbaar door heel Gouda en de regio.",
         href: "/diensten",
         cta: "Meer informatie",
     },
@@ -62,7 +62,7 @@ const DienstenSection = () => (
                     Vervoer voor elk moment
                 </h2>
                 <p className="mt-4 max-w-xl text-lg text-tertiary">
-                    Van luchthaventransfers tot zorgvervoer — wij bieden betrouwbaar vervoer voor alle
+                    Van luchthaventransfers tot zorgvervoer, wij bieden betrouwbaar vervoer voor alle
                     gelegenheden.
                 </p>
             </div>
@@ -103,7 +103,7 @@ const HOE_STAPPEN = [
     {
         number: "03",
         title: "Bevestig en ontvang",
-        text: "Vul uw gegevens in — uw boeking is direct bevestigd. De chauffeur staat voor u klaar.",
+        text: "Vul uw gegevens in, uw boeking is direct bevestigd. De chauffeur staat voor u klaar.",
     },
 ];
 
@@ -116,7 +116,7 @@ const HoeHetWerkt = () => (
                     Online boeken in 3 stappen
                 </h2>
                 <p className="mt-4 max-w-xl text-lg text-tertiary">
-                    In minder dan 2 minuten is uw rit geboekt — vaste prijs, direct bevestigd.
+                    In minder dan 2 minuten is uw rit geboekt, vaste prijs, direct bevestigd.
                 </p>
             </div>
 
@@ -179,7 +179,7 @@ const VoertuigenSection = () => (
                     Kies uw voertuig
                 </h2>
                 <p className="mt-4 max-w-xl text-lg text-tertiary">
-                    Voor elke rit het juiste voertuig — van comfortabele sedan tot ruime taxibus.
+                    Voor elke rit het juiste voertuig, van comfortabele sedan tot ruime taxibus.
                 </p>
             </div>
 
@@ -250,7 +250,7 @@ const ServiceRegioSection = () => (
                     </h2>
                     <p className="text-lg text-tertiary">
                         YAS TaxiCentrale is gevestigd in Gouda en rijdt door de gehele regio. Van station tot
-                        luchthaven — altijd dicht bij huis.
+                        luchthaven, altijd dicht bij huis.
                     </p>
                     <div className="flex flex-wrap gap-2">
                         {REGIO_PLAATSEN.map((plaats) => (
@@ -263,7 +263,7 @@ const ServiceRegioSection = () => (
                         ))}
                     </div>
                     <p className="text-sm text-tertiary">
-                        Ook buiten deze plaatsen? Neem contact op — wij rijden door heel Nederland.
+                        Ook buiten deze plaatsen? Neem contact op, wij rijden door heel Nederland.
                     </p>
                     <Button href="/contact" color="secondary" className="w-fit">
                         Contact opnemen
@@ -283,7 +283,7 @@ const ServiceRegioSection = () => (
 );
 
 /* ─── 7. Google Reviews ───────────────────────────────────────── */
-/* Google Reviews widget — te koppelen via Google Business Profile embed */
+/* Google Reviews widget, te koppelen via Google Business Profile embed */
 const ReviewsSection = () => (
     <section className="bg-primary py-16 md:py-24">
         <div className="mx-auto max-w-container px-4 md:px-8">
@@ -314,11 +314,11 @@ const FAQ_ITEMS = [
     },
     {
         q: "Wat als mijn vlucht vertraging heeft?",
-        a: "Wij volgen uw vlucht via het vluchtnummer. Bij vertraging passen wij de ophaaltijd automatisch aan — zonder extra kosten.",
+        a: "Wij volgen uw vlucht via het vluchtnummer. Bij vertraging passen wij de ophaaltijd automatisch aan, zonder extra kosten.",
     },
     {
         q: "Rijden jullie ook 's nachts?",
-        a: "Ja, 7 dagen per week, 24 uur per dag — inclusief feestdagen. Voor ritten vóór 6:00 of na 23:00 kan een nachttoeslag gelden.",
+        a: "Ja, 7 dagen per week, 24 uur per dag, inclusief feestdagen. Voor ritten vóór 6:00 of na 23:00 kan een nachttoeslag gelden.",
     },
     {
         q: "Zijn de prijzen inclusief btw?",
