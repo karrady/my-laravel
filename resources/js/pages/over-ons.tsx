@@ -81,16 +81,16 @@ const OverOns = () => (
                     <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Over YAS TaxiCentrale</h2>
                     <div className="mt-6 space-y-5 text-lg text-tertiary">
                         <p>
-                            YAS TaxiCentrale is opgericht vanuit een eenvoudig idee: vervoer in Gouda en omstreken kan persoonlijker, eerlijker en transparanter. Geen ondoorzichtige meterprijzen, geen anonieme apps. Gewoon een lokaal aanspreekpunt dat zijn klanten kent en de regio begrijpt.
+                            YAS TaxiCentrale staat voor eerlijk en persoonlijk taxivervoer in Gouda en omstreken. Geen verrassingen aan de meter, geen anonieme app — gewoon een vaste prijs en een chauffeur die de regio kent.
                         </p>
                         <p>
-                            Als Gouwenaar in hart en nieren weet ik wat de regio nodig heeft: betrouwbaar vervoer met vaste prijzen, vertrouwde chauffeurs en directe communicatie via telefoon of WhatsApp maken wij van iedere rit een prettige ervaring. Dichtbij of ver weg, wij brengen u.
+                            Als Gouwenaar weet ik hoe belangrijk goede service is. Daarom werken wij met vaste prijzen, vertrouwde chauffeurs en direct contact via telefoon of WhatsApp. Voor elke rit, dichtbij of ver weg.
                         </p>
                         <p>
-                            Wij verzorgen vervoer voor particulieren, zakelijke klanten en zorginstellingen, met speciale tarieven voor wie regelmatig vervoer nodig heeft.
+                            Wij rijden voor particulieren, zakelijke klanten en zorginstellingen. Voor regelmatig vervoer hebben wij speciale tarieven.
                         </p>
                         <p>
-                            Klaar om te boeken? Vraag direct uw rit aan via onze website, of bel of app ons. Wij denken graag met u mee.
+                            Een rit nodig? Vraag 'm aan via onze website, of bel of app ons. Wij regelen het voor u.
                         </p>
                     </div>
                     <div className="mt-8 flex flex-wrap gap-3">
