@@ -42,22 +42,22 @@ const OverOns = () => (
         <YasHeader />
 
         {/* Hero */}
-        <section className="bg-secondary py-16 md:py-24">
+        <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
                     <div className="flex flex-col justify-center">
-                        <span className="text-sm font-semibold text-brand-secondary md:text-md">Over ons</span>
-                        <h1 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                        <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Over ons</span>
+                        <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
                             Meer dan een taxi — uw vertrouwde reispartner
                         </h1>
-                        <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                        <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                             YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B komen — het gaat om de ervaring onderweg.
                         </p>
                         <div className="mt-8 flex gap-3">
                             <Button size="lg" href="/reserveren">
                                 Nu Reserveren
                             </Button>
-                            <Button color="secondary" size="lg" href="/contact">
+                            <Button color="secondary" size="lg" href="/contact" className="!border-white/20 !text-white hover:!bg-white/10">
                                 Neem contact op
                             </Button>
                         </div>

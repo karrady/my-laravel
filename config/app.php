@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'driver_pin'      => env('DRIVER_PIN', 'yas2026'),
+    'whatsapp_number' => env('WHATSAPP_NUMBER', '31852128302'),
+
 ];

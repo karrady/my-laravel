@@ -15,6 +15,7 @@ interface AddressAutocompleteProps {
   isRequired?: boolean;
   hint?: string;
   isInvalid?: boolean;
+  dark?: boolean;
 }
 
 export function AddressAutocomplete({
@@ -25,6 +26,7 @@ export function AddressAutocomplete({
   isRequired,
   hint,
   isInvalid,
+  dark = false,
 }: AddressAutocompleteProps) {
   const [query, setQuery] = useState(value);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -88,7 +90,7 @@ export function AddressAutocomplete({
 
   return (
     <div ref={containerRef} className="relative flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-secondary">
+      <label className={cx("text-xs font-medium", dark ? "text-[#888]" : "text-sm text-secondary")}>
         {label}
         {isRequired && <span className="ml-0.5 text-error-primary">*</span>}
       </label>
@@ -103,10 +105,14 @@ export function AddressAutocomplete({
             search(e.target.value);
           }}
           className={cx(
-            "w-full rounded-lg border bg-primary px-3.5 py-2.5 text-sm text-primary shadow-xs outline-none transition duration-100 ease-linear",
-            "placeholder:text-placeholder",
-            "focus:border-brand focus:ring-2 focus:ring-brand/20",
-            isInvalid ? "border-error focus:ring-error/20" : "border-primary",
+            "w-full rounded-lg border px-3.5 py-2.5 text-sm outline-none transition duration-100 ease-linear",
+            dark
+              ? "bg-[#0E0E0E] text-white border-[#333] placeholder:text-neutral-600 focus:border-[rgb(255,210,0)] focus:ring-2 focus:ring-[rgb(255,210,0)]/20"
+              : cx(
+                  "bg-primary text-primary shadow-xs placeholder:text-placeholder",
+                  "focus:border-brand focus:ring-2 focus:ring-brand/20",
+                  isInvalid ? "border-error focus:ring-error/20" : "border-primary",
+                ),
           )}
           aria-autocomplete="list"
           aria-expanded={isOpen}
@@ -121,14 +127,24 @@ export function AddressAutocomplete({
       {isOpen && suggestions.length > 0 && (
         <ul
           role="listbox"
-          className="absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-secondary_alt bg-primary shadow-lg"
+          className={cx(
+            "absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-auto rounded-lg border shadow-lg",
+            dark
+              ? "bg-[#181818] border-[#333]"
+              : "bg-primary border-secondary_alt",
+          )}
         >
           {suggestions.map((s, i) => (
             <li
               key={i}
               role="option"
               aria-selected={false}
-              className="cursor-pointer px-3.5 py-2.5 text-sm text-primary transition duration-100 ease-linear hover:bg-primary_hover"
+              className={cx(
+                "cursor-pointer px-3.5 py-2.5 text-sm transition duration-100 ease-linear",
+                dark
+                  ? "text-white hover:bg-[#252525]"
+                  : "text-primary hover:bg-primary_hover",
+              )}
               onMouseDown={() => select(s)}
             >
               {s.display_name}
@@ -137,7 +153,7 @@ export function AddressAutocomplete({
         </ul>
       )}
       {hint && (
-        <p className={cx("text-xs", isInvalid ? "text-error-primary" : "text-tertiary")}>{hint}</p>
+        <p className={cx("text-xs", isInvalid ? "text-error-primary" : dark ? "text-[#666]" : "text-tertiary")}>{hint}</p>
       )}
     </div>
   );
