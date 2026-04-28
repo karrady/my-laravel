@@ -57,12 +57,8 @@ const DienstenSection = () => (
             <div className="mb-12 flex flex-col items-center text-center md:mb-16">
                 <span className="text-sm font-semibold text-brand-secondary md:text-md">Onze diensten</span>
                 <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
-                    Vervoer voor elk moment
+                    Altijd een rit voor u klaar
                 </h2>
-                <p className="mt-4 max-w-xl text-lg text-tertiary">
-                    Van luchthaventransfers tot zorgvervoer, wij bieden betrouwbaar vervoer voor alle
-                    gelegenheden.
-                </p>
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">

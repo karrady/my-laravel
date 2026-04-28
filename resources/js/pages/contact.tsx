@@ -17,16 +17,16 @@ const contactInfo = [
     {
         icon: Phone,
         title: "Telefoon",
-        value: "+31 (0)6 12 34 56 78",
+        value: "+31 (0)85 212 83 02",
         href: "tel:+31852128302",
-        sub: "Ma–Zo, 06:00–23:00",
+        sub: "24/7 bereikbaar",
     },
     {
         icon: Mail01,
         title: "E-mail",
         value: "info@yastaxicentrale.nl",
         href: "mailto:info@yastaxicentrale.nl",
-        sub: "Reactie binnen 2 uur op werkdagen",
+        sub: "Wij reageren zo snel mogelijk",
     },
     {
         icon: MarkerPin01,
@@ -38,9 +38,9 @@ const contactInfo = [
     {
         icon: Clock,
         title: "Openingstijden",
-        value: "7 dagen per week",
+        value: "24/7 bereikbaar",
         href: null,
-        sub: "06:00 – 23:00 | Nacht op aanvraag",
+        sub: "7 dagen per week, dag en nacht",
     },
 ];
 
