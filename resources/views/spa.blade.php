@@ -29,6 +29,7 @@ $ldJson = json_encode([
     <title>YAS TaxiCentrale — Taxivervoer in Gouda & Rijn en Gouwe</title>
     <meta name="description" content="YAS TaxiCentrale: betrouwbaar taxivervoer in Gouda, Alphen aan den Rijn, Waddinxveen, Boskoop en de hele Rijn en Gouwe regio. Luchthaventransfers, zakelijk vervoer, 24/7. Bel 085 212 83 02.">
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="{{ url()->current() }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
