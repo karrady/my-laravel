@@ -6,22 +6,43 @@ interface YasLogoProps {
 }
 
 export const YasLogo = ({ className, dark }: YasLogoProps) => (
-    <span
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 270 36"
+        height="36"
+        role="img"
         aria-label="YAS TaxiCentrale"
-        className={cx("font-display font-black tracking-tight leading-none select-none", className)}
-        style={{ fontFamily: "Montserrat, sans-serif" }}
+        className={cx("overflow-visible", className)}
     >
-        <span style={{ color: dark ? "#ffffff" : undefined }}>YAS</span>
-        <span style={{ color: "rgb(255,210,0)" }}> TaxiCentrale</span>
-    </span>
+        <text
+            y="28"
+            fontFamily="Montserrat, sans-serif"
+            fontWeight="900"
+            fontSize="32"
+        >
+            <tspan fill={dark ? "#ffffff" : "#0f0f0f"}>YAS</tspan>
+            <tspan fill="rgb(255,210,0)"> TaxiCentrale</tspan>
+        </text>
+    </svg>
 );
 
 export const YasLogoMinimal = ({ className, dark }: YasLogoProps) => (
-    <span
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 70 36"
+        height="36"
+        role="img"
         aria-label="YAS"
-        className={cx("font-display font-black tracking-tight leading-none select-none", className)}
-        style={{ fontFamily: "Montserrat, sans-serif", color: dark ? "#ffffff" : undefined }}
+        className={cx("overflow-visible", className)}
     >
-        YAS
-    </span>
+        <text
+            y="28"
+            fontFamily="Montserrat, sans-serif"
+            fontWeight="900"
+            fontSize="32"
+            fill={dark ? "#ffffff" : "#0f0f0f"}
+        >
+            YAS
+        </text>
+    </svg>
 );

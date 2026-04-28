@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 36" height="36">
+  <rect width="270" height="36" fill="#0f0f0f"/>
+  <text y="28" font-family="Montserrat, sans-serif" font-weight="900" font-size="32">
+    <tspan fill="#ffffff">YAS</tspan>
+    <tspan fill="rgb(255,210,0)"> TaxiCentrale</tspan>
+  </text>
+</svg>

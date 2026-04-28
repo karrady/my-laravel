@@ -19,7 +19,7 @@ const waarden = [
     {
         icon: Star01,
         title: "Kwaliteit",
-        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit — dat is onze standaard, niet de uitzondering.",
+        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit, dat is onze standaard, niet de uitzondering.",
     },
     {
         icon: MarkerPin01,
@@ -48,10 +48,10 @@ const OverOns = () => (
                     <div className="flex flex-col justify-center">
                         <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Over ons</span>
                         <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                            Meer dan een taxi — uw vertrouwde reispartner
+                            Meer dan een taxi: uw vertrouwde reispartner
                         </h1>
                         <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                            YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B komen — het gaat om de ervaring onderweg.
+                            YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B komen, het gaat om de ervaring onderweg.
                         </p>
                         <div className="mt-8 flex gap-3">
                             <Button size="lg" href="/reserveren">
@@ -102,7 +102,7 @@ const OverOns = () => (
                     </h2>
                     <div className="mt-6 space-y-4 text-lg text-tertiary">
                         <p>
-                            YAS TaxiCentrale werd in 2014 opgericht door Yassine — een Goudenaar met een diepe overtuiging dat klanten meer verdienen dan een gewone taxirit. Vanuit een eenmanszaak groeide het bedrijf uit tot een vertrouwde naam in de regio.
+                            YAS TaxiCentrale werd in 2014 opgericht door Yassine, een Goudenaar met een diepe overtuiging dat klanten meer verdienen dan een gewone taxirit. Vanuit een eenmanszaak groeide het bedrijf uit tot een vertrouwde naam in de regio.
                         </p>
                         <p>
                             Wat begon met luchthaventransfers is uitgegroeid tot een volledig dienstenpakket: van zakelijk vervoer tot zorgritten. Elk jaar bedienen wij duizenden klanten die terugkeren vanwege onze betrouwbaarheid en persoonlijke aanpak.
@@ -136,7 +136,7 @@ const OverOns = () => (
             </div>
         </section>
 
-        {/* Google Reviews — widget te koppelen via Google Business Profile */}
+        {/* Google Reviews, widget te koppelen via Google Business Profile */}
         <section className="bg-secondary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Wat onze klanten zeggen</h2>

@@ -7,57 +7,85 @@ import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-ic
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
 
-interface PricingRowProps {
-    from: string;
-    to: string;
-    price: string;
-    note?: string;
-    popular?: boolean;
-}
 
 const airports = [
     {
         name: "Amsterdam Schiphol",
         code: "AMS",
-        image: "/vliegveld.jpg",
-        routes: [
-            { from: "Gouda Centrum", to: "Schiphol Airport", price: "€ 75", popular: true },
-            { from: "Gouda Station", to: "Schiphol Airport", price: "€ 73" },
-            { from: "Waddinxveen", to: "Schiphol Airport", price: "€ 80" },
-            { from: "Bodegraven", to: "Schiphol Airport", price: "€ 85" },
-            { from: "Alphen aan den Rijn", to: "Schiphol Airport", price: "€ 90" },
+        locations: [
+            { place: "Ammerstol",                price: "€ 105,-" },
+            { place: "Bergambacht",               price: "€ 95,-"  },
+            { place: "Berkenwoude",               price: "€ 100,-" },
+            { place: "Bodegraven",                price: "€ 75,-"  },
+            { place: "Boskoop",                   price: "€ 75,-"  },
+            { place: "Gouda",                     price: "€ 75,-",  popular: true },
+            { place: "Gouderak",                  price: "€ 90,-"  },
+            { place: "Haastrecht",                price: "€ 90,-"  },
+            { place: "Krimpen a/d IJssel",        price: "€ 120,-" },
+            { place: "Lekkerkerk",                price: "€ 120,-" },
+            { place: "Moordrecht",                price: "€ 85,-"  },
+            { place: "Nieuwerkerk a/d IJssel",    price: "€ 100,-" },
+            { place: "Ouderkerk a/d IJssel",      price: "€ 110,-" },
+            { place: "Oudewater",                 price: "€ 110,-" },
+            { place: "Reeuwijk",                  price: "€ 75,-"  },
+            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
+            { place: "Schoonhoven",               price: "€ 115,-" },
+            { place: "Stolwijk",                  price: "€ 90,-"  },
+            { place: "Vlist",                     price: "€ 100,-" },
+            { place: "Waddinxveen",               price: "€ 75,-"  },
+            { place: "Waddinxveen Zuidplas",      price: "€ 80,-"  },
+            { place: "Zevenhuizen / Moerkapelle", price: "€ 100,-" },
         ],
     },
     {
         name: "Rotterdam The Hague",
         code: "RTM",
-        image: null,
-        routes: [
-            { from: "Gouda Centrum", to: "Rotterdam The Hague Airport", price: "€ 55", popular: true },
-            { from: "Gouda Station", to: "Rotterdam The Hague Airport", price: "€ 53" },
-            { from: "Waddinxveen", to: "Rotterdam The Hague Airport", price: "€ 60" },
-            { from: "Bodegraven", to: "Rotterdam The Hague Airport", price: "€ 65" },
+        locations: [
+            { place: "Ammerstol",                price: "€ 90,-"  },
+            { place: "Bergambacht",               price: "€ 85,-"  },
+            { place: "Berkenwoude",               price: "€ 90,-"  },
+            { place: "Bodegraven",                price: "€ 85,-"  },
+            { place: "Boskoop",                   price: "€ 90,-"  },
+            { place: "Gouda",                     price: "€ 65,-",  popular: true },
+            { place: "Gouderak",                  price: "€ 75,-"  },
+            { place: "Haastrecht",                price: "€ 75,-"  },
+            { place: "Krimpen a/d IJssel",        price: "€ 90,-"  },
+            { place: "Lekkerkerk",                price: "€ 90,-"  },
+            { place: "Moerdrecht",                price: "€ 65,-"  },
+            { place: "Moerkapelle",               price: "€ 85,-"  },
+            { place: "Nieuwerkerk a/d IJssel",    price: "€ 65,-"  },
+            { place: "Ouderkerk a/d IJssel",      price: "€ 90,-"  },
+            { place: "Oudewater",                 price: "€ 105,-" },
+            { place: "Reeuwijk",                  price: "€ 75,-"  },
+            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
+            { place: "Schoonhoven",               price: "€ 105,-" },
+            { place: "Stolwijk",                  price: "€ 80,-"  },
+            { place: "Vlist",                     price: "€ 85,-"  },
+            { place: "Waddinxveen",               price: "€ 75,-"  },
+            { place: "Waddinxveen Noord",         price: "€ 80,-"  },
+            { place: "Zevenhuizen",               price: "€ 80,-"  },
         ],
     },
     {
         name: "Eindhoven Airport",
         code: "EIN",
-        image: null,
-        routes: [
-            { from: "Gouda Centrum", to: "Eindhoven Airport", price: "€ 130" },
-            { from: "Gouda Station", to: "Eindhoven Airport", price: "€ 128" },
-            { from: "Waddinxveen", to: "Eindhoven Airport", price: "€ 135" },
+        locations: [
+            { place: "Gouda",        price: "€ 130,-", popular: true },
+            { place: "Waddinxveen",  price: "€ 135,-" },
+            { place: "Bodegraven",   price: "€ 140,-" },
+            { place: "Reeuwijk",     price: "€ 135,-" },
+            { place: "Schoonhoven",  price: "€ 145,-" },
         ],
     },
 ];
 
 const included = [
-    "Vluchtvolging — wij weten wanneer u landt",
+    "Vluchtvolging: wij weten wanneer u landt",
     "Gratis wachttijd tot 60 minuten bij vertragingen",
     "Ruimte voor koffers en handbagage",
     "Kinder- of rolstoelvriendelijk op aanvraag",
-    "Stille rit — geen ongewenste gesprekken",
-    "Vaste prijs, geen meter — geen verrassing",
+    "Stille rit zonder ongewenste gesprekken",
+    "Vaste prijs, geen meter, geen verrassing",
 ];
 
 const faqs: Array<{ question: string; answer: string }> = [
@@ -70,8 +98,8 @@ const faqs: Array<{ question: string; answer: string }> = [
         answer: "Wij volgen uw vlucht live. Tot 60 minuten vertraging wachten wij kosteloos. Na 60 minuten geldt een wachtkosten van € 0,50 per minuut.",
     },
     {
-        question: "Kan ik meerdere passagiers meenemen?",
-        answer: "Ja, wij vervoeren tot 7 passagiers in onze grotere voertuigen. Geef het aantal passagiers op bij het reserveren.",
+        question: "Hoeveel passagiers kunnen mee?",
+        answer: "Onze taxi's zijn geschikt voor maximaal 4 personen inclusief bagage. Voor groepen van 5 of meer personen kunt u contact met ons opnemen voor een offerte op maat.",
     },
     {
         question: "Zijn de prijzen inclusief BTW?",
@@ -162,25 +190,23 @@ const AirportService = () => {
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-secondary">
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Van</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Naar</th>
-                                    <th className="px-6 py-4 text-right text-sm font-semibold text-secondary">Prijs</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Opstapplaats</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Prijs (1–4 pers.)</th>
                                     <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {airport.routes.map((route, i) => (
+                                {airport.locations.map((loc, i) => (
                                     <tr key={i} className="border-t border-secondary">
-                                        <td className="px-6 py-4 text-md text-primary">{route.from}</td>
                                         <td className="px-6 py-4 text-md text-primary">
-                                            {route.to}
-                                            {route.popular && (
+                                            {loc.place}
+                                            {loc.popular && (
                                                 <Badge color="brand" type="pill-color" size="sm" className="ml-2">
                                                     Meest gevraagd
                                                 </Badge>
                                             )}
                                         </td>
-                                        <td className="px-6 py-4 text-right text-lg font-semibold text-primary">{route.price}</td>
+                                        <td className="px-6 py-4 text-left text-lg font-semibold text-primary">{loc.price}</td>
                                         <td className="px-6 py-4 text-right">
                                             <Button size="sm" href="/reserveren">
                                                 Boeken
@@ -192,6 +218,22 @@ const AirportService = () => {
                         </table>
                     </div>
                     <p className="mt-3 text-sm text-quaternary">* Retourrit? Boek beide ritten en ontvang 5% korting.</p>
+
+                    {/* Other airports CTA */}
+                    <div className="mt-8 rounded-2xl border border-secondary bg-secondary p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <p className="text-md font-semibold text-primary">Andere luchthaven of bestemming?</p>
+                            <p className="mt-1 text-sm text-tertiary">Staat uw vertrekplaats of luchthaven er niet bij? Vraag vrijblijvend een offerte op.</p>
+                        </div>
+                        <div className="flex shrink-0 gap-3">
+                            <Button color="secondary" size="md" href="/contact">
+                                Offerte aanvragen
+                            </Button>
+                            <Button size="md" href="tel:+31852128302">
+                                Bel ons
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -247,7 +289,7 @@ const AirportService = () => {
                         </div>
                         <div className="mt-12 rounded-2xl bg-secondary p-8 text-center">
                             <h3 className="text-lg font-semibold text-primary">Andere vraag?</h3>
-                            <p className="mt-2 text-md text-tertiary">Neem gerust contact op — wij helpen u graag verder.</p>
+                            <p className="mt-2 text-md text-tertiary">Neem gerust contact op, wij helpen u graag verder.</p>
                             <div className="mt-6 flex justify-center gap-3">
                                 <Button color="secondary" size="md" href="/contact">
                                     Stuur een bericht

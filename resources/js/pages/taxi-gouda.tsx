@@ -7,12 +7,12 @@ const YELLOW = "rgb(255,210,0)";
 const DARK   = "#0E0E0E";
 
 const routes = [
-    { from: "Gouda Centrum", to: "Amsterdam", price: "€ 95" },
-    { from: "Gouda Station", to: "Schiphol Airport", price: "€ 73" },
-    { from: "Gouda", to: "Rotterdam", price: "€ 45" },
-    { from: "Gouda", to: "Den Haag", price: "€ 55" },
-    { from: "Gouda", to: "Utrecht", price: "€ 50" },
-    { from: "Waddinxveen", to: "Schiphol Airport", price: "€ 80" },
+    { from: "Gouda Centrum", to: "Amsterdam", price: "€ 95,-" },
+    { from: "Gouda Station", to: "Schiphol Airport", price: "€ 73,-" },
+    { from: "Gouda", to: "Rotterdam", price: "€ 45,-" },
+    { from: "Gouda", to: "Den Haag", price: "€ 55,-" },
+    { from: "Gouda", to: "Utrecht", price: "€ 50,-" },
+    { from: "Waddinxveen", to: "Schiphol Airport", price: "€ 80,-" },
 ];
 
 const TaxiGouda = () => (
@@ -28,7 +28,7 @@ const TaxiGouda = () => (
                         Uw persoonlijke vervoerspartner in Gouda en omgeving
                     </h1>
                     <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                        YAS TaxiCentrale is uw betrouwbare taxibedrijf in Gouda. Van luchthaventransfers tot dagelijkse ritten in de regio — altijd op tijd, vaste prijs, 24/7 beschikbaar.
+                        YAS TaxiCentrale is uw betrouwbare taxibedrijf in Gouda. Van luchthaventransfers tot dagelijkse ritten in de regio, altijd op tijd, vaste prijs, 24/7 beschikbaar.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <Button size="lg" href="/reserveren">Nu Reserveren</Button>
@@ -79,7 +79,7 @@ const TaxiGouda = () => (
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Waarom YAS TaxiCentrale in Gouda?</h2>
                 <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {[
-                        { icon: Clock, title: "24/7 beschikbaar", text: "Vroege vlucht of late nachtrit — wij staan altijd voor u klaar in heel Gouda en omstreken." },
+                        { icon: Clock, title: "24/7 beschikbaar", text: "Vroege vlucht of late nachtrit, wij staan altijd voor u klaar in heel Gouda en omstreken." },
                         { icon: Shield01, title: "Vaste prijs garantie", text: "Geen taximeter. U weet van tevoren exact wat u betaalt. Geen verborgen kosten." },
                         { icon: Star01, title: "4.9 ★ Google rating", text: "Honderden tevreden klanten uit Gouda gaan u voor. Lees onze reviews." },
                         { icon: Car01, title: "Ruime voertuigen", text: "Comfortabele, schone taxi's met ruimte voor bagage. Tot 7 passagiers mogelijk." },
@@ -102,7 +102,7 @@ const TaxiGouda = () => (
         <section className="bg-primary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="max-w-3xl">
-                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Werkgebied — Gouda en de regio Midden-Holland</h2>
+                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Werkgebied: Gouda en de regio Midden-Holland</h2>
                     <p className="mt-4 text-lg text-tertiary">
                         Wij rijden vanuit Gouda door heel de regio Midden-Holland en Rijn en Gouwe. Onze standplaats is Gouda, maar wij komen ook naar u toe in:
                     </p>

@@ -13,7 +13,7 @@ import { useBookingStore } from "@/stores/booking-store";
 const USP_ITEMS = [
     { icon: CheckCircle, title: "Gratis annuleren", text: "Tot 2 uur voor de rit kosteloos annuleren." },
     { icon: Clock, title: "Directe bevestiging", text: "Online boeken en direct uw bevestiging ontvangen." },
-    { icon: Car01, title: "Vaste prijs", text: "De prijs staat vast — geen verrassingen achteraf." },
+    { icon: Car01, title: "Vaste prijs", text: "De prijs staat vast, geen verrassingen achteraf." },
     { icon: MarkerPin01, title: "Deur-tot-deur", text: "Wij halen u op bij uw voordeur en brengen u direct naar uw bestemming." },
 ];
 
