@@ -20,7 +20,8 @@ class Booking extends Model
         'flight_delay_minutes', 'flight_last_tracked_at', 'driver_departure_at',
         'notes', 'wants_sms',
         'payment_method', 'payment_status', 'status',
-        'moneybird_contact_id', 'moneybird_invoice_id',
+        'moneybird_contact_id', 'moneybird_quote_id', 'moneybird_quote_url', 'moneybird_invoice_id',
+        'is_quick_request', 'accept_deadline', 'driver_accepted_at',
     ];
 
     protected $casts = [
@@ -30,7 +31,10 @@ class Booking extends Model
         'flight_actual_at'      => 'datetime',
         'flight_last_tracked_at'=> 'datetime',
         'driver_departure_at'   => 'datetime',
+        'accept_deadline'        => 'datetime',
+        'driver_accepted_at'     => 'datetime',
         'wants_sms'             => 'boolean',
+        'is_quick_request'      => 'boolean',
         'pickup_lat'            => 'float',
         'pickup_lng'            => 'float',
         'destination_lat'       => 'float',

@@ -69,21 +69,21 @@ const services = [
 ];
 
 const PageHero = () => (
-    <section className="bg-secondary py-16 md:py-24">
+    <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
         <div className="mx-auto max-w-container px-4 md:px-8">
             <div className="max-w-3xl">
-                <span className="text-sm font-semibold text-brand-secondary md:text-md">Onze diensten</span>
-                <h1 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Onze diensten</span>
+                <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
                     Vervoer voor elk moment en elke gelegenheid
                 </h1>
-                <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                     YAS TaxiCentrale biedt betrouwbaar taxivervoer in Gouda en omstreken. Of het nu gaat om een luchthaventransfer, zakelijk vervoer of zorgrit — wij staan voor u klaar.
                 </p>
                 <div className="mt-8 flex gap-3">
                     <Button size="lg" href="/reserveren">
                         Nu Reserveren
                     </Button>
-                    <Button color="secondary" size="lg" href="/contact">
+                    <Button color="secondary" size="lg" href="/contact" className="!border-white/20 !text-white hover:!bg-white/10">
                         Vraag & Antwoord
                     </Button>
                 </div>

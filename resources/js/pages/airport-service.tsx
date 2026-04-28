@@ -117,14 +117,14 @@ const AirportService = () => {
             <YasHeader />
 
             {/* Hero */}
-            <section className="bg-secondary py-16 md:py-24">
+            <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
                 <div className="mx-auto max-w-container px-4 md:px-8">
                     <div className="max-w-3xl">
-                        <span className="text-sm font-semibold text-brand-secondary md:text-md">Luchthavenvervoer</span>
-                        <h1 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                        <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Luchthavenvervoer</span>
+                        <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
                             Stressvrij naar het vliegveld
                         </h1>
-                        <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                        <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                             Vaste tarieven van Gouda en omstreken naar alle grote Nederlandse luchthavens. Wij volgen uw vlucht en wachten gratis bij vertragingen.
                         </p>
                         <Button size="lg" href="/reserveren" className="mt-8">

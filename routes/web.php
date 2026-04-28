@@ -10,6 +10,7 @@ Route::get('/airport-service', fn () => view('spa'))->name('airport-service');
 Route::get('/over-ons', fn () => view('spa'))->name('over-ons');
 Route::get('/reserveren', fn () => view('spa'))->name('reserveren');
 Route::get('/contact', fn () => view('spa'))->name('contact');
+Route::get('/chauffeur', fn () => view('spa'))->name('chauffeur');
 
 // Contact form POST — keep for backwards compatibility with blade-era tests
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

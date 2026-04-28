@@ -16,93 +16,10 @@ import {
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
-import { YasFooter, YasHeader } from "@/components/yas-layout";
+import { YasFooter } from "@/components/yas-layout";
+import { YasHero } from "@/components/yas-hero";
 
-/* ─── 1. Hero ─────────────────────────────────────────────────── */
-const Hero = () => (
-    <div className="relative overflow-hidden bg-brand-section">
-        <img
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            src="https://www.untitledui.com/patterns/light/grid-dot-sm-desktop.svg"
-            className="pointer-events-none absolute top-0 left-1/2 z-0 hidden max-w-none -translate-x-1/2 opacity-20 md:block"
-        />
-        <img
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            src="https://www.untitledui.com/patterns/light/grid-dot-sm-mobile.svg"
-            className="pointer-events-none absolute top-0 left-1/2 z-0 max-w-none -translate-x-1/2 opacity-20 md:hidden"
-        />
-
-        <YasHeader dark />
-
-        <section className="relative py-16 md:py-24">
-            <div className="mx-auto w-full max-w-container px-4 md:px-8">
-                <div className="flex max-w-5xl flex-col">
-                    <span className="mb-4 w-fit rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-secondary_on-brand">
-                        Gouda &amp; omgeving
-                    </span>
-                    <h1 className="text-display-md font-semibold text-primary_on-brand md:text-display-lg lg:text-display-xl">
-                        Betrouwbaar{" "}
-                        <span className="underline decoration-[3px] underline-offset-[0.218em] md:decoration-4">
-                            taxivervoer
-                        </span>{" "}
-                        in de regio Gouda
-                    </h1>
-                    <p className="mt-4 max-w-(--breakpoint-sm) text-lg text-tertiary_on-brand md:mt-6 md:text-xl">
-                        Altijd op tijd, dag en nacht. Van luchthaventransfers tot zakelijk vervoer — YAS
-                        TaxiCentrale staat voor u klaar.
-                    </p>
-                    <div className="mt-8 flex w-full flex-col-reverse items-stretch gap-3 sm:w-auto sm:flex-row sm:items-start md:mt-12">
-                        <Button color="secondary" size="xl" href="/contact" className="shadow-xs! ring-0">
-                            Neem contact op
-                        </Button>
-                        <Button size="xl" href="/reserveren">
-                            Nu reserveren
-                        </Button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mx-auto mt-16 w-full max-w-container px-4 md:px-8">
-                <img
-                    alt="YAS TaxiCentrale — professioneel taxivervoer in Gouda"
-                    src="/vliegveld.jpg"
-                    className="h-60 w-full rounded-2xl object-cover md:h-[360px] lg:h-129"
-                />
-            </div>
-        </section>
-    </div>
-);
-
-/* ─── 2. Trust bar ───────────────────────────────────────────── */
-const TrustBar = () => (
-    <section className="bg-brand-section pb-16 md:pb-24">
-        <div className="mx-auto max-w-container px-4 md:px-8">
-            <div className="flex flex-col gap-8">
-                <p className="text-center text-md font-medium text-tertiary_on-brand">
-                    Vertrouwd door honderden tevreden klanten in de regio
-                </p>
-                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
-                    {[
-                        { icon: Shield01, label: "Volledig verzekerd" },
-                        { icon: Clock, label: "24/7 beschikbaar" },
-                        { icon: Star01, label: "4.9/5 gemiddeld" },
-                        { icon: MarkerPin01, label: "Regio Gouda" },
-                        { icon: ThumbsUp, label: "Vaste prijzen" },
-                    ].map(({ icon: Icon, label }) => (
-                        <div key={label} className="flex items-center gap-2 text-secondary_on-brand">
-                            <Icon className="size-5 text-fg-white opacity-70" aria-hidden />
-                            <span className="text-sm font-medium">{label}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>
-);
+/* ─── 1–2. Hero + Trust (vervangen door YasHero) ─────────────── */
 
 /* ─── 3. Diensten ────────────────────────────────────────────── */
 const DIENSTEN = [
@@ -501,8 +418,7 @@ const CtaSection = () => (
 /* ─── Page ───────────────────────────────────────────────────── */
 const Home = () => (
     <div className="bg-primary">
-        <Hero />
-        <TrustBar />
+        <YasHero />
         <DienstenSection />
         <HoeHetWerkt />
         <VoertuigenSection />

@@ -123,9 +123,8 @@ class FlightLookupService
 
         try {
             $response = Http::withHeaders([
-                'X-RapidAPI-Key'  => $this->apiKey,
-                'X-RapidAPI-Host' => 'aerodatabox.p.rapidapi.com',
-            ])->timeout(10)->get("https://aerodatabox.p.rapidapi.com/flights/number/{$number}/{$date}");
+                'x-api-market-key' => $this->apiKey,
+            ])->timeout(10)->get("https://prod.api.market/api/v1/aedbx/aerodatabox/flights/number/{$number}/{$date}");
 
             if (! $response->ok()) {
                 Log::warning("FlightLookup: {$number}/{$date} → HTTP {$response->status()}");

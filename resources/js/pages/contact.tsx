@@ -57,12 +57,12 @@ const Contact = () => {
         <div className="bg-primary">
             <YasHeader />
 
-            <section className="grid grid-cols-1 bg-primary lg:grid-cols-2">
+            <section className="grid grid-cols-1 lg:grid-cols-2" style={{ background: "#0E0E0E" }}>
                 {/* Left: image */}
                 <div className="relative max-lg:hidden">
                     <img
                         src="/vliegveld.jpg"
-                        className="absolute inset-0 h-full max-w-full object-cover"
+                        className="absolute inset-0 h-full max-w-full object-cover opacity-60"
                         alt="Luchthaven transfer Gouda"
                     />
                 </div>
@@ -70,15 +70,15 @@ const Contact = () => {
                 {/* Right: form */}
                 <div className="w-full px-4 py-16 md:px-8 md:py-24">
                     <div className="mx-auto md:max-w-120">
-                        <span className="text-sm font-semibold text-brand-secondary">Contact</span>
-                        <h1 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                        <span className="text-sm font-semibold" style={{ color: "rgb(255,210,0)" }}>Contact</span>
+                        <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
                             Neem contact op
                         </h1>
-                        <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                        <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                             Heeft u een vraag of wilt u een rit bespreken? Stuur ons een bericht of bel direct op{" "}
-                            <Button color="link-color" size="xl" href="tel:+31852128302" className="text-lg font-medium md:text-xl">
+                            <a href="tel:+31852128302" className="font-semibold underline underline-offset-4" style={{ color: "rgb(255,210,0)" }}>
                                 085 212 83 02
-                            </Button>
+                            </a>
                         </p>
 
                         {submitted ? (

@@ -24,22 +24,23 @@ const Reserveren = () => {
         <div className="bg-primary">
             <YasHeader />
 
-            <section className="bg-secondary py-16 md:py-24">
+            <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
                 <div className="mx-auto max-w-container px-4 md:px-8">
                     <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
                         {/* Left: info */}
                         <div className="flex flex-col gap-8">
                             <div>
-                                <span className="text-sm font-semibold text-brand-secondary">Reserveren</span>
-                                <h1 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                                <span className="text-sm font-semibold" style={{ color: "rgb(255,210,0)" }}>Reserveren</span>
+                                <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
                                     Boek uw rit
                                 </h1>
-                                <p className="mt-4 text-lg text-tertiary">
+                                <p className="mt-4 text-lg" style={{ color: "#999" }}>
                                     Boek uw taxi online in 4 eenvoudige stappen. Vaste prijs, direct bevestigd.
                                     Liever bellen?{" "}
                                     <a
                                         href="tel:+31852128302"
-                                        className="font-semibold text-brand-primary underline underline-offset-4"
+                                        className="font-semibold underline underline-offset-4"
+                                        style={{ color: "rgb(255,210,0)" }}
                                     >
                                         085 212 83 02
                                     </a>
