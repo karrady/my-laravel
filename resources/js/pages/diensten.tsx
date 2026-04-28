@@ -51,7 +51,7 @@ const services: ServiceItem[] = [
         icon: Heart,
         title: "Zorgvervoer",
         description:
-            "Speciaal voor mensen met een beperking of zorgvraag. Hulp bij instappen, rolstoelvervoer op aanvraag en alle tijd die u nodig heeft.",
+            "Speciaal voor mensen met een zorgvraag. Hulp bij instappen, rolstoelvervoer op aanvraag en alle tijd die u nodig heeft.",
     },
 ];
 
@@ -121,7 +121,8 @@ const Diensten = () => (
                 <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Wat wij bieden</span>
                 <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">Onze Diensten</h1>
                 <p className="mt-4 mx-auto max-w-2xl text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                    Voor elk vervoer staan wij voor u klaar. Airport service met vaste tarieven, overige ritten op aanvraag.
+                    Airport service en ritten op maat met vaste tarieven. Overige ritten op aanvraag.{" "}
+                    <a href="tel:+31852128302" style={{ color: "rgb(255,210,0)", fontWeight: 600 }} className="hover:underline">Spoed? Bel ons direct 🚕</a>
                 </p>
             </div>
         </section>
@@ -186,7 +187,6 @@ const Diensten = () => (
                                 { route: "Gouda – Utrecht Centraal",        price: "€ 75,-"   },
                                 { route: "Gouda – Rotterdam Zuid",          price: "€ 62,50"  },
                                 { route: "Gouda – Amsterdam Centraal",      price: "€ 110,-"  },
-                                { route: "Gouda – Eindhoven Airport",       price: "€ 130,-"  },
                                 { route: "Gouda – Antwerpen",               price: "€ 175,-"  },
                             ].map((row, i) => (
                                 <tr key={i} className="border-t border-secondary">

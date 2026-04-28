@@ -1,4 +1,4 @@
-import { Car01, CheckCircle, Clock, MarkerPin01, Phone, Shield01, Star01 } from "@untitledui/icons";
+import { Car01, CheckCircle, Clock, MarkerPin01, Phone, Shield01 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
@@ -69,7 +69,6 @@ const TaxiGouda = () => (
                         </tbody>
                     </table>
                 </div>
-                <p className="mt-3 text-sm text-quaternary">Prijzen zijn inclusief BTW. Retourrit? Vraag naar onze retourkorting.</p>
             </div>
         </section>
 
@@ -81,7 +80,6 @@ const TaxiGouda = () => (
                     {[
                         { icon: Clock, title: "24/7 beschikbaar", text: "Vroege vlucht of late nachtrit, wij staan altijd voor u klaar in heel Gouda en omstreken." },
                         { icon: Shield01, title: "Vaste prijs garantie", text: "Geen taximeter. U weet van tevoren exact wat u betaalt. Geen verborgen kosten." },
-                        { icon: Star01, title: "4.9 ★ Google rating", text: "Honderden tevreden klanten uit Gouda gaan u voor. Lees onze reviews." },
                         { icon: Car01, title: "Ruime voertuigen", text: "Comfortabele, schone taxi's met ruimte voor bagage. Tot 7 passagiers mogelijk." },
                         { icon: MarkerPin01, title: "Lokale kennis", text: "Als Gouds taxibedrijf kennen wij elke straat, elk ziekenhuis en elk station." },
                         { icon: CheckCircle, title: "Direct bevestigd", text: "Online boeken en direct uw bevestiging per e-mail ontvangen." },

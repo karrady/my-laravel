@@ -1,6 +1,6 @@
 import { type FC, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Calendar, CheckCircle, Clock, Phone01, Star01 } from "@untitledui/icons";
+import { ArrowRight, Calendar, CheckCircle, Clock, Phone01 } from "@untitledui/icons";
 import { AddressAutocomplete } from "@/components/address-autocomplete";
 import { RouteMap, type RouteInfo } from "@/components/route-map";
 import { YasHeader } from "@/components/yas-layout";
@@ -279,7 +279,6 @@ const TrustBadges: FC = () => (
         {[
             { icon: CheckCircle, label: "Vaste prijs" },
             { icon: Clock,       label: "24/7 beschikbaar" },
-            { icon: Star01,      label: "4.9 ★ 500+ ritten" },
         ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-1.5 text-xs" style={{ color: "#777" }}>
                 <Icon className="size-3.5 shrink-0" style={{ color: YELLOW }} aria-hidden="true" />
@@ -348,7 +347,7 @@ export const YasHero: FC = () => {
                             style={{ borderColor: "#2a2a2a", color: YELLOW, background: "rgba(255,210,0,0.07)" }}
                         >
                             <span className="inline-block w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: YELLOW }} />
-                            Schiphol Taxi Specialist · Gouda &amp; regio
+                            🚕 Vertrouwd vervoer dag en nacht
                         </motion.span>
 
                         <motion.h1
@@ -372,7 +371,7 @@ export const YasHero: FC = () => {
                             style={{ color: "#777" }}
                         >
                             Betrouwbaar taxivervoer in de regio Rijn en Gouwe.
-                            Vaste prijs, professionele chauffeurs, altijd op tijd.
+                            Vaste prijs, professionele chauffeurs en altijd op tijd.
                         </motion.p>
 
                         <TrustBadges />

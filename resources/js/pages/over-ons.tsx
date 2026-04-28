@@ -48,7 +48,7 @@ const OverOns = () => (
                     <div className="flex flex-col justify-center">
                         <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Over ons</span>
                         <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                            Meer dan een taxi: uw vertrouwde reispartner
+                            Meer dan een taxi, uw vertrouwde reispartner
                         </h1>
                         <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
                             YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B komen, het gaat om de ervaring onderweg.
@@ -57,7 +57,7 @@ const OverOns = () => (
                             <Button size="lg" href="/reserveren">
                                 Nu Reserveren
                             </Button>
-                            <Button color="secondary" size="lg" href="/contact" className="!border-white/20 !text-white hover:!bg-white/10">
+                            <Button color="secondary" size="lg" href="/contact" className="!bg-transparent !border-white/20 !text-white hover:!bg-white/10">
                                 Neem contact op
                             </Button>
                         </div>
@@ -81,7 +81,6 @@ const OverOns = () => (
                         { value: "2014", label: "Opgericht" },
                         { value: "10+", label: "Jaar actief" },
                         { value: "5000+", label: "Ritten per jaar" },
-                        { value: "4.9★", label: "Google rating" },
                     ].map((item) => (
                         <div key={item.value} className="flex flex-1 flex-col-reverse gap-3 text-center">
                             <dt className="text-lg font-semibold text-primary">{item.label}</dt>
@@ -136,13 +135,6 @@ const OverOns = () => (
             </div>
         </section>
 
-        {/* Google Reviews, widget te koppelen via Google Business Profile */}
-        <section className="bg-secondary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Wat onze klanten zeggen</h2>
-                <div id="google-reviews-widget" className="mt-12 w-full" />
-            </div>
-        </section>
 
         {/* CTA */}
         <section className="bg-brand-section py-16 md:py-24">
