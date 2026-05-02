@@ -1,0 +1,44 @@
+{
+  "name": "YAS TaxiCentrale",
+  "short_name": "YAS Taxi",
+  "description": "Betrouwbaar taxivervoer in Gouda en de Rijn en Gouwe regio. 24/7 beschikbaar.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E0E0E",
+  "theme_color": "#0E0E0E",
+  "lang": "nl-NL",
+  "dir": "ltr",
+  "categories": ["travel", "business", "lifestyle"],
+  "icons": [
+    {
+      "src": "/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Rit boeken",
+      "short_name": "Boeken",
+      "description": "Direct een rit aanvragen",
+      "url": "/reserveren",
+      "icons": [{ "src": "/pwa-icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Bellen",
+      "short_name": "Bellen",
+      "description": "Bel YAS TaxiCentrale",
+      "url": "/contact",
+      "icons": [{ "src": "/pwa-icon.svg", "sizes": "any" }]
+    }
+  ]
+}

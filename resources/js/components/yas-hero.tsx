@@ -328,13 +328,13 @@ export const YasHero: FC = () => {
                 style={{ background: YELLOW, opacity: 0.055 }}
             />
 
-            {/* Navigatie */}
-            <div className="relative z-10 w-full">
+            {/* Navigatie — staat boven hero-content zodat het mobiele menu nooit doorschijnt */}
+            <div className="relative z-30 w-full">
                 <YasHeader dark />
             </div>
 
             {/* Content — vult resterende viewport */}
-            <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-5 py-6 md:px-10">
+            <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-5 pt-6 pb-[calc(1.5rem+72px+env(safe-area-inset-bottom))] md:px-10 md:pb-6">
                 <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8 xl:gap-12">
 
                     {/* Links: tekst + formulier */}
