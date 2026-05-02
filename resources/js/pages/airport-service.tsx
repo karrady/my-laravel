@@ -1,39 +1,54 @@
-import { useState } from "react";
-import { CheckCircle, Clock, MarkerPin01, Shield01 } from "@untitledui/icons";
+import {
+    ArrowRight,
+    CheckCircle,
+    Clock,
+    MarkerPin01,
+    Phone,
+    Plane,
+    Shield01,
+    Star01,
+} from "@untitledui/icons";
 
-import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
-import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
+import { Eyebrow } from "@/components/shared-assets/eyebrow";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
 
+const YELLOW = "rgb(255,210,0)";
+const DARK = "#0E0E0E";
 
-const airports = [
+type Airport = {
+    name: string;
+    code: string;
+    locations: { place: string; price: string; popular?: boolean }[];
+};
+
+const airports: Airport[] = [
     {
         name: "Amsterdam Schiphol",
         code: "AMS",
         locations: [
-            { place: "Ammerstol",                price: "€ 105,-" },
-            { place: "Bergambacht",               price: "€ 95,-"  },
-            { place: "Berkenwoude",               price: "€ 100,-" },
-            { place: "Bodegraven",                price: "€ 75,-"  },
-            { place: "Boskoop",                   price: "€ 75,-"  },
-            { place: "Gouda",                     price: "€ 75,-",  popular: true },
-            { place: "Gouderak",                  price: "€ 90,-"  },
-            { place: "Haastrecht",                price: "€ 90,-"  },
-            { place: "Krimpen a/d IJssel",        price: "€ 120,-" },
-            { place: "Lekkerkerk",                price: "€ 120,-" },
-            { place: "Moordrecht",                price: "€ 85,-"  },
-            { place: "Nieuwerkerk a/d IJssel",    price: "€ 100,-" },
-            { place: "Ouderkerk a/d IJssel",      price: "€ 110,-" },
-            { place: "Oudewater",                 price: "€ 110,-" },
-            { place: "Reeuwijk",                  price: "€ 75,-"  },
-            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
-            { place: "Schoonhoven",               price: "€ 115,-" },
-            { place: "Stolwijk",                  price: "€ 90,-"  },
-            { place: "Vlist",                     price: "€ 100,-" },
-            { place: "Waddinxveen",               price: "€ 75,-"  },
-            { place: "Waddinxveen Zuidplas",      price: "€ 80,-"  },
+            { place: "Ammerstol", price: "€ 105,-" },
+            { place: "Bergambacht", price: "€ 95,-" },
+            { place: "Berkenwoude", price: "€ 100,-" },
+            { place: "Bodegraven", price: "€ 75,-" },
+            { place: "Boskoop", price: "€ 75,-" },
+            { place: "Gouda", price: "€ 75,-", popular: true },
+            { place: "Gouderak", price: "€ 90,-" },
+            { place: "Haastrecht", price: "€ 90,-" },
+            { place: "Krimpen a/d IJssel", price: "€ 120,-" },
+            { place: "Lekkerkerk", price: "€ 120,-" },
+            { place: "Moordrecht", price: "€ 85,-" },
+            { place: "Nieuwerkerk a/d IJssel", price: "€ 100,-" },
+            { place: "Ouderkerk a/d IJssel", price: "€ 110,-" },
+            { place: "Oudewater", price: "€ 110,-" },
+            { place: "Reeuwijk", price: "€ 75,-" },
+            { place: "Reeuwijk Sluipwijk", price: "€ 85,-" },
+            { place: "Schoonhoven", price: "€ 115,-" },
+            { place: "Stolwijk", price: "€ 90,-" },
+            { place: "Vlist", price: "€ 100,-" },
+            { place: "Waddinxveen", price: "€ 75,-" },
+            { place: "Waddinxveen Zuidplas", price: "€ 80,-" },
             { place: "Zevenhuizen / Moerkapelle", price: "€ 100,-" },
         ],
     },
@@ -41,203 +56,383 @@ const airports = [
         name: "Rotterdam The Hague",
         code: "RTM",
         locations: [
-            { place: "Ammerstol",                price: "€ 90,-"  },
-            { place: "Bergambacht",               price: "€ 85,-"  },
-            { place: "Berkenwoude",               price: "€ 90,-"  },
-            { place: "Bodegraven",                price: "€ 85,-"  },
-            { place: "Boskoop",                   price: "€ 90,-"  },
-            { place: "Gouda",                     price: "€ 65,-",  popular: true },
-            { place: "Gouderak",                  price: "€ 75,-"  },
-            { place: "Haastrecht",                price: "€ 75,-"  },
-            { place: "Krimpen a/d IJssel",        price: "€ 90,-"  },
-            { place: "Lekkerkerk",                price: "€ 90,-"  },
-            { place: "Moerdrecht",                price: "€ 65,-"  },
-            { place: "Moerkapelle",               price: "€ 85,-"  },
-            { place: "Nieuwerkerk a/d IJssel",    price: "€ 65,-"  },
-            { place: "Ouderkerk a/d IJssel",      price: "€ 90,-"  },
-            { place: "Oudewater",                 price: "€ 105,-" },
-            { place: "Reeuwijk",                  price: "€ 75,-"  },
-            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
-            { place: "Schoonhoven",               price: "€ 105,-" },
-            { place: "Stolwijk",                  price: "€ 80,-"  },
-            { place: "Vlist",                     price: "€ 85,-"  },
-            { place: "Waddinxveen",               price: "€ 75,-"  },
-            { place: "Waddinxveen Noord",         price: "€ 80,-"  },
-            { place: "Zevenhuizen",               price: "€ 80,-"  },
+            { place: "Ammerstol", price: "€ 90,-" },
+            { place: "Bergambacht", price: "€ 85,-" },
+            { place: "Berkenwoude", price: "€ 90,-" },
+            { place: "Bodegraven", price: "€ 85,-" },
+            { place: "Boskoop", price: "€ 90,-" },
+            { place: "Gouda", price: "€ 65,-", popular: true },
+            { place: "Gouderak", price: "€ 75,-" },
+            { place: "Haastrecht", price: "€ 75,-" },
+            { place: "Krimpen a/d IJssel", price: "€ 90,-" },
+            { place: "Lekkerkerk", price: "€ 90,-" },
+            { place: "Moerdrecht", price: "€ 65,-" },
+            { place: "Moerkapelle", price: "€ 85,-" },
+            { place: "Nieuwerkerk a/d IJssel", price: "€ 65,-" },
+            { place: "Ouderkerk a/d IJssel", price: "€ 90,-" },
+            { place: "Oudewater", price: "€ 105,-" },
+            { place: "Reeuwijk", price: "€ 75,-" },
+            { place: "Reeuwijk Sluipwijk", price: "€ 85,-" },
+            { place: "Schoonhoven", price: "€ 105,-" },
+            { place: "Stolwijk", price: "€ 80,-" },
+            { place: "Vlist", price: "€ 85,-" },
+            { place: "Waddinxveen", price: "€ 75,-" },
+            { place: "Waddinxveen Noord", price: "€ 80,-" },
+            { place: "Zevenhuizen", price: "€ 80,-" },
         ],
     },
 ];
 
-const included = [
-    "Vluchtvolging: wij weten wanneer u landt",
+/* ─── Hero ───────────────────────────────────────────────────── */
+const HeroSection = () => (
+    <section className="relative overflow-hidden" style={{ background: DARK }}>
+        <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.05]"
+            style={{
+                backgroundImage: `radial-gradient(circle, ${YELLOW} 1px, transparent 1px)`,
+                backgroundSize: "32px 32px",
+            }}
+        />
+        <div
+            aria-hidden
+            className="pointer-events-none absolute -top-40 -left-40 h-[420px] w-[420px] rounded-full blur-3xl"
+            style={{ background: YELLOW, opacity: 0.06 }}
+        />
+
+        <div className="relative z-30 w-full">
+            <YasHeader dark />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-container px-4 pt-12 pb-20 md:px-8 md:pt-20 md:pb-28">
+            <div className="flex max-w-3xl flex-col gap-6">
+                <Eyebrow onDark>Luchthavenvervoer</Eyebrow>
+                <h1 className="text-display-lg font-semibold leading-[1.05] tracking-tight text-white md:text-display-xl">
+                    Stressvrij naar het
+                    <br />
+                    <span style={{ color: YELLOW }}>vliegveld.</span>
+                </h1>
+                <p className="text-md text-white/60 md:text-lg">
+                    Vaste tarieven naar Schiphol en Rotterdam The Hague Airport. Wij volgen uw
+                    vlucht, passen de ophaaltijd automatisch aan bij vertragingen en staan op tijd
+                    voor de deur — voor één vooraf bekende prijs.
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <Button size="lg" href="/reserveren" iconTrailing={ArrowRight}>
+                        Direct reserveren
+                    </Button>
+                    <a
+                        href="tel:+31852128302"
+                        className="group inline-flex items-center gap-3 text-sm font-semibold text-white/80 transition duration-100 hover:text-white"
+                    >
+                        <span
+                            className="flex size-9 items-center justify-center rounded-full border transition duration-100 group-hover:border-white/40"
+                            style={{ borderColor: "rgba(255,255,255,0.18)" }}
+                        >
+                            <Phone className="size-4" style={{ color: YELLOW }} aria-hidden />
+                        </span>
+                        <span className="flex flex-col leading-tight text-left">
+                            <span className="text-[11px] font-medium uppercase tracking-widest text-white/40">
+                                Spoed of vraag
+                            </span>
+                            <span className="text-base font-semibold tracking-wide">085 212 83 02</span>
+                        </span>
+                    </a>
+                </div>
+
+                {/* Trust badges */}
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/55">
+                    {[
+                        "Vaste prijs vooraf",
+                        "Vluchtvolging inbegrepen",
+                        "Deur-tot-deur service",
+                        "24/7 beschikbaar",
+                    ].map((label) => (
+                        <span key={label} className="inline-flex items-center gap-1.5">
+                            <CheckCircle className="size-3.5" style={{ color: YELLOW }} aria-hidden />
+                            {label}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+/* ─── Tarieven — twee parallelle airport-tabellen ────────────── */
+const AirportColumn = ({ airport }: { airport: Airport }) => (
+    <div className="flex flex-col gap-5">
+        <div className="flex items-baseline justify-between gap-4 border-b border-secondary pb-4">
+            <div className="flex flex-col gap-1.5">
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-quaternary">
+                    {airport.code}
+                </span>
+                <h3 className="text-xl font-semibold tracking-tight text-primary">
+                    {airport.name}
+                </h3>
+            </div>
+            <Plane className="size-6 text-secondary" aria-hidden />
+        </div>
+
+        <div>
+            {airport.locations.map((loc, i) => (
+                <a
+                    key={loc.place + i}
+                    href="/reserveren"
+                    className="group relative flex items-center justify-between gap-4 border-b border-secondary px-1 py-3.5 last:border-b-0 transition-colors duration-150 hover:bg-secondary/60"
+                >
+                    {/* Sarı sol kenar — alleen voor "popular" */}
+                    {loc.popular && (
+                        <span
+                            aria-hidden
+                            className="absolute inset-y-0 left-0 w-[2px]"
+                            style={{ background: YELLOW }}
+                        />
+                    )}
+
+                    <span className="flex items-center gap-2 pl-1.5 text-sm font-medium text-primary">
+                        {loc.place}
+                        {loc.popular && (
+                            <span
+                                className="inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest"
+                                style={{ background: "rgba(255,210,0,0.12)", color: DARK }}
+                            >
+                                <Star01 className="size-3" style={{ color: YELLOW }} aria-hidden />
+                                Meest gevraagd
+                            </span>
+                        )}
+                    </span>
+
+                    <div className="flex items-center gap-3">
+                        <span className="font-mono text-sm font-semibold tracking-tight text-primary tabular-nums">
+                            {loc.price}
+                        </span>
+                        <ArrowRight
+                            className="size-4 text-quaternary opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+                            aria-hidden
+                        />
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+);
+
+const TarievenSection = () => (
+    <section className="bg-primary py-20 md:py-28">
+        <div className="mx-auto max-w-container px-4 md:px-8">
+            <div className="mb-14 flex flex-col gap-5 md:mb-20 md:max-w-2xl">
+                <Eyebrow>Tarieven</Eyebrow>
+                <h2 className="text-display-md font-semibold tracking-tight text-primary md:text-display-lg">
+                    Vaste luchthavenprijzen.
+                </h2>
+                <p className="text-md text-tertiary md:text-lg">
+                    Alle prijzen gelden voor 1 t/m 4 personen, inclusief BTW en parkeerkosten.
+                    Klik op een opstapplaats om direct te reserveren.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
+                {airports.map((airport) => (
+                    <AirportColumn key={airport.code} airport={airport} />
+                ))}
+            </div>
+
+            {/* Andere luchthaven — refined card */}
+            <div
+                className="mt-14 flex flex-col items-start justify-between gap-6 border-y px-6 py-8 md:mt-20 md:flex-row md:items-center md:gap-12 md:px-10"
+                style={{ borderColor: "var(--color-border-secondary)", background: "var(--color-bg-secondary)" }}
+            >
+                <div className="flex flex-col gap-2">
+                    <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-quaternary">
+                        Andere bestemming
+                    </span>
+                    <p className="text-lg font-semibold tracking-tight text-primary">
+                        Eindhoven, Brussel, Düsseldorf of een andere luchthaven?
+                    </p>
+                    <p className="text-sm text-tertiary">
+                        Staat uw vertrekplaats of luchthaven er niet bij? Vraag vrijblijvend een prijs op maat.
+                    </p>
+                </div>
+                <div className="flex shrink-0 flex-wrap gap-3">
+                    <Button color="secondary" size="md" href="/contact" iconTrailing={ArrowRight}>
+                        Offerte aanvragen
+                    </Button>
+                    <Button size="md" href="tel:+31852128302" iconLeading={Phone}>
+                        Bel ons
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+/* ─── Inbegrepen — checklist + 3 highlights ──────────────────── */
+const INBEGREPEN = [
+    "Vluchtvolging — wij weten wanneer u landt",
     "Aanpassing ophaaltijd bij vluchtvertraging",
     "Ruimte voor koffers en handbagage",
     "Kinder- of rolstoelvriendelijk op aanvraag",
-    "Stille rit zonder ongewenste gesprekken",
-    "Vaste prijs, geen meter, geen verrassing",
+    "Stille rit, zonder ongewenste gesprekken",
+    "Vaste prijs — geen meter, geen verrassing",
 ];
 
+const HIGHLIGHTS = [
+    {
+        num: "01",
+        icon: Clock,
+        title: "Vluchtvolging",
+        text: "Wij monitoren uw vlucht en passen de ophaaltijd automatisch aan bij vertragingen.",
+    },
+    {
+        num: "02",
+        icon: Shield01,
+        title: "Vaste prijs",
+        text: "U betaalt nooit meer dan het afgesproken tarief — ook bij files of omleidingen.",
+    },
+    {
+        num: "03",
+        icon: MarkerPin01,
+        title: "Deur-tot-deur",
+        text: "Wij halen u op bij uw voordeur en brengen u tot direct aan de vertrekhal.",
+    },
+];
 
-const AirportService = () => {
-    const [activeAirport, setActiveAirport] = useState(0);
-    const airport = airports[activeAirport];
+const InbegrepenSection = () => (
+    <section className="bg-secondary py-20 md:py-28">
+        <div className="mx-auto max-w-container px-4 md:px-8">
+            <div className="mb-14 flex flex-col gap-5 md:mb-20 md:max-w-2xl">
+                <Eyebrow>Inbegrepen in elke prijs</Eyebrow>
+                <h2 className="text-display-md font-semibold tracking-tight text-primary md:text-display-lg">
+                    Wat u ziet, is wat u betaalt.
+                </h2>
+                <p className="text-md text-tertiary md:text-lg">
+                    Bij YAS TaxiCentrale zijn er geen verborgen kosten. Geen taxameter,
+                    geen toeslagen achteraf — gewoon de prijs die u vooraf afspreekt.
+                </p>
+            </div>
 
-    return (
-        <div className="bg-primary">
-            <YasHeader />
-
-            {/* Hero */}
-            <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
-                <div className="mx-auto max-w-container px-4 md:px-8">
-                    <div className="max-w-3xl">
-                        <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Luchthavenvervoer</span>
-                        <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                            Stressvrij naar het vliegveld
-                        </h1>
-                        <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                            Vaste tarieven naar Schiphol en Rotterdam Airport. Staat uw locatie er niet bij, of wilt u naar een andere luchthaven? Vraag vrijblijvend naar de mogelijkheden.
-                        </p>
-                        <Button size="lg" href="/reserveren" className="mt-8">
-                            Nu Reserveren
-                        </Button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Pricing tables */}
-            <section className="bg-primary py-16 md:py-24">
-                <div className="mx-auto max-w-container px-4 md:px-8">
-                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Vaste luchthavenprijzen</h2>
-
-                    {/* Airport tabs */}
-                    <div className="mt-8 flex gap-2 overflow-x-auto">
-                        {airports.map((a, i) => (
-                            <button
-                                key={a.code}
-                                onClick={() => setActiveAirport(i)}
-                                className={`shrink-0 rounded-lg px-4 py-2 text-sm font-semibold transition duration-100 ease-linear ${
-                                    activeAirport === i
-                                        ? "bg-brand-solid text-white"
-                                        : "bg-secondary text-secondary hover:bg-secondary_hover"
-                                }`}
+            <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
+                {/* Checklist links */}
+                <div className="lg:col-span-5">
+                    <ul className="flex flex-col border-y border-secondary">
+                        {INBEGREPEN.map((item) => (
+                            <li
+                                key={item}
+                                className="flex items-start gap-3 border-b border-secondary py-4 last:border-b-0"
                             >
-                                {a.name}
-                            </button>
+                                <CheckCircle
+                                    className="mt-0.5 size-4 shrink-0"
+                                    style={{ color: YELLOW }}
+                                    aria-hidden
+                                />
+                                <span className="text-sm font-medium leading-relaxed text-secondary">
+                                    {item}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Highlights rechts */}
+                <div className="lg:col-span-7">
+                    <div className="grid grid-cols-1 gap-px sm:grid-cols-3" style={{ background: "var(--color-border-secondary)" }}>
+                        {HIGHLIGHTS.map(({ num, icon: Icon, title, text }) => (
+                            <div
+                                key={num}
+                                className="flex flex-col gap-4 bg-primary p-6"
+                            >
+                                <div className="flex items-baseline justify-between">
+                                    <span
+                                        className="flex size-10 items-center justify-center rounded-sm border"
+                                        style={{ borderColor: "var(--color-border-secondary)" }}
+                                    >
+                                        <Icon className="size-5 text-primary" aria-hidden />
+                                    </span>
+                                    <span className="font-mono text-xs tracking-widest text-quaternary">
+                                        {num}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col gap-1.5">
+                                    <h3 className="text-md font-semibold text-primary">{title}</h3>
+                                    <p className="text-sm leading-relaxed text-tertiary">{text}</p>
+                                </div>
+                            </div>
                         ))}
                     </div>
-
-                    {/* Pricing rows */}
-                    <div className="mt-6 overflow-hidden rounded-2xl border border-secondary">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-secondary">
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Opstapplaats</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Prijs (1–4 pers.)</th>
-                                    <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {airport.locations.map((loc, i) => (
-                                    <tr key={i} className="border-t border-secondary">
-                                        <td className="px-6 py-4 text-md text-primary">
-                                            {loc.place}
-                                            {loc.popular && (
-                                                <Badge color="brand" type="pill-color" size="sm" className="ml-2">
-                                                    Meest gevraagd
-                                                </Badge>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4 text-left text-lg font-semibold text-primary">{loc.price}</td>
-                                        <td className="px-6 py-4 text-right">
-                                            <Button size="sm" href="/reserveren">
-                                                Boeken
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {/* Other airports CTA */}
-                    <div className="mt-8 rounded-2xl border border-secondary bg-secondary p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div>
-                            <p className="text-md font-semibold text-primary">Andere luchthaven of bestemming?</p>
-                            <p className="mt-1 text-sm text-tertiary">Staat uw vertrekplaats of luchthaven er niet bij? Vraag vrijblijvend een offerte op.</p>
-                        </div>
-                        <div className="flex shrink-0 gap-3">
-                            <Button color="secondary" size="md" href="/contact">
-                                Offerte aanvragen
-                            </Button>
-                            <Button size="md" href="tel:+31852128302">
-                                Bel ons
-                            </Button>
-                        </div>
-                    </div>
                 </div>
-            </section>
-
-            {/* What's included */}
-            <section className="bg-secondary py-16 md:py-24">
-                <div className="mx-auto max-w-container px-4 md:px-8">
-                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
-                        <div>
-                            <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">
-                                Alles inbegrepen in de prijs
-                            </h2>
-                            <p className="mt-4 text-lg text-tertiary">
-                                Bij YAS TaxiCentrale zijn er geen verborgen kosten. Wat u ziet is wat u betaalt.
-                            </p>
-                            <ul className="mt-8 flex flex-col gap-4">
-                                {included.map((item) => (
-                                    <li key={item} className="flex items-start gap-3">
-                                        <CheckCircle className="mt-0.5 size-5 shrink-0 text-fg-success-primary" />
-                                        <span className="text-md text-secondary">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="flex flex-col gap-6">
-                            {[
-                                { icon: Clock, title: "Vluchtvolging", text: "Wij monitoren uw vlucht en passen de ophaaltijd automatisch aan bij vertragingen." },
-                                { icon: Shield01, title: "Vaste prijs garantie", text: "U betaalt nooit meer dan het afgesproken tarief, ook bij files of omleidingen." },
-                                { icon: MarkerPin01, title: "Deur-tot-deur service", text: "Wij halen u op bij uw voordeur en brengen u direct tot aan de vertrekhal." },
-                            ].map(({ icon: Icon, title, text }) => (
-                                <div key={title} className="flex gap-4">
-                                    <FeaturedIcon icon={Icon} size="md" color="brand" theme="light" className="shrink-0" />
-                                    <div>
-                                        <h3 className="text-md font-semibold text-primary">{title}</h3>
-                                        <p className="mt-1 text-sm text-tertiary">{text}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Contact CTA */}
-            <section className="bg-primary py-16 md:py-24">
-                <div className="mx-auto max-w-container px-4 md:px-8">
-                    <div className="mx-auto max-w-2xl rounded-2xl bg-secondary p-8 md:p-12 text-center">
-                        <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Heeft u een vraag?</h2>
-                        <p className="mt-3 text-lg text-tertiary">Neem direct contact op via WhatsApp of bel ons. Wij helpen u snel verder.</p>
-                        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-                            <Button size="lg" href="https://wa.me/31852128302" target="_blank" rel="noopener noreferrer">
-                                WhatsApp
-                            </Button>
-                            <Button color="secondary" size="lg" href="tel:+31852128302">
-                                085 212 83 02
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <SectionDivider />
-            <YasFooter />
+            </div>
         </div>
-    );
-};
+    </section>
+);
+
+/* ─── CTA ────────────────────────────────────────────────────── */
+const CtaSection = () => (
+    <section className="relative overflow-hidden" style={{ background: DARK }}>
+        <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full blur-3xl"
+            style={{ background: YELLOW, opacity: 0.06 }}
+        />
+        <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.04]"
+            style={{
+                backgroundImage: `radial-gradient(circle, ${YELLOW} 1px, transparent 1px)`,
+                backgroundSize: "36px 36px",
+            }}
+        />
+
+        <div className="relative mx-auto flex max-w-container flex-col gap-10 px-4 py-20 md:flex-row md:items-end md:justify-between md:gap-16 md:px-8 md:py-28">
+            <div className="flex max-w-2xl flex-col gap-5">
+                <Eyebrow onDark>Klaar voor uw vlucht?</Eyebrow>
+                <h2 className="text-display-lg font-semibold leading-[1.05] tracking-tight text-white md:text-display-xl">
+                    Reserveer nu.
+                    <br />
+                    <span style={{ color: YELLOW }}>Wij staan klaar.</span>
+                </h2>
+                <p className="text-md text-white/60 md:text-lg">
+                    Boek uw luchthaventransfer online in minder dan een minuut, of bel ons direct.
+                    Wij bevestigen uw rit met chauffeur en aankomsttijd.
+                </p>
+            </div>
+
+            <div className="flex flex-col gap-4 md:items-end">
+                <Button size="xl" href="/reserveren" iconTrailing={ArrowRight}>
+                    Nu reserveren
+                </Button>
+                <a
+                    href="tel:+31852128302"
+                    className="group inline-flex items-center gap-3 text-sm font-semibold text-white/80 transition duration-100 hover:text-white"
+                >
+                    <span
+                        className="flex size-9 items-center justify-center rounded-full border transition duration-100 group-hover:border-white/40"
+                        style={{ borderColor: "rgba(255,255,255,0.18)" }}
+                    >
+                        <Phone className="size-4" style={{ color: YELLOW }} aria-hidden />
+                    </span>
+                    <span className="flex flex-col leading-tight">
+                        <span className="text-[11px] font-medium uppercase tracking-widest text-white/40">
+                            Direct bellen
+                        </span>
+                        <span className="text-base font-semibold tracking-wide">085 212 83 02</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+);
+
+/* ─── Page ───────────────────────────────────────────────────── */
+const AirportService = () => (
+    <div className="bg-primary">
+        <HeroSection />
+        <TarievenSection />
+        <InbegrepenSection />
+        <CtaSection />
+        <SectionDivider />
+        <YasFooter />
+    </div>
+);
 
 export default AirportService;

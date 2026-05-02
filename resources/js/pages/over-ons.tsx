@@ -1,148 +1,269 @@
-import { CheckCircle, Heart, MarkerPin01, Shield01, Star01, ThumbsUp } from "@untitledui/icons";
+import {
+    ArrowRight,
+    Heart,
+    MarkerPin01,
+    Phone,
+    Shield01,
+    Star01,
+} from "@untitledui/icons";
 
 import { Button } from "@/components/base/buttons/button";
-import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
+import { Eyebrow } from "@/components/shared-assets/eyebrow";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
 
+const YELLOW = "rgb(255,210,0)";
+const DARK = "#0E0E0E";
+
 const waarden = [
     {
+        num: "01",
         icon: Shield01,
         title: "Betrouwbaarheid",
         text: "Een afspraak is een afspraak. Wij staan altijd op tijd klaar en communiceren proactief bij onverwachte omstandigheden.",
     },
     {
+        num: "02",
         icon: Heart,
         title: "Klantgerichtheid",
-        text: "Uw comfort en veiligheid staan voorop. Wij luisteren naar uw wensen en passen onze service daar op aan.",
+        text: "Uw comfort en veiligheid staan voorop. Wij luisteren naar uw wensen en passen onze service daarop aan.",
     },
     {
+        num: "03",
         icon: Star01,
         title: "Kwaliteit",
-        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit, dat is onze standaard, niet de uitzondering.",
+        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit — dat is onze standaard, niet de uitzondering.",
     },
     {
+        num: "04",
         icon: MarkerPin01,
         title: "Lokale betrokkenheid",
         text: "Als Gouds bedrijf kennen wij de regio als geen ander en investeren wij in de lokale gemeenschap.",
     },
 ];
 
-const team = [
-    {
-        name: "Yassine A.",
-        role: "Oprichter & Directeur",
-        initials: "YA",
-        bio: "Met meer dan 10 jaar ervaring in de taxibranche richtte Yassine YAS TaxiCentrale op met één doel: betrouwbaar en betaalbaar vervoer voor iedereen in de regio Gouda.",
-    },
-];
+/* ─── Hero ───────────────────────────────────────────────────── */
+const HeroSection = () => (
+    <section className="relative overflow-hidden" style={{ background: DARK }}>
+        <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.05]"
+            style={{
+                backgroundImage: `radial-gradient(circle, ${YELLOW} 1px, transparent 1px)`,
+                backgroundSize: "32px 32px",
+            }}
+        />
+        <div
+            aria-hidden
+            className="pointer-events-none absolute -top-40 -left-40 h-[420px] w-[420px] rounded-full blur-3xl"
+            style={{ background: YELLOW, opacity: 0.06 }}
+        />
 
-const OverOns = () => (
-    <div className="bg-primary">
-        <YasHeader />
+        <div className="relative z-30 w-full">
+            <YasHeader dark />
+        </div>
 
-        {/* Hero */}
-        <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
-                    <div className="flex flex-col justify-center">
-                        <span className="text-sm font-semibold md:text-md" style={{ color: "rgb(255,210,0)" }}>Over ons</span>
-                        <h1 className="mt-3 text-display-sm font-semibold text-white md:text-display-md">
-                            Meer dan een taxi, uw vertrouwde reispartner
-                        </h1>
-                        <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                            YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B komen, het gaat om de ervaring onderweg.
-                        </p>
-                        <div className="mt-8 flex gap-3">
-                            <Button size="lg" href="/reserveren">
-                                Nu Reserveren
-                            </Button>
-                            <Button color="secondary" size="lg" href="/contact" className="!bg-transparent !border-white/20 !text-white hover:!bg-white/10">
-                                Neem contact op
-                            </Button>
-                        </div>
+        <div className="relative z-10 mx-auto max-w-container px-4 pt-12 pb-20 md:px-8 md:pt-20 md:pb-28">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+                <div className="flex flex-col gap-6 lg:col-span-7">
+                    <Eyebrow onDark>Over ons</Eyebrow>
+                    <h1 className="text-display-lg font-semibold leading-[1.05] tracking-tight text-white md:text-display-xl">
+                        Meer dan een taxi.
+                        <br />
+                        <span style={{ color: YELLOW }}>Uw vaste reispartner.</span>
+                    </h1>
+                    <p className="text-md text-white/60 md:text-lg">
+                        YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service
+                        en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B
+                        komen — het gaat om de ervaring onderweg.
+                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
+                        <Button size="lg" href="/reserveren" iconTrailing={ArrowRight}>
+                            Direct reserveren
+                        </Button>
+                        <a
+                            href="tel:+31852128302"
+                            className="group inline-flex items-center gap-3 text-sm font-semibold text-white/80 transition duration-100 hover:text-white"
+                        >
+                            <span
+                                className="flex size-9 items-center justify-center rounded-full border transition duration-100 group-hover:border-white/40"
+                                style={{ borderColor: "rgba(255,255,255,0.18)" }}
+                            >
+                                <Phone className="size-4" style={{ color: YELLOW }} aria-hidden />
+                            </span>
+                            <span className="flex flex-col leading-tight text-left">
+                                <span className="text-[11px] font-medium uppercase tracking-widest text-white/40">
+                                    Direct bellen
+                                </span>
+                                <span className="text-base font-semibold tracking-wide">085 212 83 02</span>
+                            </span>
+                        </a>
                     </div>
-                    <div>
+                </div>
+
+                <div className="lg:col-span-5">
+                    <div
+                        className="relative overflow-hidden border"
+                        style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                    >
                         <img
                             src="/Gemini_Generated_Image_y6uy9qy6uy9qy6uy.png"
                             alt="YAS TaxiCentrale voertuig"
-                            className="h-[400px] w-full rounded-2xl object-cover"
+                            className="h-[320px] w-full object-cover md:h-[420px]"
+                        />
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                background: `linear-gradient(180deg, transparent 60%, ${DARK})`,
+                            }}
                         />
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+);
 
+/* ─── Verhaal — editöryel layout ─────────────────────────────── */
+const VerhaalSection = () => (
+    <section className="bg-primary py-20 md:py-28">
+        <div className="mx-auto max-w-container px-4 md:px-8">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+                <div className="flex flex-col gap-5 lg:col-span-4">
+                    <Eyebrow>Ons verhaal</Eyebrow>
+                    <h2 className="text-display-md font-semibold tracking-tight text-primary md:text-display-lg">
+                        Eerlijk en persoonlijk taxivervoer.
+                    </h2>
+                </div>
 
-        {/* Verhaal */}
-        <section className="bg-secondary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="mx-auto max-w-3xl">
-                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Over YAS TaxiCentrale</h2>
-                    <div className="mt-6 space-y-5 text-lg text-tertiary">
-                        <p>
-                            YAS TaxiCentrale staat voor eerlijk en persoonlijk taxivervoer in Gouda en omstreken. Geen verrassingen aan de meter, geen anonieme app — gewoon een vaste prijs en een chauffeur die de regio kent.
+                <div className="lg:col-span-8">
+                    <div className="flex flex-col gap-6 border-l-2 pl-8" style={{ borderColor: YELLOW }}>
+                        <p className="text-lg leading-relaxed text-secondary md:text-xl">
+                            YAS TaxiCentrale staat voor eerlijk en persoonlijk taxivervoer in
+                            Gouda en omstreken. Geen verrassingen aan de meter, geen anonieme app —
+                            gewoon een vaste prijs en een chauffeur die de regio kent.
                         </p>
-                        <p>
-                            Als Gouwenaar weet ik hoe belangrijk goede service is. Daarom werken wij met vaste prijzen, vertrouwde chauffeurs en direct contact via telefoon of WhatsApp. Voor elke rit, dichtbij of ver weg.
+                        <p className="text-md leading-relaxed text-tertiary">
+                            Als Gouwenaar weet ik hoe belangrijk goede service is. Daarom werken
+                            wij met vaste prijzen, vertrouwde chauffeurs en direct contact via
+                            telefoon of WhatsApp. Voor elke rit, dichtbij of ver weg.
                         </p>
-                        <p>
-                            Wij rijden voor particulieren, zakelijke klanten en zorginstellingen. Voor regelmatig vervoer hebben wij speciale tarieven.
+                        <p className="text-md leading-relaxed text-tertiary">
+                            Wij rijden voor particulieren, zakelijke klanten en zorginstellingen.
+                            Voor regelmatig vervoer hebben wij speciale tarieven.
                         </p>
-                        <p>
-                            Een rit nodig? Vraag 'm aan via onze website, of bel of app ons. Wij regelen het voor u.
+                        <p className="text-md leading-relaxed text-tertiary">
+                            Een rit nodig? Vraag 'm aan via onze website, of bel of app ons.
+                            Wij regelen het voor u.
                         </p>
-                    </div>
-                    <div className="mt-8 flex flex-wrap gap-3">
-                        <Button size="lg" href="/reserveren">Nu reserveren</Button>
-                        <Button size="lg" color="secondary" href="/contact">Neem contact op</Button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+);
 
-        {/* Waarden */}
-        <section className="bg-primary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="text-center">
-                    <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Onze waarden</h2>
-                    <p className="mt-4 text-lg text-tertiary">Dit zijn de principes die elke rit bij YAS TaxiCentrale sturen.</p>
-                </div>
-                <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-                    {waarden.map(({ icon, title, text }) => (
-                        <div key={title} className="flex gap-4 rounded-2xl border border-secondary p-6">
-                            <FeaturedIcon icon={icon} size="md" color="brand" theme="light" className="shrink-0" />
-                            <div>
-                                <h3 className="text-lg font-semibold text-primary">{title}</h3>
-                                <p className="mt-2 text-md text-tertiary">{text}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
+/* ─── Waarden — donker, numaralı grid ───────────────────────── */
+const WaardenSection = () => (
+    <section className="relative overflow-hidden py-20 md:py-28" style={{ background: DARK }}>
+        <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.04]"
+            style={{
+                backgroundImage: `radial-gradient(circle, ${YELLOW} 1px, transparent 1px)`,
+                backgroundSize: "32px 32px",
+            }}
+        />
 
-
-        {/* CTA */}
-        <section className="bg-brand-section py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 text-center md:px-8">
-                <h2 className="text-display-xs font-semibold text-primary_on-brand md:text-display-sm">
-                    Maak kennis met ons team
+        <div className="relative mx-auto max-w-container px-4 md:px-8">
+            <div className="mb-14 flex flex-col gap-5 md:mb-20 md:max-w-2xl">
+                <Eyebrow onDark>Onze waarden</Eyebrow>
+                <h2 className="text-display-md font-semibold tracking-tight text-white md:text-display-lg">
+                    De principes achter elke rit.
                 </h2>
-                <p className="mt-4 text-lg text-tertiary_on-brand">
-                    Heeft u vragen of wilt u meer weten over onze diensten? Wij staan voor u klaar.
+                <p className="text-md text-white/60 md:text-lg">
+                    Vier overtuigingen die elke beslissing — van planning tot rijden — sturen.
                 </p>
-                <div className="mt-8 flex justify-center gap-3">
-                    <Button color="secondary" size="xl" href="/contact" className="shadow-xs! ring-0">
-                        Neem contact op
-                    </Button>
-                    <Button size="xl" href="/reserveren">
-                        Nu Reserveren
-                    </Button>
+            </div>
+
+            <div
+                className="grid grid-cols-1 gap-px border-y sm:grid-cols-2 lg:grid-cols-4"
+                style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.08)" }}
+            >
+                {waarden.map(({ num, icon: Icon, title, text }) => (
+                    <div
+                        key={num}
+                        className="group flex flex-col gap-4 p-8 transition duration-200 hover:bg-white/[0.03]"
+                        style={{ background: DARK }}
+                    >
+                        <div className="flex items-baseline justify-between">
+                            <span
+                                className="flex size-10 items-center justify-center rounded-sm border"
+                                style={{ borderColor: "rgba(255,255,255,0.12)" }}
+                            >
+                                <Icon className="size-5" style={{ color: YELLOW }} aria-hidden />
+                            </span>
+                            <span className="font-mono text-xs tracking-widest text-white/30">
+                                {num}
+                            </span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-white">{title}</h3>
+                        <p className="text-sm leading-relaxed text-white/55">{text}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+/* ─── CTA ────────────────────────────────────────────────────── */
+const CtaSection = () => (
+    <section className="bg-primary py-20 md:py-28">
+        <div className="mx-auto max-w-container px-4 md:px-8">
+            <div className="flex flex-col gap-10 border-y border-secondary py-12 md:flex-row md:items-end md:justify-between md:gap-16 md:py-16">
+                <div className="flex max-w-2xl flex-col gap-5">
+                    <Eyebrow>Klaar om te rijden?</Eyebrow>
+                    <h2 className="text-display-md font-semibold tracking-tight text-primary md:text-display-lg">
+                        Vraag uw rit aan,
+                        <br />
+                        <span style={{ color: "rgb(180,140,0)" }}>wij regelen de rest.</span>
+                    </h2>
+                    <p className="text-md text-tertiary md:text-lg">
+                        Vragen of een speciale rit? Stuur een bericht of bel ons direct —
+                        wij denken graag met u mee.
+                    </p>
+                </div>
+
+                <div className="flex flex-col gap-4 md:items-end">
+                    <div className="flex flex-wrap gap-3">
+                        <Button size="xl" href="/reserveren" iconTrailing={ArrowRight}>
+                            Nu reserveren
+                        </Button>
+                        <Button size="xl" color="secondary" href="/contact">
+                            Neem contact op
+                        </Button>
+                    </div>
+                    <a
+                        href="tel:+31852128302"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-tertiary transition-colors duration-200 hover:text-primary"
+                    >
+                        <Phone className="size-4" aria-hidden />
+                        Of bel direct: 085 212 83 02
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+);
 
+/* ─── Page ───────────────────────────────────────────────────── */
+const OverOns = () => (
+    <div className="bg-primary">
+        <HeroSection />
+        <VerhaalSection />
+        <WaardenSection />
+        <CtaSection />
         <SectionDivider />
         <YasFooter />
     </div>
