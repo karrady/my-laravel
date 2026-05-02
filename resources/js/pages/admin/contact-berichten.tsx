@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Mail01, MessageSquare02, Phone, Save01, Trash01 } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
+import { AlertCircle, CheckCircle, Inbox01, Mail01, MessageSquare02, Phone, Save01, Trash01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { ConfirmInline } from "@/components/application/confirm-inline";
 import { EmptyState } from "@/components/application/empty-state";
 import { PageHeader } from "@/components/application/page-header";
+import { StatCard } from "@/components/application/stat-card";
 import { useToast } from "@/components/application/toast";
 import { adminApi } from "@/utils/admin-api";
 import { cx } from "@/utils/cx";
@@ -115,12 +117,42 @@ export default function AdminContactBerichten() {
 
   const messages = data?.data ?? [];
 
+  // Stats: based on visible page; backend returns paginated list.
+  // For meaningful counts, also fetch total + unread/unhandled by reusing the all-list when on it,
+  // and rely on the displayed list otherwise. We compute live numbers from 'messages' for the active filter.
+  const stats = useMemo(() => {
+    const total = data?.total ?? 0;
+    const unread = messages.filter((m) => !m.is_read).length;
+    const unhandled = messages.filter((m) => !m.is_handled).length;
+    return { total, unread, unhandled };
+  }, [data?.total, messages]);
+
   return (
     <div className="space-y-6 p-6 md:p-8">
+      <Helmet>
+        <title>Contactberichten — YAS Admin</title>
+      </Helmet>
+
       <PageHeader
         title="Contactberichten"
         description={data ? `${data.total} berichten in totaal` : "Berichten van het contactformulier op de publieke site."}
       />
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        <StatCard label="Totaal berichten" value={stats.total} icon={Inbox01} />
+        <StatCard
+          label="Ongelezen (deze weergave)"
+          value={stats.unread}
+          icon={AlertCircle}
+          helperText="Nieuwe berichten die nog niet zijn bekeken"
+        />
+        <StatCard
+          label="Onafgehandeld (deze weergave)"
+          value={stats.unhandled}
+          icon={CheckCircle}
+          helperText="Vereisen nog opvolging"
+        />
+      </div>
 
       <div className="flex gap-1 border-b border-secondary">
         {tabs.map((t) => (

@@ -1,13 +1,17 @@
 import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, CurrencyEuroCircle, Edit01, Plus, Trash01 } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
+import { ArrowRight, CurrencyEuroCircle, Edit01, EyeOff, Plane, Plus, Route, Trash01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { ConfirmInline } from "@/components/application/confirm-inline";
+import { DropdownItem, DropdownMenu } from "@/components/application/dropdown-menu";
 import { EmptyState } from "@/components/application/empty-state";
+import { FilterBar } from "@/components/application/filter-bar";
 import { PageHeader } from "@/components/application/page-header";
 import { SlideOver } from "@/components/application/slide-over";
+import { StatCard } from "@/components/application/stat-card";
 import { useToast } from "@/components/application/toast";
 import { adminApi } from "@/utils/admin-api";
 import { cx } from "@/utils/cx";
@@ -83,6 +87,7 @@ export default function AdminCmsTarieven() {
   const [activeTab, setActiveTab] = useState<Category>("airport");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [form, setForm] = useState<FormState>({ ...empty });
 
   const { data = [], isLoading } = useQuery<FixedPrice[]>({
@@ -130,7 +135,23 @@ export default function AdminCmsTarieven() {
     return { airport, local };
   }, [data]);
 
-  const visiblePrices = activeTab === "airport" ? grouped.airport : grouped.local;
+  const stats = useMemo(() => {
+    return {
+      airport: grouped.airport.length,
+      local: grouped.local.length,
+      inactive: data.filter((p) => !p.is_active).length,
+    };
+  }, [data, grouped]);
+
+  const visiblePrices = useMemo(() => {
+    const list = activeTab === "airport" ? grouped.airport : grouped.local;
+    const q = search.trim().toLowerCase();
+    if (!q) return list;
+    return list.filter(
+      (p) =>
+        p.from_label.toLowerCase().includes(q) || p.to_label.toLowerCase().includes(q),
+    );
+  }, [grouped, activeTab, search]);
 
   function startCreate() {
     setEditingId(null);
@@ -184,6 +205,10 @@ export default function AdminCmsTarieven() {
 
   return (
     <div className="space-y-6 p-6 md:p-8">
+      <Helmet>
+        <title>Vaste tarieven — YAS Admin</title>
+      </Helmet>
+
       <PageHeader
         title="Vaste tarieven"
         description="Beheer luchthaventarieven en lokale ritprijzen. Wijzigingen zijn direct zichtbaar op de publieke site."
@@ -193,6 +218,12 @@ export default function AdminCmsTarieven() {
           </Button>
         }
       />
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        <StatCard label="Luchthaventarieven" value={stats.airport} icon={Plane} />
+        <StatCard label="Lokale tarieven" value={stats.local} icon={Route} />
+        <StatCard label="Inactief" value={stats.inactive} icon={EyeOff} helperText="Niet zichtbaar op publieke site" />
+      </div>
 
       {/* Tabs */}
       <div className="flex gap-1 border-b border-secondary">
@@ -216,14 +247,34 @@ export default function AdminCmsTarieven() {
         ))}
       </div>
 
+      <FilterBar
+        search={{
+          value: search,
+          onChange: setSearch,
+          placeholder: "Zoek op vertrek of bestemming…",
+        }}
+      />
+
       {isLoading ? (
         <p className="text-sm text-tertiary">Laden…</p>
       ) : visiblePrices.length === 0 ? (
         <EmptyState
           icon={CurrencyEuroCircle}
-          title={activeTab === "airport" ? "Geen luchthaventarieven" : "Geen lokale tarieven"}
-          description="Voeg het eerste tarief toe om te starten."
-          action={<Button size="md" iconLeading={Plus} onClick={startCreate}>Nieuw tarief</Button>}
+          title={
+            search
+              ? "Geen resultaten"
+              : activeTab === "airport"
+              ? "Geen luchthaventarieven"
+              : "Geen lokale tarieven"
+          }
+          description={search ? "Probeer een andere zoekterm." : "Voeg het eerste tarief toe om te starten."}
+          action={
+            !search ? (
+              <Button size="md" iconLeading={Plus} onClick={startCreate}>
+                Nieuw tarief
+              </Button>
+            ) : undefined
+          }
         />
       ) : (
         <div className="overflow-hidden rounded-xl border border-secondary bg-primary">
@@ -262,15 +313,17 @@ export default function AdminCmsTarieven() {
                     )}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center justify-end gap-1">
-                      <Button size="sm" color="tertiary" iconLeading={Edit01} onClick={() => startEdit(p)}>
-                        Bewerken
-                      </Button>
+                    <div className="flex items-center justify-end gap-2">
                       <ConfirmInline
                         icon={Trash01}
                         onConfirm={() => deleteMutation.mutate(p.id)}
                         isLoading={deleteMutation.isPending && deleteMutation.variables === p.id}
                       />
+                      <DropdownMenu>
+                        <DropdownItem icon={Edit01} onAction={() => startEdit(p)}>
+                          Bewerken
+                        </DropdownItem>
+                      </DropdownMenu>
                     </div>
                   </td>
                 </tr>

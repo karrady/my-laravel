@@ -1,7 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
+import { Receipt, Users01 } from "@untitledui/icons";
+import { Avatar } from "@/components/base/avatar/avatar";
+import {
+  DropdownItem,
+  DropdownMenu,
+} from "@/components/application/dropdown-menu";
+import { EmptyState } from "@/components/application/empty-state";
+import { FilterBar } from "@/components/application/filter-bar";
+import { PageHeader } from "@/components/application/page-header";
+import { Pagination } from "@/components/application/pagination";
 import { adminApi } from "@/utils/admin-api";
+import { cx } from "@/utils/cx";
 
 interface Customer {
   customer_email: string;
@@ -18,15 +30,52 @@ interface Paginated {
   current_page: number;
   last_page: number;
   total: number;
+  per_page: number;
 }
 
 function euro(cents: number) {
-  return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format(cents);
+  return new Intl.NumberFormat("nl-NL", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format((cents ?? 0) / 100);
+}
+
+function relativeDate(iso: string | null): string {
+  if (!iso) return "—";
+  const target = new Date(iso).getTime();
+  const diffMs = Date.now() - target;
+  const day = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (day < 1) return "vandaag";
+  if (day === 1) return "gisteren";
+  if (day < 30) return `${day}d geleden`;
+  return new Date(iso).toLocaleDateString("nl-NL", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function getInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((s) => s[0]?.toUpperCase() ?? "")
+    .join("");
 }
 
 export default function AdminKlanten() {
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") ?? "");
+  const [page, setPage] = useState(Number(searchParams.get("page") ?? "1") || 1);
+
+  useEffect(() => {
+    const next = new URLSearchParams();
+    if (search) next.set("search", search);
+    if (page > 1) next.set("page", String(page));
+    setSearchParams(next, { replace: true });
+  }, [search, page, setSearchParams]);
 
   const params = new URLSearchParams({ page: String(page) });
   if (search) params.set("search", search);
@@ -36,74 +85,125 @@ export default function AdminKlanten() {
     queryFn: () => adminApi.get<Paginated>(`/customers?${params}`),
   });
 
+  function handleSearch(value: string) {
+    setSearch(value);
+    setPage(1);
+  }
+
+  const customers = data?.data ?? [];
+
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-5">
-      <div>
-        <h1 className="text-xl font-semibold text-primary">Klanten</h1>
-        {data && <p className="text-sm text-tertiary mt-0.5">{data.total} klanten</p>}
-      </div>
+    <>
+      <Helmet><title>Klanten — YAS Admin</title></Helmet>
 
-      <input
-        type="search"
-        value={search}
-        onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-        placeholder="Zoek op naam, e-mail of telefoon…"
-        className="px-3.5 py-2 rounded-lg border border-primary text-sm text-primary bg-primary w-72 focus:outline-none focus:ring-2 focus:ring-brand transition duration-100"
-      />
+      <div className="space-y-6 p-6 md:p-8">
+        <PageHeader
+          title="Klanten"
+          description={
+            data
+              ? `${data.total} klanten op basis van boekingsgeschiedenis`
+              : "Overzicht van alle klanten op basis van boekingsgeschiedenis."
+          }
+        />
 
-      <div className="bg-primary rounded-2xl border border-secondary overflow-hidden">
-        {isLoading ? (
-          <div className="p-8 text-center text-tertiary text-sm">Laden…</div>
-        ) : (
-          <>
-            <table className="w-full text-sm">
-              <thead className="border-b border-secondary bg-secondary">
-                <tr>
-                  {["Naam", "Contact", "Ritten", "Besteed", "Laatste rit"].map((h) => (
-                    <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-tertiary uppercase tracking-wider">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-secondary">
-                {data?.data.map((c) => (
-                  <tr key={c.customer_email} className="hover:bg-primary_hover transition duration-100">
-                    <td className="px-4 py-3">
-                      <Link
-                        to={`/admin/klanten/${encodeURIComponent(c.customer_email)}`}
-                        className="text-brand-secondary font-medium hover:underline"
-                      >
-                        {c.customer_name}
-                      </Link>
-                    </td>
-                    <td className="px-4 py-3">
-                      <a href={`mailto:${c.customer_email}`} className="text-secondary hover:underline text-xs block">{c.customer_email}</a>
-                      <a href={`tel:${c.customer_phone}`} className="text-tertiary text-xs">{c.customer_phone}</a>
-                    </td>
-                    <td className="px-4 py-3 text-primary font-medium">{c.booking_count}</td>
-                    <td className="px-4 py-3 text-primary font-medium">{euro(c.total_cents ?? 0)}</td>
-                    <td className="px-4 py-3 text-tertiary text-xs">
-                      {c.last_booking_at ? new Date(c.last_booking_at).toLocaleDateString("nl-NL") : "—"}
-                    </td>
+        <FilterBar
+          search={{
+            value: search,
+            onChange: handleSearch,
+            placeholder: "Zoek op naam, e-mail of telefoon…",
+          }}
+        />
+
+        <div className="overflow-hidden rounded-xl border border-secondary bg-primary">
+          {isLoading ? (
+            <div className="p-8 text-center text-sm text-tertiary">Laden…</div>
+          ) : customers.length === 0 ? (
+            <EmptyState
+              icon={Users01}
+              title="Geen klanten"
+              description="Probeer een andere zoekterm — of er zijn nog geen boekingen."
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead className="border-b border-secondary bg-secondary_subtle">
+                  <tr>
+                    <Th>Klant</Th>
+                    <Th>Telefoon</Th>
+                    <Th className="text-right">Aantal ritten</Th>
+                    <Th className="text-right">Totaal besteed</Th>
+                    <Th>Laatste rit</Th>
+                    <Th className="w-12"><span className="sr-only">Acties</span></Th>
                   </tr>
-                ))}
-                {data?.data.length === 0 && (
-                  <tr><td colSpan={5} className="px-4 py-8 text-center text-tertiary">Geen klanten gevonden.</td></tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-secondary">
+                  {customers.map((c) => (
+                    <tr
+                      key={c.customer_email}
+                      className="transition duration-100 ease-linear hover:bg-primary_hover"
+                    >
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <Avatar size="sm" initials={getInitials(c.customer_name)} alt={c.customer_name} />
+                          <div className="min-w-0">
+                            <p className="truncate font-medium text-primary">{c.customer_name}</p>
+                            <p className="truncate text-xs text-tertiary">{c.customer_email}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4 whitespace-nowrap text-secondary">
+                        {c.customer_phone || <span className="text-quaternary">—</span>}
+                      </td>
+                      <td className="px-5 py-4 text-right whitespace-nowrap font-medium text-primary">
+                        {c.booking_count}
+                      </td>
+                      <td className="px-5 py-4 text-right whitespace-nowrap font-medium text-primary">
+                        {euro(c.total_cents)}
+                      </td>
+                      <td className="px-5 py-4 whitespace-nowrap text-tertiary">
+                        {relativeDate(c.last_booking_at)}
+                      </td>
+                      <td className="px-2 py-4 text-right">
+                        <DropdownMenu>
+                          <DropdownItem
+                            icon={Receipt}
+                            href={`/admin/boekingen?search=${encodeURIComponent(c.customer_email)}`}
+                          >
+                            Bekijk boekingen
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
-            {data && data.last_page > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-secondary">
-                <p className="text-xs text-tertiary">Pagina {data.current_page} van {data.last_page}</p>
-                <div className="flex gap-2">
-                  <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="px-3 py-1.5 text-xs rounded-lg border border-secondary text-secondary hover:bg-primary_hover disabled:opacity-40">Vorige</button>
-                  <button disabled={page >= data.last_page} onClick={() => setPage((p) => p + 1)} className="px-3 py-1.5 text-xs rounded-lg border border-secondary text-secondary hover:bg-primary_hover disabled:opacity-40">Volgende</button>
-                </div>
-              </div>
-            )}
-          </>
-        )}
+          {data && data.last_page > 1 && (
+            <Pagination
+              currentPage={data.current_page}
+              totalPages={data.last_page}
+              totalItems={data.total}
+              pageSize={data.per_page}
+              onPageChange={setPage}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
+  );
+}
+
+function Th({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <th
+      className={cx(
+        "px-5 py-3 text-xs font-semibold tracking-wider text-quaternary uppercase",
+        className,
+      )}
+    >
+      {children}
+    </th>
   );
 }

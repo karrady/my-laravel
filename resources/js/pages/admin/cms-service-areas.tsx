@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Edit01, Eye, EyeOff, MarkerPin01, Plus, Trash01 } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
+import { Edit01, Eye, EyeOff, Globe01, MarkerPin01, Plus, Trash01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { ConfirmInline } from "@/components/application/confirm-inline";
+import { DropdownItem, DropdownMenu } from "@/components/application/dropdown-menu";
 import { EmptyState } from "@/components/application/empty-state";
+import { FilterBar } from "@/components/application/filter-bar";
 import { PageHeader } from "@/components/application/page-header";
 import { SlideOver } from "@/components/application/slide-over";
+import { StatCard } from "@/components/application/stat-card";
 import { useToast } from "@/components/application/toast";
 import { adminApi } from "@/utils/admin-api";
 
@@ -70,6 +74,7 @@ export default function AdminCmsServiceAreas() {
   const toast = useToast();
   const [editingId, setEditingId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [form, setForm] = useState<FormState>({ ...empty });
 
   const { data = [], isLoading } = useQuery<ServiceArea[]>({
@@ -106,6 +111,21 @@ export default function AdminCmsServiceAreas() {
     },
     onError: (e: Error) => toast.error("Verwijderen mislukt", e.message),
   });
+
+  const stats = useMemo(() => {
+    const total = data.length;
+    const published = data.filter((a) => a.is_published).length;
+    const draft = total - published;
+    return { total, published, draft };
+  }, [data]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return data;
+    return data.filter(
+      (a) => a.name.toLowerCase().includes(q) || a.slug.toLowerCase().includes(q),
+    );
+  }, [data, search]);
 
   function startCreate() {
     setEditingId(null);
@@ -148,6 +168,10 @@ export default function AdminCmsServiceAreas() {
 
   return (
     <div className="space-y-6 p-6 md:p-8">
+      <Helmet>
+        <title>Servicegebieden — YAS Admin</title>
+      </Helmet>
+
       <PageHeader
         title="Servicegebieden"
         description="Beheer de steden en regio's waar YAS taxidiensten aanbiedt. Gepubliceerde gebieden krijgen een eigen landingspagina op de publieke site."
@@ -158,14 +182,38 @@ export default function AdminCmsServiceAreas() {
         }
       />
 
+      <div className="grid gap-4 sm:grid-cols-3">
+        <StatCard label="Totaal gebieden" value={stats.total} icon={MarkerPin01} />
+        <StatCard label="Gepubliceerd" value={stats.published} icon={Globe01} helperText="Live op publieke site" />
+        <StatCard label="Concept" value={stats.draft} icon={EyeOff} helperText="Nog niet gepubliceerd" />
+      </div>
+
+      <FilterBar
+        search={{
+          value: search,
+          onChange: setSearch,
+          placeholder: "Zoek op naam of slug…",
+        }}
+      />
+
       {isLoading ? (
         <p className="text-sm text-tertiary">Laden…</p>
-      ) : data.length === 0 ? (
+      ) : filtered.length === 0 ? (
         <EmptyState
           icon={MarkerPin01}
-          title="Nog geen servicegebieden"
-          description="Voeg het eerste gebied toe om de publieke stadspagina's mogelijk te maken."
-          action={<Button size="md" iconLeading={Plus} onClick={startCreate}>Nieuw gebied</Button>}
+          title={search ? "Geen resultaten" : "Nog geen servicegebieden"}
+          description={
+            search
+              ? "Probeer een andere zoekterm."
+              : "Voeg het eerste gebied toe om de publieke stadspagina's mogelijk te maken."
+          }
+          action={
+            !search ? (
+              <Button size="md" iconLeading={Plus} onClick={startCreate}>
+                Nieuw gebied
+              </Button>
+            ) : undefined
+          }
         />
       ) : (
         <div className="overflow-hidden rounded-xl border border-secondary bg-primary">
@@ -180,7 +228,7 @@ export default function AdminCmsServiceAreas() {
               </tr>
             </thead>
             <tbody className="divide-y divide-secondary">
-              {data.map((a) => (
+              {filtered.map((a) => (
                 <tr key={a.id} className="transition duration-100 ease-linear hover:bg-primary_hover">
                   <td className="px-6 py-4 font-medium text-primary">{a.name}</td>
                   <td className="px-6 py-4 font-mono text-xs text-tertiary">/taxi/{a.slug}</td>
@@ -203,15 +251,20 @@ export default function AdminCmsServiceAreas() {
                     )}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center justify-end gap-1">
-                      <Button size="sm" color="tertiary" iconLeading={Edit01} onClick={() => startEdit(a)}>
-                        Bewerken
-                      </Button>
+                    <div className="flex items-center justify-end gap-2">
                       <ConfirmInline
                         icon={Trash01}
                         onConfirm={() => deleteMutation.mutate(a.id)}
                         isLoading={deleteMutation.isPending && deleteMutation.variables === a.id}
                       />
+                      <DropdownMenu>
+                        <DropdownItem icon={Edit01} onAction={() => startEdit(a)}>
+                          Bewerken
+                        </DropdownItem>
+                        <DropdownItem icon={Globe01} href={`/taxi/${a.slug}`}>
+                          Bekijk publieke pagina
+                        </DropdownItem>
+                      </DropdownMenu>
                     </div>
                   </td>
                 </tr>

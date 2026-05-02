@@ -1,5 +1,19 @@
-import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
+import { Edit01, EyeOff, HelpCircle, Plus, Trash01 } from "@untitledui/icons";
+import { Badge } from "@/components/base/badges/badges";
+import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
+import { TextArea } from "@/components/base/textarea/textarea";
+import { ConfirmInline } from "@/components/application/confirm-inline";
+import { DropdownItem, DropdownMenu } from "@/components/application/dropdown-menu";
+import { EmptyState } from "@/components/application/empty-state";
+import { FilterBar } from "@/components/application/filter-bar";
+import { PageHeader } from "@/components/application/page-header";
+import { SlideOver } from "@/components/application/slide-over";
+import { StatCard } from "@/components/application/stat-card";
+import { useToast } from "@/components/application/toast";
 import { adminApi } from "@/utils/admin-api";
 
 interface Faq {
@@ -11,13 +25,29 @@ interface Faq {
   locale: string | null;
 }
 
-const empty = { question: "", answer: "", sort_order: 0, is_active: true, locale: "nl" };
+type FormState = {
+  question: string;
+  answer: string;
+  sort_order: string;
+  is_active: boolean;
+  locale: string;
+};
+
+const empty: FormState = {
+  question: "",
+  answer: "",
+  sort_order: "0",
+  is_active: true,
+  locale: "nl",
+};
 
 export default function AdminCmsFaqs() {
   const qc = useQueryClient();
-  const [editing, setEditing] = useState<Partial<Faq> | null>(null);
-  const [creating, setCreating] = useState(false);
-  const [form, setForm] = useState({ ...empty });
+  const toast = useToast();
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [form, setForm] = useState<FormState>({ ...empty });
 
   const { data = [], isLoading } = useQuery<Faq[]>({
     queryKey: ["admin-cms-faqs"],
@@ -25,101 +55,281 @@ export default function AdminCmsFaqs() {
   });
 
   const createMutation = useMutation({
-    mutationFn: (d: typeof form) => adminApi.post("/cms/faqs", d),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] }); setCreating(false); setForm({ ...empty }); },
+    mutationFn: (d: Record<string, unknown>) => adminApi.post("/cms/faqs", d),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] });
+      setOpen(false);
+      toast.success("FAQ toegevoegd");
+    },
+    onError: (e: Error) => toast.error("Aanmaken mislukt", e.message),
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: number; data: Partial<Faq> }) => adminApi.patch(`/cms/faqs/${id}`, data),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] }); setEditing(null); },
+    mutationFn: ({ id, data }: { id: number; data: Record<string, unknown> }) =>
+      adminApi.patch(`/cms/faqs/${id}`, data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] });
+      setOpen(false);
+      toast.success("FAQ opgeslagen");
+    },
+    onError: (e: Error) => toast.error("Opslaan mislukt", e.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => adminApi.delete(`/cms/faqs/${id}`),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-faqs"] });
+      toast.success("FAQ verwijderd");
+    },
+    onError: (e: Error) => toast.error("Verwijderen mislukt", e.message),
   });
 
-  function openEdit(f: Faq) {
-    setEditing(f);
-    setForm({ question: f.question, answer: f.answer, sort_order: f.sort_order, is_active: f.is_active, locale: f.locale ?? "nl" });
+  const stats = useMemo(() => {
+    const total = data.length;
+    const active = data.filter((f) => f.is_active).length;
+    const nl = data.filter((f) => (f.locale ?? "nl") === "nl").length;
+    return { total, active, nl };
+  }, [data]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return data;
+    return data.filter(
+      (f) =>
+        f.question.toLowerCase().includes(q) || f.answer.toLowerCase().includes(q),
+    );
+  }, [data, search]);
+
+  function startCreate() {
+    setEditingId(null);
+    setForm({ ...empty });
+    setOpen(true);
   }
 
+  function startEdit(f: Faq) {
+    setEditingId(f.id);
+    setForm({
+      question: f.question,
+      answer: f.answer,
+      sort_order: String(f.sort_order ?? 0),
+      is_active: f.is_active,
+      locale: f.locale ?? "nl",
+    });
+    setOpen(true);
+  }
+
+  function handleSave() {
+    const payload = {
+      question: form.question,
+      answer: form.answer,
+      sort_order: parseInt(form.sort_order, 10) || 0,
+      is_active: form.is_active,
+      locale: form.locale,
+    };
+    if (editingId) updateMutation.mutate({ id: editingId, data: payload });
+    else createMutation.mutate(payload);
+  }
+
+  const isSaving = createMutation.isPending || updateMutation.isPending;
+
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-5">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold text-primary">FAQ's</h1>
-        <button onClick={() => setCreating(true)} className="px-4 py-2 text-sm font-medium bg-brand-solid text-white rounded-lg hover:bg-brand-solid_hover transition duration-100">
-          + Toevoegen
-        </button>
+    <div className="space-y-6 p-6 md:p-8">
+      <Helmet>
+        <title>FAQ's — YAS Admin</title>
+      </Helmet>
+
+      <PageHeader
+        title="FAQ's"
+        description="Beheer veelgestelde vragen die op de publieke site getoond worden."
+        actions={
+          <Button size="md" iconLeading={Plus} onClick={startCreate}>
+            Nieuwe FAQ
+          </Button>
+        }
+      />
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        <StatCard label="Totaal vragen" value={stats.total} icon={HelpCircle} />
+        <StatCard label="Actief" value={stats.active} icon={HelpCircle} helperText="Zichtbaar op publieke site" />
+        <StatCard label="Nederlands" value={stats.nl} icon={HelpCircle} helperText="Aantal NL-vragen" />
       </div>
 
-      {isLoading ? <p className="text-tertiary text-sm">Laden…</p> : (
-        <div className="bg-primary rounded-2xl border border-secondary divide-y divide-secondary overflow-hidden">
-          {data.map((f) => (
-            <div key={f.id} className="px-5 py-4">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-primary">{f.question}</p>
-                  <p className="text-xs text-tertiary mt-1 line-clamp-2">{f.answer}</p>
-                  <div className="flex gap-2 mt-1">
-                    <span className="text-xs text-quaternary">{f.locale ?? "nl"}</span>
-                    {!f.is_active && <span className="text-xs text-warning-primary">Inactief</span>}
-                  </div>
-                </div>
-                <div className="flex gap-2 flex-shrink-0">
-                  <button onClick={() => openEdit(f)} className="px-3 py-1.5 text-xs rounded-lg border border-secondary text-secondary hover:bg-primary_hover transition duration-100">Bewerken</button>
-                  <button onClick={() => deleteMutation.mutate(f.id)} className="px-3 py-1.5 text-xs rounded-lg border border-error text-error-primary hover:bg-error-primary transition duration-100">Verwijderen</button>
-                </div>
-              </div>
-            </div>
-          ))}
-          {data.length === 0 && <p className="px-5 py-8 text-center text-tertiary text-sm">Geen FAQ's.</p>}
+      <FilterBar
+        search={{
+          value: search,
+          onChange: setSearch,
+          placeholder: "Zoek op vraag of antwoord…",
+        }}
+      />
+
+      {isLoading ? (
+        <p className="text-sm text-tertiary">Laden…</p>
+      ) : filtered.length === 0 ? (
+        <EmptyState
+          icon={HelpCircle}
+          title={search ? "Geen resultaten" : "Nog geen FAQ's"}
+          description={
+            search
+              ? "Probeer een andere zoekterm."
+              : "Voeg de eerste veelgestelde vraag toe om bezoekers snel antwoord te geven."
+          }
+          action={
+            !search ? (
+              <Button size="md" iconLeading={Plus} onClick={startCreate}>
+                Nieuwe FAQ
+              </Button>
+            ) : undefined
+          }
+        />
+      ) : (
+        <div className="overflow-hidden rounded-xl border border-secondary bg-primary">
+          <table className="w-full text-sm">
+            <thead className="border-b border-secondary bg-secondary">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Vraag</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Antwoord</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Taal</th>
+                <th className="px-6 py-3 text-right text-xs font-semibold tracking-wider text-tertiary uppercase">Volgorde</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-semibold tracking-wider text-tertiary uppercase">Acties</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-secondary">
+              {filtered.map((f) => (
+                <tr key={f.id} className="transition duration-100 ease-linear hover:bg-primary_hover">
+                  <td className="px-6 py-4">
+                    <p className="line-clamp-2 max-w-md font-medium text-primary">{f.question}</p>
+                  </td>
+                  <td className="px-6 py-4">
+                    <p className="line-clamp-2 max-w-lg text-tertiary">{f.answer}</p>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge type="pill-color" color="gray" size="sm">
+                      {(f.locale ?? "nl").toUpperCase()}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4 text-right whitespace-nowrap text-tertiary">{f.sort_order}</td>
+                  <td className="px-6 py-4">
+                    {f.is_active ? (
+                      <Badge type="pill-color" color="success" size="sm">Actief</Badge>
+                    ) : (
+                      <Badge type="pill-color" color="gray" size="sm">Inactief</Badge>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <ConfirmInline
+                        icon={Trash01}
+                        onConfirm={() => deleteMutation.mutate(f.id)}
+                        isLoading={deleteMutation.isPending && deleteMutation.variables === f.id}
+                      />
+                      <DropdownMenu>
+                        <DropdownItem icon={Edit01} onAction={() => startEdit(f)}>
+                          Bewerken
+                        </DropdownItem>
+                        <DropdownItem
+                          icon={EyeOff}
+                          onAction={() =>
+                            updateMutation.mutate({
+                              id: f.id,
+                              data: { is_active: !f.is_active },
+                            })
+                          }
+                        >
+                          {f.is_active ? "Op inactief zetten" : "Activeren"}
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 
-      {(creating || editing) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay">
-          <div className="bg-primary rounded-2xl border border-secondary shadow-xl w-full max-w-lg mx-4 p-6 space-y-4">
-            <h2 className="text-base font-semibold text-primary">{editing ? "FAQ bewerken" : "FAQ toevoegen"}</h2>
+      <SlideOver
+        isOpen={open}
+        onOpenChange={setOpen}
+        size="lg"
+        title={editingId ? "FAQ bewerken" : "Nieuwe FAQ"}
+        description="Wordt getoond op de publieke FAQ-sectie en helppagina's."
+        footer={
+          <div className="flex justify-end gap-3">
+            <Button color="secondary" onClick={() => setOpen(false)} isDisabled={isSaving}>
+              Annuleren
+            </Button>
+            <Button onClick={handleSave} isLoading={isSaving} showTextWhileLoading>
+              {editingId ? "Wijzigingen opslaan" : "Aanmaken"}
+            </Button>
+          </div>
+        }
+      >
+        <div className="space-y-5">
+          <Input
+            label="Vraag"
+            isRequired
+            value={form.question}
+            onChange={(value) => setForm((p) => ({ ...p, question: value }))}
+            placeholder="Wat zijn de tarieven naar Schiphol?"
+          />
+
+          <TextArea
+            label="Antwoord"
+            isRequired
+            value={form.answer}
+            onChange={(value) => setForm((p) => ({ ...p, answer: value }))}
+            rows={6}
+            placeholder="Wij hanteren vaste tarieven naar Schiphol vanaf €45,…"
+          />
+
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-secondary mb-1">Vraag</label>
-              <input value={form.question} onChange={(e) => setForm((p) => ({ ...p, question: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-secondary mb-1">Antwoord</label>
-              <textarea rows={4} value={form.answer} onChange={(e) => setForm((p) => ({ ...p, answer: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand resize-none" />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-medium text-secondary mb-1">Taal</label>
-                <select value={form.locale} onChange={(e) => setForm((p) => ({ ...p, locale: e.target.value }))}
-                  className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand">
-                  <option value="nl">Nederlands</option>
-                  <option value="en">Engels</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-secondary mb-1">Volgorde</label>
-                <input type="number" value={form.sort_order} onChange={(e) => setForm((p) => ({ ...p, sort_order: +e.target.value }))}
-                  className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
+              <label className="mb-1.5 block text-sm font-medium text-secondary">Taal</label>
+              <div className="grid grid-cols-2 gap-2">
+                {(["nl", "en"] as const).map((loc) => (
+                  <button
+                    key={loc}
+                    type="button"
+                    onClick={() => setForm((p) => ({ ...p, locale: loc }))}
+                    className={
+                      form.locale === loc
+                        ? "rounded-lg border border-brand bg-brand-primary px-4 py-2.5 text-sm font-medium text-brand-secondary transition duration-100 ease-linear"
+                        : "rounded-lg border border-primary bg-primary px-4 py-2.5 text-sm font-medium text-secondary transition duration-100 ease-linear hover:bg-primary_hover"
+                    }
+                  >
+                    {loc === "nl" ? "Nederlands" : "Engels"}
+                  </button>
+                ))}
               </div>
             </div>
-            <label className="flex items-center gap-2 text-sm text-secondary cursor-pointer">
-              <input type="checkbox" checked={form.is_active} onChange={(e) => setForm((p) => ({ ...p, is_active: e.target.checked }))} className="rounded" />
-              Actief
+            <Input
+              label="Volgorde"
+              type="number"
+              value={form.sort_order}
+              onChange={(value) => setForm((p) => ({ ...p, sort_order: value }))}
+              hint="Lager getal = hoger in de lijst"
+            />
+          </div>
+
+          <div className="space-y-3 rounded-lg border border-secondary bg-secondary_subtle p-4">
+            <label className="flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={form.is_active}
+                onChange={(e) => setForm((p) => ({ ...p, is_active: e.target.checked }))}
+                className="mt-1 size-4 rounded border-primary"
+              />
+              <span className="text-sm">
+                <span className="font-medium text-primary">Actief</span>
+                <span className="block text-xs text-tertiary">
+                  Alleen actieve FAQ's worden getoond op de publieke site.
+                </span>
+              </span>
             </label>
-            <div className="flex gap-3 justify-end pt-2">
-              <button onClick={() => { setCreating(false); setEditing(null); }} className="px-4 py-2 text-sm rounded-lg border border-secondary text-secondary hover:bg-primary_hover transition duration-100">Annuleren</button>
-              <button
-                onClick={() => editing?.id ? updateMutation.mutate({ id: editing.id, data: form }) : createMutation.mutate(form)}
-                className="px-4 py-2 text-sm font-medium rounded-lg bg-brand-solid text-white hover:bg-brand-solid_hover transition duration-100"
-              >Opslaan</button>
-            </div>
           </div>
         </div>
-      )}
+      </SlideOver>
     </div>
   );
 }
