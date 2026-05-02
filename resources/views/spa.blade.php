@@ -23,11 +23,21 @@ $ldJson = json_encode([
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>YAS TaxiCentrale — Taxivervoer in Gouda & Rijn en Gouwe</title>
     <meta name="description" content="YAS TaxiCentrale: betrouwbaar taxivervoer in Gouda, Alphen aan den Rijn, Waddinxveen, Boskoop en de hele Rijn en Gouwe regio. Luchthaventransfers, zakelijk vervoer, 24/7. Bel 085 212 83 02.">
+
+    {{-- PWA --}}
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0E0E0E">
+    <meta name="application-name" content="YAS TaxiCentrale">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="YAS Taxi">
+    <link rel="apple-touch-icon" href="/pwa-icon.svg">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -40,6 +50,23 @@ $ldJson = json_encode([
 
     @viteReactRefresh
     @vite('resources/js/app.tsx')
+
+    @production
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js").catch(() => {});
+            });
+        }
+    </script>
+    @else
+    <script>
+        // Dev: ensure no stale SW is intercepting requests during HMR.
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+        }
+    </script>
+    @endproduction
 </head>
 <body class="antialiased">
     <div id="root"></div>

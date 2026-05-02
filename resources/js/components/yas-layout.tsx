@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { MessageChatCircle, Phone, Mail01, XClose } from "@untitledui/icons";
+import { ArrowRight, Calendar, Mail01, MessageChatCircle, Phone, XClose } from "@untitledui/icons";
 import { YasLogo } from "@/components/yas-logo";
+import { YasBottomBar } from "@/components/yas-bottombar";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 
@@ -45,11 +46,11 @@ export const ContactPopup = () => {
 
     return (
         <>
-            {/* Floating knop */}
+            {/* Floating knop — alleen desktop, op mobiel zit dit in de bottom bar */}
             <button
                 onClick={() => setOpen(true)}
                 aria-label="Contact opnemen"
-                className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg transition duration-100 hover:brightness-90 active:scale-95"
+                className="fixed bottom-6 right-6 z-30 hidden md:flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg transition duration-100 hover:brightness-90 active:scale-95"
                 style={{ background: YELLOW, color: DARK }}
             >
                 <Phone className="size-4" aria-hidden />
@@ -63,12 +64,10 @@ export const ContactPopup = () => {
                     style={{ background: "rgba(0,0,0,0.45)" }}
                     onClick={() => setOpen(false)}
                 >
-                    {/* Modal */}
                     <div
                         className="relative w-full max-w-sm rounded-2xl bg-primary p-6 shadow-2xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Sluitknop */}
                         <button
                             onClick={() => setOpen(false)}
                             className="absolute right-4 top-4 rounded-full p-1 text-fg-quaternary transition duration-100 hover:text-fg-primary"
@@ -116,6 +115,124 @@ const yasNavItems = [
     { label: "Contact", href: "/contact" },
 ];
 
+interface MobileDrawerProps {
+    open: boolean;
+    onClose: () => void;
+}
+
+const MobileDrawer = ({ open, onClose }: MobileDrawerProps) => {
+    useEffect(() => {
+        if (!open) return;
+        const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+        document.addEventListener("keydown", onKey);
+        const original = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.removeEventListener("keydown", onKey);
+            document.body.style.overflow = original;
+        };
+    }, [open, onClose]);
+
+    return (
+        <div
+            className={cx(
+                "fixed inset-0 z-[100] md:hidden transition-opacity duration-200",
+                open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+            )}
+            aria-hidden={!open}
+        >
+            {/* Backdrop */}
+            <button
+                type="button"
+                aria-label="Menu sluiten"
+                onClick={onClose}
+                className="absolute inset-0 h-full w-full bg-black/60"
+            />
+
+            {/* Drawer */}
+            <aside
+                role="dialog"
+                aria-modal="true"
+                aria-label="Hoofdmenu"
+                className={cx(
+                    "absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col shadow-2xl transition-transform duration-300 ease-out",
+                    open ? "translate-x-0" : "translate-x-full",
+                )}
+                style={{
+                    background: DARK,
+                    paddingTop: "env(safe-area-inset-top)",
+                    paddingBottom: "env(safe-area-inset-bottom)",
+                }}
+            >
+                <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                    <YasLogo dark className="h-6 w-auto" />
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        aria-label="Menu sluiten"
+                        className="rounded-lg p-2 text-white/80 transition duration-100 hover:bg-white/10 hover:text-white"
+                    >
+                        <XClose className="size-5" aria-hidden />
+                    </button>
+                </div>
+
+                <nav className="flex-1 overflow-y-auto px-3 py-4">
+                    <ul className="flex flex-col gap-0.5">
+                        {yasNavItems.map((item) => (
+                            <li key={item.label}>
+                                <Link
+                                    to={item.href}
+                                    onClick={onClose}
+                                    className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-semibold text-white/90 transition duration-100 hover:bg-white/5 hover:text-white"
+                                >
+                                    {item.label}
+                                    <ArrowRight className="size-4 text-white/40" aria-hidden />
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="mt-6 flex flex-col gap-3 px-2">
+                        <Link
+                            to="/reserveren"
+                            onClick={onClose}
+                            className="flex items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-bold transition duration-100 hover:brightness-90 active:scale-[0.98]"
+                            style={{ background: YELLOW, color: DARK }}
+                        >
+                            <Calendar className="size-4" aria-hidden />
+                            Nu Boeken
+                        </Link>
+
+                        <div className="grid grid-cols-2 gap-2">
+                            <a
+                                href="tel:+31852128302"
+                                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 px-3 py-3 text-sm font-semibold text-white transition duration-100 hover:bg-white/5"
+                            >
+                                <Phone className="size-4" aria-hidden />
+                                Bellen
+                            </a>
+                            <a
+                                href="https://wa.me/31852128302"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 px-3 py-3 text-sm font-semibold text-white transition duration-100 hover:bg-white/5"
+                            >
+                                <MessageChatCircle className="size-4" aria-hidden />
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div className="border-t border-white/10 px-5 py-4 text-xs text-white/50">
+                    <p className="font-semibold text-white/80">YAS TaxiCentrale</p>
+                    <p className="mt-1">085 212 83 02 · 24/7 beschikbaar</p>
+                </div>
+            </aside>
+        </div>
+    );
+};
+
 interface YasHeaderProps {
     dark?: boolean;
     className?: string;
@@ -137,12 +254,10 @@ export const YasHeader = ({ dark, className }: YasHeaderProps) => {
             )}
         >
             <div className="mx-auto flex w-full max-w-container items-center justify-between gap-4 px-4 md:px-8">
-                {/* Logo */}
                 <Link to="/" className="shrink-0 outline-none">
                     <YasLogo dark={dark} className="text-lg" />
                 </Link>
 
-                {/* Desktop nav */}
                 <nav className="hidden md:flex items-center gap-1">
                     {yasNavItems.map((item) => (
                         <Link
@@ -155,7 +270,6 @@ export const YasHeader = ({ dark, className }: YasHeaderProps) => {
                     ))}
                 </nav>
 
-                {/* CTA */}
                 <div className="hidden md:flex items-center gap-3">
                     <Button color="primary" size="sm" href="/reserveren">
                         Nu Boeken
@@ -164,54 +278,24 @@ export const YasHeader = ({ dark, className }: YasHeaderProps) => {
 
                 {/* Mobile hamburger */}
                 <button
+                    type="button"
                     aria-label="Menu openen"
                     aria-expanded={mobileOpen}
-                    onClick={() => setMobileOpen((v) => !v)}
+                    onClick={() => setMobileOpen(true)}
                     className={cx(
                         "md:hidden rounded-lg p-2 transition duration-100",
                         dark ? "text-white hover:bg-white/10" : "text-secondary hover:bg-primary_hover",
                     )}
                 >
                     <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        {mobileOpen ? (
-                            <>
-                                <path d="M18 6L6 18" />
-                                <path d="M6 6L18 18" />
-                            </>
-                        ) : (
-                            <>
-                                <path d="M3 12H21" />
-                                <path d="M3 6H21" />
-                                <path d="M3 18H21" />
-                            </>
-                        )}
+                        <path d="M3 12H21" />
+                        <path d="M3 6H21" />
+                        <path d="M3 18H21" />
                     </svg>
                 </button>
             </div>
 
-            {/* Mobile menu */}
-            {mobileOpen && (
-                <div className="absolute top-full left-0 w-full bg-primary shadow-lg border-t border-secondary md:hidden z-50">
-                    <ul className="flex flex-col py-3">
-                        {yasNavItems.map((item) => (
-                            <li key={item.label}>
-                                <Link
-                                    to={item.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="block px-4 py-3 text-sm font-semibold text-primary hover:bg-primary_hover transition duration-100"
-                                >
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="px-4 pb-5 pt-2 border-t border-secondary">
-                        <Button color="primary" size="md" href="/reserveren" className="w-full justify-center">
-                            Nu Boeken
-                        </Button>
-                    </div>
-                </div>
-            )}
+            <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
         </header>
     );
 };
@@ -256,10 +340,21 @@ const socials = [
     { label: "SMS", icon: SmsIcon, href: "sms:+31852128302" },
 ];
 
+const MobileChrome = () => {
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    return (
+        <>
+            <YasBottomBar onMenuClick={() => setDrawerOpen(true)} />
+            <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+        </>
+    );
+};
+
 export const YasFooter = () => (
     <>
     <ContactPopup />
-    <footer className="bg-primary py-12 md:pt-16">
+    <MobileChrome />
+    <footer className="bg-primary py-12 md:pt-16 pb-[calc(3rem+env(safe-area-inset-bottom)+64px)] md:pb-12">
         <div className="mx-auto max-w-container px-4 md:px-8">
             <div className="flex flex-col justify-between gap-x-8 gap-y-12 lg:flex-row">
                 <div className="flex flex-col gap-6">
