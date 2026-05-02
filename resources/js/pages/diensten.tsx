@@ -1,9 +1,39 @@
 import { Briefcase01, Car01, Clock, Heart, MarkerPin01, Moon01, PhoneCall02, Shield01, ThumbsUp, Users01, Zap } from "@untitledui/icons";
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
+import { FaqsSection } from "@/components/faqs-section";
+
+interface FixedPrice {
+    id: number;
+    from_label: string;
+    to_label: string;
+    sedan_cents: number;
+    business_cents: number;
+    taxibus_cents: number;
+    is_active: boolean;
+    category: "airport" | "local";
+}
+
+interface FixedPricesResponse {
+    airport: FixedPrice[];
+    local: FixedPrice[];
+}
+
+const fetchFixedPrices = async (): Promise<FixedPricesResponse> => {
+    const res = await fetch("/api/v1/fixed-prices", { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error("Tarieven ophalen mislukt");
+    return res.json();
+};
+
+const formatEur = (cents: number) => {
+    const eur = cents / 100;
+    return eur % 1 === 0 ? `€ ${eur.toFixed(0)},-` : `€ ${eur.toFixed(2).replace(".", ",")}`;
+};
 
 type ServiceItem = {
     icon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -111,8 +141,83 @@ const WhyYas = () => (
     </section>
 );
 
+const RittenTarievenSection = () => {
+    const { data, isLoading } = useQuery<FixedPricesResponse>({
+        queryKey: ["public-fixed-prices"],
+        queryFn: fetchFixedPrices,
+    });
+
+    const local = data?.local ?? [];
+
+    return (
+        <section id="ritten-tarieven" className="bg-secondary py-16 md:py-24">
+            <div className="mx-auto max-w-container px-4 md:px-8">
+                <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Tarieven Ritten op Maat</h2>
+                <p className="mt-3 text-lg text-tertiary">Vaste prijzen per rit, inclusief BTW. Sedan voor 1–4 personen, business class voor zakelijk vervoer en taxibus voor groepen.</p>
+
+                {isLoading && (
+                    <p className="mt-8 text-md text-tertiary">Tarieven laden...</p>
+                )}
+
+                {!isLoading && local.length === 0 && (
+                    <p className="mt-8 text-md text-tertiary">Geen tarieven beschikbaar.</p>
+                )}
+
+                {local.length > 0 && (
+                    <div className="mt-8 overflow-x-auto rounded-2xl border border-secondary bg-primary">
+                        <table className="w-full min-w-[640px]">
+                            <thead>
+                                <tr className="bg-secondary">
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Route</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Sedan</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Business</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Taxibus</th>
+                                    <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {local.map((row) => (
+                                    <tr key={row.id} className="border-t border-secondary">
+                                        <td className="px-6 py-4 text-md text-primary">
+                                            {row.from_label} – {row.to_label}
+                                        </td>
+                                        <td className="px-6 py-4 text-left text-md font-semibold text-primary">
+                                            {formatEur(row.sedan_cents)}
+                                        </td>
+                                        <td className="px-6 py-4 text-left text-md text-tertiary">
+                                            {formatEur(row.business_cents)}
+                                        </td>
+                                        <td className="px-6 py-4 text-left text-md text-tertiary">
+                                            {formatEur(row.taxibus_cents)}
+                                        </td>
+                                        <td className="px-6 py-4 text-right">
+                                            <Button size="sm" href="/reserveren">Boeken</Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+                <p className="mt-3 text-sm text-quaternary">* Voor nachtritten kan een nachttoeslag in rekening worden gebracht. Andere bestemming? Bel ons voor een prijs op maat.</p>
+            </div>
+        </section>
+    );
+};
+
+const canonical = (path: string) =>
+    typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
+
 const Diensten = () => (
     <div className="bg-primary">
+        <Helmet>
+            <title>Diensten — YAS TaxiCentrale</title>
+            <meta
+                name="description"
+                content="Onze taxidiensten: airport service, zakelijk vervoer, groepsvervoer, ritten op maat, avond- en nachtritten en zorgvervoer. Vaste tarieven, 24/7 beschikbaar in Gouda en omgeving."
+            />
+            <link rel="canonical" href={canonical("/diensten")} />
+        </Helmet>
         <YasHeader />
 
         {/* Hero */}
@@ -139,70 +244,7 @@ const Diensten = () => (
         </section>
 
         {/* Ritten op Maat tarieven */}
-        <section id="ritten-tarieven" className="bg-secondary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Tarieven Ritten op Maat</h2>
-                <p className="mt-3 text-lg text-tertiary">Vaste prijzen per rit voor 1 t/m 4 personen, inclusief BTW.</p>
-                <div className="mt-8 overflow-hidden rounded-2xl border border-secondary bg-primary">
-                    <table className="w-full">
-                        <thead>
-                            <tr className="bg-secondary">
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Route</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Prijs (1–4 pers.)</th>
-                                <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {[
-                                { route: "Gouda – Gouda",                   price: "€ 10,-"   },
-                                { route: "Gouda – Reeuwijk",                price: "€ 17,50"  },
-                                { route: "Gouda – Reeuwijk Brug",           price: "€ 20,-"   },
-                                { route: "Gouda – Haastrecht",              price: "€ 20,-"   },
-                                { route: "Gouda – Stolwijk",                price: "€ 17,50"  },
-                                { route: "Gouda – Bergambacht",             price: "€ 25,-"   },
-                                { route: "Gouda – Driebruggen",             price: "€ 25,-"   },
-                                { route: "Gouda – Nieuwerbrug",             price: "€ 27,50"  },
-                                { route: "Gouda – Boskoop",                 price: "€ 27,50"  },
-                                { route: "Gouda – Gouderak",                price: "€ 17,50"  },
-                                { route: "Gouda – Moordrecht",              price: "€ 17,50"  },
-                                { route: "Gouda – Waddinxveen",             price: "€ 17,50"  },
-                                { route: "Gouda – Moerkapelle",             price: "€ 30,-"   },
-                                { route: "Gouda – Bodegraven",              price: "€ 32,50"  },
-                                { route: "Gouda – Nieuwerkerk a/d IJssel",  price: "€ 35,-"   },
-                                { route: "Gouda – Ouderkerk a/d IJssel",    price: "€ 35,-"   },
-                                { route: "Gouda – Oudewater",               price: "€ 35,-"   },
-                                { route: "Gouda – Zoetermeer",              price: "€ 37,50"  },
-                                { route: "Gouda – Schoonhoven",             price: "€ 40,-"   },
-                                { route: "Gouda – Lekkerkerk",              price: "€ 40,-"   },
-                                { route: "Gouda – Cappelle a/d IJssel",     price: "€ 40,-"   },
-                                { route: "Gouda – Krimpen a/d IJssel",      price: "€ 42,50"  },
-                                { route: "Gouda – Montfoort",               price: "€ 42,50"  },
-                                { route: "Gouda – Alphen a/d Rijn",         price: "€ 45,-"   },
-                                { route: "Gouda – Rotterdam Alexander",     price: "€ 47,50"  },
-                                { route: "Gouda – Woerden",                 price: "€ 50,-"   },
-                                { route: "Gouda – Rotterdam Centraal",      price: "€ 52,50"  },
-                                { route: "Gouda – Rotterdam Airport",       price: "€ 65,-"   },
-                                { route: "Gouda – Schiphol",                price: "€ 75,-"   },
-                                { route: "Gouda – Den Haag Centraal",       price: "€ 70,-"   },
-                                { route: "Gouda – Utrecht Centraal",        price: "€ 75,-"   },
-                                { route: "Gouda – Rotterdam Zuid",          price: "€ 62,50"  },
-                                { route: "Gouda – Amsterdam Centraal",      price: "€ 110,-"  },
-                                { route: "Gouda – Antwerpen",               price: "€ 175,-"  },
-                            ].map((row, i) => (
-                                <tr key={i} className="border-t border-secondary">
-                                    <td className="px-6 py-4 text-md text-primary">{row.route}</td>
-                                    <td className="px-6 py-4 text-left text-lg font-semibold text-primary">{row.price}</td>
-                                    <td className="px-6 py-4 text-right">
-                                        <Button size="sm" href="/reserveren">Boeken</Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <p className="mt-3 text-sm text-quaternary">* Voor nachtritten kan een nachttoeslag in rekening worden gebracht. Andere bestemming? Bel ons voor een prijs op maat.</p>
-            </div>
-        </section>
+        <RittenTarievenSection />
 
         {/* Bottom CTA */}
         <section className="bg-secondary py-16">
@@ -221,6 +263,7 @@ const Diensten = () => (
         </section>
 
         <WhyYas />
+        <FaqsSection />
         <SectionDivider />
         <YasFooter />
     </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Clock, Mail01, MarkerPin01, Phone } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
 
 import { Button } from "@/components/base/buttons/button";
 import { Checkbox } from "@/components/base/checkbox/checkbox";
@@ -53,8 +54,18 @@ const Contact = () => {
         setSubmitted(true);
     };
 
+    const canonical = typeof window !== "undefined" ? `${window.location.origin}/contact` : "/contact";
+
     return (
         <div className="bg-primary">
+            <Helmet>
+                <title>Contact — YAS TaxiCentrale</title>
+                <meta
+                    name="description"
+                    content="Neem contact op met YAS TaxiCentrale. Bel 085 212 83 02, stuur een WhatsApp of vul het contactformulier in. Wij zijn 24/7 bereikbaar."
+                />
+                <link rel="canonical" href={canonical} />
+            </Helmet>
             <YasHeader />
 
             <section className="grid grid-cols-1 lg:grid-cols-2" style={{ background: "#0E0E0E" }}>

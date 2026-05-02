@@ -1,4 +1,5 @@
 import { Car01, CheckCircle, Clock, MarkerPin01 } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
 
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
@@ -20,8 +21,18 @@ const USP_ITEMS = [
 const Reserveren = () => {
     const { step, setStep } = useBookingStore();
 
+    const canonical = typeof window !== "undefined" ? `${window.location.origin}/reserveren` : "/reserveren";
+
     return (
         <div className="bg-primary">
+            <Helmet>
+                <title>Reserveren — YAS TaxiCentrale</title>
+                <meta
+                    name="description"
+                    content="Reserveer online een taxi bij YAS TaxiCentrale. Vaste prijs, directe bevestiging en gratis annuleren tot 2 uur voor de rit. 24/7 beschikbaar."
+                />
+                <link rel="canonical" href={canonical} />
+            </Helmet>
             <YasHeader />
 
             <section className="py-16 md:py-24" style={{ background: "#0E0E0E" }}>

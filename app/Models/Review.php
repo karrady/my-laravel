@@ -10,12 +10,13 @@ class Review extends Model
         'author_name', 'author_location',
         'rating', 'content',
         'source', 'source_id',
-        'is_visible', 'sort_order',
+        'is_visible', 'sort_order', 'is_published',
     ];
 
     protected $casts = [
-        'rating'     => 'integer',
-        'sort_order' => 'integer',
-        'is_visible' => 'boolean',
+        'rating'       => 'integer',
+        'sort_order'   => 'integer',
+        'is_visible'   => 'boolean',
+        'is_published' => 'boolean',
     ];
 }

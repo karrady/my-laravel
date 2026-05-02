@@ -10,12 +10,62 @@ import {
     ThumbsUp,
     Wifi,
 } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
 
 import { Button } from "@/components/base/buttons/button";
+import { FaqsSection } from "@/components/faqs-section";
+import { ReviewsSection } from "@/components/reviews-section";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter } from "@/components/yas-layout";
 import { YasHero } from "@/components/yas-hero";
+
+const canonical = (path: string) =>
+    typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
+
+const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://yastaxicentrale.nl/#localbusiness",
+    name: "YAS TaxiCentrale",
+    description:
+        "Betrouwbaar taxivervoer in Gouda en de Rijn en Gouwe regio. Luchthaventransfers, zakelijk vervoer en ritten op maat met vaste tarieven.",
+    url: "https://yastaxicentrale.nl/",
+    telephone: "+31852128302",
+    priceRange: "€€",
+    address: {
+        "@type": "PostalAddress",
+        addressLocality: "Gouda",
+        addressRegion: "Zuid-Holland",
+        addressCountry: "NL",
+    },
+    openingHoursSpecification: [
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+            ],
+            opens: "00:00",
+            closes: "23:59",
+        },
+    ],
+    areaServed: [
+        { "@type": "City", name: "Gouda" },
+        { "@type": "City", name: "Waddinxveen" },
+        { "@type": "City", name: "Reeuwijk" },
+        { "@type": "City", name: "Bodegraven" },
+        { "@type": "City", name: "Boskoop" },
+        { "@type": "City", name: "Woerden" },
+        { "@type": "City", name: "Alphen aan den Rijn" },
+        { "@type": "City", name: "Zoetermeer" },
+    ],
+};
 
 /* ─── 1–2. Hero + Trust (vervangen door YasHero) ─────────────── */
 
@@ -176,9 +226,20 @@ const CtaSection = () => (
 /* ─── Page ───────────────────────────────────────────────────── */
 const Home = () => (
     <div className="bg-primary">
+        <Helmet>
+            <title>YAS TaxiCentrale — Taxi in Gouda & Rijn en Gouwe regio</title>
+            <meta
+                name="description"
+                content="YAS TaxiCentrale: betrouwbaar taxivervoer in Gouda en omgeving. Luchthaventransfers met vaste tarieven, zakelijk vervoer, 24/7 beschikbaar. Bel 085 212 83 02."
+            />
+            <link rel="canonical" href={canonical("/")} />
+            <script type="application/ld+json">{JSON.stringify(localBusinessLd)}</script>
+        </Helmet>
         <YasHero />
         <DienstenSection />
         <ServiceRegioSection />
+        <FaqsSection />
+        <ReviewsSection />
         <CtaSection />
         <SectionDivider />
         <YasFooter />

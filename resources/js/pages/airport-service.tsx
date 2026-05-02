@@ -1,70 +1,57 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CheckCircle, Clock, MarkerPin01, Shield01 } from "@untitledui/icons";
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
+import { ReviewsSection } from "@/components/reviews-section";
 
+interface FixedPrice {
+    id: number;
+    from_label: string;
+    to_label: string;
+    sedan_cents: number;
+    business_cents: number;
+    taxibus_cents: number;
+    is_active: boolean;
+    category: "airport" | "local";
+}
 
-const airports = [
+interface FixedPricesResponse {
+    airport: FixedPrice[];
+    local: FixedPrice[];
+}
+
+const fetchFixedPrices = async (): Promise<FixedPricesResponse> => {
+    const res = await fetch("/api/v1/fixed-prices", { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error("Tarieven ophalen mislukt");
+    return res.json();
+};
+
+const formatEur = (cents: number) => {
+    const eur = cents / 100;
+    return eur % 1 === 0 ? `€ ${eur.toFixed(0)},-` : `€ ${eur.toFixed(2).replace(".", ",")}`;
+};
+
+const AIRPORT_GROUPS: { code: string; name: string; matches: (toLabel: string) => boolean }[] = [
     {
-        name: "Amsterdam Schiphol",
         code: "AMS",
-        locations: [
-            { place: "Ammerstol",                price: "€ 105,-" },
-            { place: "Bergambacht",               price: "€ 95,-"  },
-            { place: "Berkenwoude",               price: "€ 100,-" },
-            { place: "Bodegraven",                price: "€ 75,-"  },
-            { place: "Boskoop",                   price: "€ 75,-"  },
-            { place: "Gouda",                     price: "€ 75,-",  popular: true },
-            { place: "Gouderak",                  price: "€ 90,-"  },
-            { place: "Haastrecht",                price: "€ 90,-"  },
-            { place: "Krimpen a/d IJssel",        price: "€ 120,-" },
-            { place: "Lekkerkerk",                price: "€ 120,-" },
-            { place: "Moordrecht",                price: "€ 85,-"  },
-            { place: "Nieuwerkerk a/d IJssel",    price: "€ 100,-" },
-            { place: "Ouderkerk a/d IJssel",      price: "€ 110,-" },
-            { place: "Oudewater",                 price: "€ 110,-" },
-            { place: "Reeuwijk",                  price: "€ 75,-"  },
-            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
-            { place: "Schoonhoven",               price: "€ 115,-" },
-            { place: "Stolwijk",                  price: "€ 90,-"  },
-            { place: "Vlist",                     price: "€ 100,-" },
-            { place: "Waddinxveen",               price: "€ 75,-"  },
-            { place: "Waddinxveen Zuidplas",      price: "€ 80,-"  },
-            { place: "Zevenhuizen / Moerkapelle", price: "€ 100,-" },
-        ],
+        name: "Amsterdam Schiphol",
+        matches: (t) => t.toLowerCase().includes("schiphol"),
     },
     {
-        name: "Rotterdam The Hague",
         code: "RTM",
-        locations: [
-            { place: "Ammerstol",                price: "€ 90,-"  },
-            { place: "Bergambacht",               price: "€ 85,-"  },
-            { place: "Berkenwoude",               price: "€ 90,-"  },
-            { place: "Bodegraven",                price: "€ 85,-"  },
-            { place: "Boskoop",                   price: "€ 90,-"  },
-            { place: "Gouda",                     price: "€ 65,-",  popular: true },
-            { place: "Gouderak",                  price: "€ 75,-"  },
-            { place: "Haastrecht",                price: "€ 75,-"  },
-            { place: "Krimpen a/d IJssel",        price: "€ 90,-"  },
-            { place: "Lekkerkerk",                price: "€ 90,-"  },
-            { place: "Moerdrecht",                price: "€ 65,-"  },
-            { place: "Moerkapelle",               price: "€ 85,-"  },
-            { place: "Nieuwerkerk a/d IJssel",    price: "€ 65,-"  },
-            { place: "Ouderkerk a/d IJssel",      price: "€ 90,-"  },
-            { place: "Oudewater",                 price: "€ 105,-" },
-            { place: "Reeuwijk",                  price: "€ 75,-"  },
-            { place: "Reeuwijk Sluipwijk",        price: "€ 85,-"  },
-            { place: "Schoonhoven",               price: "€ 105,-" },
-            { place: "Stolwijk",                  price: "€ 80,-"  },
-            { place: "Vlist",                     price: "€ 85,-"  },
-            { place: "Waddinxveen",               price: "€ 75,-"  },
-            { place: "Waddinxveen Noord",         price: "€ 80,-"  },
-            { place: "Zevenhuizen",               price: "€ 80,-"  },
-        ],
+        name: "Rotterdam The Hague",
+        matches: (t) => t.toLowerCase().includes("rotterdam") && t.toLowerCase().includes("airport"),
+    },
+    {
+        code: "EIN",
+        name: "Eindhoven Airport",
+        matches: (t) => t.toLowerCase().includes("eindhoven"),
     },
 ];
 
@@ -77,13 +64,41 @@ const included = [
     "Vaste prijs, geen meter, geen verrassing",
 ];
 
+const isPopularFrom = (label: string) => /^gouda(\s|$)/i.test(label);
+
+const canonical = (path: string) =>
+    typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
 
 const AirportService = () => {
     const [activeAirport, setActiveAirport] = useState(0);
-    const airport = airports[activeAirport];
+
+    const { data, isLoading } = useQuery<FixedPricesResponse>({
+        queryKey: ["public-fixed-prices"],
+        queryFn: fetchFixedPrices,
+    });
+
+    const groupedAirports = useMemo(() => {
+        const airportRows = data?.airport ?? [];
+        return AIRPORT_GROUPS.map((g) => ({
+            ...g,
+            locations: airportRows
+                .filter((r) => g.matches(r.to_label))
+                .sort((a, b) => a.from_label.localeCompare(b.from_label, "nl")),
+        })).filter((g) => g.locations.length > 0);
+    }, [data]);
+
+    const airport = groupedAirports[activeAirport];
 
     return (
         <div className="bg-primary">
+            <Helmet>
+                <title>Airport Service — Taxi naar Schiphol & Rotterdam Airport | YAS TaxiCentrale</title>
+                <meta
+                    name="description"
+                    content="Vaste tarieven naar Schiphol, Rotterdam The Hague Airport en Eindhoven Airport. Vluchtvolging, deur-tot-deur en 24/7 beschikbaar vanuit Gouda en omgeving."
+                />
+                <link rel="canonical" href={canonical("/airport-service")} />
+            </Helmet>
             <YasHeader />
 
             {/* Hero */}
@@ -110,54 +125,76 @@ const AirportService = () => {
                     <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Vaste luchthavenprijzen</h2>
 
                     {/* Airport tabs */}
-                    <div className="mt-8 flex gap-2 overflow-x-auto">
-                        {airports.map((a, i) => (
-                            <button
-                                key={a.code}
-                                onClick={() => setActiveAirport(i)}
-                                className={`shrink-0 rounded-lg px-4 py-2 text-sm font-semibold transition duration-100 ease-linear ${
-                                    activeAirport === i
-                                        ? "bg-brand-solid text-white"
-                                        : "bg-secondary text-secondary hover:bg-secondary_hover"
-                                }`}
-                            >
-                                {a.name}
-                            </button>
-                        ))}
-                    </div>
+                    {groupedAirports.length > 0 && (
+                        <div className="mt-8 flex gap-2 overflow-x-auto">
+                            {groupedAirports.map((a, i) => (
+                                <button
+                                    key={a.code}
+                                    onClick={() => setActiveAirport(i)}
+                                    className={`shrink-0 rounded-lg px-4 py-2 text-sm font-semibold transition duration-100 ease-linear ${
+                                        activeAirport === i
+                                            ? "bg-brand-solid text-white"
+                                            : "bg-secondary text-secondary hover:bg-secondary_hover"
+                                    }`}
+                                >
+                                    {a.name}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Pricing rows */}
-                    <div className="mt-6 overflow-hidden rounded-2xl border border-secondary">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-secondary">
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Opstapplaats</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Prijs (1–4 pers.)</th>
-                                    <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {airport.locations.map((loc, i) => (
-                                    <tr key={i} className="border-t border-secondary">
-                                        <td className="px-6 py-4 text-md text-primary">
-                                            {loc.place}
-                                            {loc.popular && (
-                                                <Badge color="brand" type="pill-color" size="sm" className="ml-2">
-                                                    Meest gevraagd
-                                                </Badge>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4 text-left text-lg font-semibold text-primary">{loc.price}</td>
-                                        <td className="px-6 py-4 text-right">
-                                            <Button size="sm" href="/reserveren">
-                                                Boeken
-                                            </Button>
-                                        </td>
+                    {isLoading && (
+                        <p className="mt-8 text-md text-tertiary">Tarieven laden...</p>
+                    )}
+
+                    {!isLoading && groupedAirports.length === 0 && (
+                        <p className="mt-8 text-md text-tertiary">Geen luchthaventarieven beschikbaar.</p>
+                    )}
+
+                    {airport && (
+                        <div className="mt-6 overflow-x-auto rounded-2xl border border-secondary">
+                            <table className="w-full min-w-[640px]">
+                                <thead>
+                                    <tr className="bg-secondary">
+                                        <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Opstapplaats</th>
+                                        <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Sedan</th>
+                                        <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Business</th>
+                                        <th className="px-6 py-4 text-left text-sm font-semibold text-secondary">Taxibus</th>
+                                        <th className="px-6 py-4 text-right text-sm font-semibold text-secondary"></th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {airport.locations.map((loc) => (
+                                        <tr key={loc.id} className="border-t border-secondary">
+                                            <td className="px-6 py-4 text-md text-primary">
+                                                {loc.from_label}
+                                                {isPopularFrom(loc.from_label) && (
+                                                    <Badge color="brand" type="pill-color" size="sm" className="ml-2">
+                                                        Meest gevraagd
+                                                    </Badge>
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4 text-left text-md font-semibold text-primary">
+                                                {formatEur(loc.sedan_cents)}
+                                            </td>
+                                            <td className="px-6 py-4 text-left text-md text-tertiary">
+                                                {formatEur(loc.business_cents)}
+                                            </td>
+                                            <td className="px-6 py-4 text-left text-md text-tertiary">
+                                                {formatEur(loc.taxibus_cents)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                <Button size="sm" href="/reserveren">
+                                                    Boeken
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
 
                     {/* Other airports CTA */}
                     <div className="mt-8 rounded-2xl border border-secondary bg-secondary p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -234,6 +271,7 @@ const AirportService = () => {
                 </div>
             </section>
 
+            <ReviewsSection />
             <SectionDivider />
             <YasFooter />
         </div>

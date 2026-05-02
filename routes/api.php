@@ -22,6 +22,15 @@ Route::prefix('v1')->group(function () {
     Route::get('/flights/lookup', [FlightController::class, 'lookup']);
 });
 
+// Publieke CMS-data (geen auth)
+Route::prefix('v1')->group(function () {
+    Route::get('/faqs', [App\Http\Controllers\Api\PublicCmsController::class, 'faqs']);
+    Route::get('/reviews', [App\Http\Controllers\Api\PublicCmsController::class, 'reviews']);
+    Route::get('/fixed-prices', [App\Http\Controllers\Api\PublicCmsController::class, 'fixedPrices']);
+    Route::get('/service-areas', [App\Http\Controllers\Api\PublicCmsController::class, 'serviceAreas']);
+    Route::get('/service-areas/{slug}', [App\Http\Controllers\Api\PublicCmsController::class, 'serviceArea']);
+});
+
 // Chauffeursdashboard API — beveiligd met DRIVER_PIN header
 Route::middleware('driver.pin')->prefix('v1/driver')->group(function () {
     Route::get('/bookings', [DriverController::class, 'index']);
@@ -85,4 +94,10 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/cms/service-areas', [CmsController::class, 'serviceAreasStore']);
     Route::patch('/cms/service-areas/{serviceArea}', [CmsController::class, 'serviceAreasUpdate']);
     Route::delete('/cms/service-areas/{serviceArea}', [CmsController::class, 'serviceAreasDestroy']);
+
+    // Contactberichten beheer
+    Route::get('/contact-messages', [CmsController::class, 'contactMessagesIndex']);
+    Route::get('/contact-messages/{message}', [CmsController::class, 'contactMessagesShow']);
+    Route::patch('/contact-messages/{message}', [CmsController::class, 'contactMessagesUpdate']);
+    Route::delete('/contact-messages/{message}', [CmsController::class, 'contactMessagesDestroy']);
 });

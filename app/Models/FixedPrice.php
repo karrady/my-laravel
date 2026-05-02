@@ -10,7 +10,7 @@ class FixedPrice extends Model
         'from_label', 'from_lat', 'from_lng', 'from_radius_km',
         'to_label', 'to_lat', 'to_lng', 'to_radius_km',
         'sedan_cents', 'business_cents', 'taxibus_cents',
-        'is_bidirectional', 'is_active',
+        'is_bidirectional', 'is_active', 'category',
     ];
 
     protected $casts = [

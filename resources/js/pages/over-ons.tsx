@@ -1,9 +1,13 @@
 import { CheckCircle, Heart, MarkerPin01, Shield01, Star01, ThumbsUp } from "@untitledui/icons";
+import { Helmet } from "react-helmet-async";
 
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YasFooter, YasHeader } from "@/components/yas-layout";
+
+const canonical = (path: string) =>
+    typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
 
 const waarden = [
     {
@@ -39,6 +43,14 @@ const team = [
 
 const OverOns = () => (
     <div className="bg-primary">
+        <Helmet>
+            <title>Over Ons — YAS TaxiCentrale</title>
+            <meta
+                name="description"
+                content="Maak kennis met YAS TaxiCentrale, uw vertrouwde taxipartner in Gouda. Lees over onze waarden, ons verhaal en waarom klanten al jaren voor ons kiezen."
+            />
+            <link rel="canonical" href={canonical("/over-ons")} />
+        </Helmet>
         <YasHeader />
 
         {/* Hero */}
