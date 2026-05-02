@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactMessage;
 use App\Models\Faq;
 use App\Models\FixedPrice;
 use App\Models\Review;
@@ -60,18 +61,26 @@ class CmsController extends Controller
 
     public function fixedPricesIndex(): JsonResponse
     {
-        return response()->json(FixedPrice::with('vehicle')->orderBy('vehicle_type')->get());
+        return response()->json(FixedPrice::orderBy('category')->orderBy('from_label')->get());
     }
 
     public function fixedPricesStore(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'vehicle_type'   => 'required|string|max:50',
-            'from_city'      => 'required|string|max:100',
-            'to_city'        => 'required|string|max:100',
-            'price_cents'    => 'required|integer|min:0',
-            'return_price_cents' => 'nullable|integer|min:0',
-            'is_active'      => 'boolean',
+            'from_label'       => 'required|string|max:120',
+            'to_label'         => 'required|string|max:120',
+            'from_lat'         => 'required|numeric|between:-90,90',
+            'from_lng'         => 'required|numeric|between:-180,180',
+            'from_radius_km'   => 'nullable|integer|min:0|max:255',
+            'to_lat'           => 'required|numeric|between:-90,90',
+            'to_lng'           => 'required|numeric|between:-180,180',
+            'to_radius_km'     => 'nullable|integer|min:0|max:255',
+            'sedan_cents'      => 'required|integer|min:0',
+            'business_cents'   => 'required|integer|min:0',
+            'taxibus_cents'    => 'required|integer|min:0',
+            'is_bidirectional' => 'boolean',
+            'is_active'        => 'boolean',
+            'category'         => 'required|in:airport,local',
         ]);
 
         return response()->json(FixedPrice::create($data), 201);
@@ -80,12 +89,20 @@ class CmsController extends Controller
     public function fixedPricesUpdate(Request $request, FixedPrice $fixedPrice): JsonResponse
     {
         $fixedPrice->update($request->validate([
-            'vehicle_type'       => 'sometimes|string|max:50',
-            'from_city'          => 'sometimes|string|max:100',
-            'to_city'            => 'sometimes|string|max:100',
-            'price_cents'        => 'sometimes|integer|min:0',
-            'return_price_cents' => 'nullable|integer|min:0',
-            'is_active'          => 'sometimes|boolean',
+            'from_label'       => 'sometimes|string|max:120',
+            'to_label'         => 'sometimes|string|max:120',
+            'from_lat'         => 'sometimes|numeric|between:-90,90',
+            'from_lng'         => 'sometimes|numeric|between:-180,180',
+            'from_radius_km'   => 'nullable|integer|min:0|max:255',
+            'to_lat'           => 'sometimes|numeric|between:-90,90',
+            'to_lng'           => 'sometimes|numeric|between:-180,180',
+            'to_radius_km'     => 'nullable|integer|min:0|max:255',
+            'sedan_cents'      => 'sometimes|integer|min:0',
+            'business_cents'   => 'sometimes|integer|min:0',
+            'taxibus_cents'    => 'sometimes|integer|min:0',
+            'is_bidirectional' => 'sometimes|boolean',
+            'is_active'        => 'sometimes|boolean',
+            'category'         => 'sometimes|in:airport,local',
         ]));
 
         return response()->json($fixedPrice->fresh());
@@ -179,15 +196,29 @@ class CmsController extends Controller
 
     public function serviceAreasIndex(): JsonResponse
     {
-        return response()->json(ServiceArea::orderBy('name')->get());
+        return response()->json(ServiceArea::orderBy('sort_order')->orderBy('name')->get());
     }
 
     public function serviceAreasStore(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'name'       => 'required|string|max:100',
-            'slug'       => 'required|string|max:100|unique:service_areas',
-            'is_active'  => 'boolean',
+            'name'              => 'required|string|max:100',
+            'slug'              => 'required|string|max:100|unique:service_areas',
+            'description_nl'    => 'nullable|string',
+            'description_short' => 'nullable|string|max:255',
+            'lat'               => 'nullable|numeric|between:-90,90',
+            'lng'               => 'nullable|numeric|between:-180,180',
+            'is_visible'        => 'boolean',
+            'sort_order'        => 'nullable|integer|min:0|max:255',
+            'meta_title'        => 'nullable|string|max:255',
+            'meta_description'  => 'nullable|string',
+            'hero_subtitle'     => 'nullable|string|max:255',
+            'intro_html'        => 'nullable|string',
+            'popular_routes'    => 'nullable|array',
+            'popular_routes.*.from'      => 'required_with:popular_routes|string|max:100',
+            'popular_routes.*.to'        => 'required_with:popular_routes|string|max:100',
+            'popular_routes.*.price_eur' => 'required_with:popular_routes|numeric|min:0',
+            'is_published'      => 'boolean',
         ]);
 
         return response()->json(ServiceArea::create($data), 201);
@@ -196,9 +227,23 @@ class CmsController extends Controller
     public function serviceAreasUpdate(Request $request, ServiceArea $serviceArea): JsonResponse
     {
         $serviceArea->update($request->validate([
-            'name'      => 'sometimes|string|max:100',
-            'slug'      => 'sometimes|string|max:100|unique:service_areas,slug,' . $serviceArea->id,
-            'is_active' => 'sometimes|boolean',
+            'name'              => 'sometimes|string|max:100',
+            'slug'              => 'sometimes|string|max:100|unique:service_areas,slug,' . $serviceArea->id,
+            'description_nl'    => 'nullable|string',
+            'description_short' => 'nullable|string|max:255',
+            'lat'               => 'nullable|numeric|between:-90,90',
+            'lng'               => 'nullable|numeric|between:-180,180',
+            'is_visible'        => 'sometimes|boolean',
+            'sort_order'        => 'nullable|integer|min:0|max:255',
+            'meta_title'        => 'nullable|string|max:255',
+            'meta_description'  => 'nullable|string',
+            'hero_subtitle'     => 'nullable|string|max:255',
+            'intro_html'        => 'nullable|string',
+            'popular_routes'    => 'nullable|array',
+            'popular_routes.*.from'      => 'required_with:popular_routes|string|max:100',
+            'popular_routes.*.to'        => 'required_with:popular_routes|string|max:100',
+            'popular_routes.*.price_eur' => 'required_with:popular_routes|numeric|min:0',
+            'is_published'      => 'sometimes|boolean',
         ]));
 
         return response()->json($serviceArea->fresh());
@@ -207,6 +252,45 @@ class CmsController extends Controller
     public function serviceAreasDestroy(ServiceArea $serviceArea): JsonResponse
     {
         $serviceArea->delete();
+        return response()->json(null, 204);
+    }
+
+    // ─── Contact Messages ─────────────────────────────────────────────────────
+
+    public function contactMessagesIndex(Request $request): JsonResponse
+    {
+        $filter = $request->query('filter', 'all');
+
+        $query = ContactMessage::query()->orderByDesc('created_at');
+
+        if ($filter === 'unread') {
+            $query->where('is_read', false);
+        } elseif ($filter === 'unhandled') {
+            $query->where('is_handled', false);
+        }
+
+        return response()->json($query->paginate(20));
+    }
+
+    public function contactMessagesShow(ContactMessage $message): JsonResponse
+    {
+        return response()->json($message);
+    }
+
+    public function contactMessagesUpdate(Request $request, ContactMessage $message): JsonResponse
+    {
+        $message->update($request->validate([
+            'is_read'    => 'sometimes|boolean',
+            'is_handled' => 'sometimes|boolean',
+            'notes'      => 'nullable|string',
+        ]));
+
+        return response()->json($message->fresh());
+    }
+
+    public function contactMessagesDestroy(ContactMessage $message): JsonResponse
+    {
+        $message->delete();
         return response()->json(null, 204);
     }
 }

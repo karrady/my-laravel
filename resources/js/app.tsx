@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Navigate, Outlet } from "react-router";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { useAdminAuthStore } from "@/stores/admin-auth-store";
 
@@ -15,6 +16,7 @@ const OverOns = lazy(() => import("@/pages/over-ons"));
 const Contact = lazy(() => import("@/pages/contact"));
 const Reserveren = lazy(() => import("@/pages/reserveren"));
 const Chauffeur = lazy(() => import("@/pages/chauffeur"));
+const TaxiArea = lazy(() => import("@/pages/taxi-area"));
 
 // Admin
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
@@ -23,10 +25,12 @@ const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
 const AdminBoekingen = lazy(() => import("@/pages/admin/boekingen"));
 const AdminBoeking = lazy(() => import("@/pages/admin/boeking-detail"));
 const AdminKlanten = lazy(() => import("@/pages/admin/klanten"));
+const AdminContactBerichten = lazy(() => import("@/pages/admin/contact-berichten"));
 const AdminCmsVoertuigen = lazy(() => import("@/pages/admin/cms-voertuigen"));
 const AdminCmsFaqs = lazy(() => import("@/pages/admin/cms-faqs"));
 const AdminCmsReviews = lazy(() => import("@/pages/admin/cms-reviews"));
-const AdminCmsDiensten = lazy(() => import("@/pages/admin/cms-diensten"));
+const AdminCmsServiceAreas = lazy(() => import("@/pages/admin/cms-service-areas"));
+const AdminCmsTarieven = lazy(() => import("@/pages/admin/cms-tarieven"));
 
 function AdminGuard() {
     const isAuthenticated = useAdminAuthStore((s) => s.isAuthenticated)();
@@ -49,6 +53,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/reserveren" element={<Reserveren />} />
                 <Route path="/chauffeur" element={<Chauffeur />} />
+                <Route path="/taxi/:slug" element={<TaxiArea />} />
 
                 {/* Admin */}
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -59,10 +64,13 @@ function App() {
                         <Route path="/admin/boekingen" element={<AdminBoekingen />} />
                         <Route path="/admin/boekingen/:id" element={<AdminBoeking />} />
                         <Route path="/admin/klanten" element={<AdminKlanten />} />
+                        <Route path="/admin/contact-berichten" element={<AdminContactBerichten />} />
                         <Route path="/admin/cms/voertuigen" element={<AdminCmsVoertuigen />} />
                         <Route path="/admin/cms/faqs" element={<AdminCmsFaqs />} />
                         <Route path="/admin/cms/reviews" element={<AdminCmsReviews />} />
-                        <Route path="/admin/cms/diensten" element={<AdminCmsDiensten />} />
+                        <Route path="/admin/cms/service-areas" element={<AdminCmsServiceAreas />} />
+                        <Route path="/admin/cms/diensten" element={<Navigate to="/admin/cms/service-areas" replace />} />
+                        <Route path="/admin/cms/tarieven" element={<AdminCmsTarieven />} />
                     </Route>
                 </Route>
             </Routes>
@@ -74,11 +82,13 @@ const rootEl = document.getElementById("root");
 if (rootEl) {
     createRoot(rootEl).render(
         <StrictMode>
-            <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </QueryClientProvider>
+            <HelmetProvider>
+                <QueryClientProvider client={queryClient}>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </QueryClientProvider>
+            </HelmetProvider>
         </StrictMode>,
     );
 }

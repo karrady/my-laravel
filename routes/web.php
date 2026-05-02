@@ -12,6 +12,15 @@ Route::get('/reserveren', fn () => view('spa'))->name('reserveren');
 Route::get('/contact', fn () => view('spa'))->name('contact');
 Route::get('/chauffeur', fn () => view('spa'))->name('chauffeur');
 
+// Stadspagina's voor lokaal SEO — /taxi/{slug} via SPA, data komt uit service_areas
+Route::get('/taxi/{slug}', fn () => view('spa'))->name('taxi.area');
+
+// Admin SPA — alle /admin/* paden serveren de SPA, React Router neemt het over
+Route::get('/admin/{any?}', fn () => view('spa'))->where('any', '.*')->name('admin');
+
+// Sitemap voor zoekmachines (publieke pagina's + alle gepubliceerde service-areas)
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 // Contact form POST — keep for backwards compatibility with blade-era tests
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
