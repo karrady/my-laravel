@@ -15,6 +15,7 @@ import {
   Users01,
 } from "@untitledui/icons";
 import type { FC, SVGProps } from "react";
+import { ToastProvider } from "@/components/application/toast";
 import { useAdminAuthStore } from "@/stores/admin-auth-store";
 import { adminApi } from "@/utils/admin-api";
 import { cx } from "@/utils/cx";
@@ -131,7 +132,9 @@ export default function AdminLayout() {
 
       {/* Main */}
       <main className="flex-1 overflow-y-auto">
-        <Outlet />
+        <ToastProvider>
+          <Outlet />
+        </ToastProvider>
       </main>
     </div>
   );

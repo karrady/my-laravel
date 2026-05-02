@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Edit01, Eye, EyeOff, MarkerPin01, Plus, Trash01 } from "@untitledui/icons";
+import { Badge } from "@/components/base/badges/badges";
+import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
+import { TextArea } from "@/components/base/textarea/textarea";
+import { ConfirmInline } from "@/components/application/confirm-inline";
+import { EmptyState } from "@/components/application/empty-state";
+import { PageHeader } from "@/components/application/page-header";
+import { SlideOver } from "@/components/application/slide-over";
+import { useToast } from "@/components/application/toast";
 import { adminApi } from "@/utils/admin-api";
 
 interface PopularRoute {
@@ -45,10 +55,21 @@ const empty: FormState = {
   popular_routes: [],
 };
 
+function autoSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
 export default function AdminCmsServiceAreas() {
   const qc = useQueryClient();
-  const [editing, setEditing] = useState<Partial<ServiceArea> | null>(null);
-  const [creating, setCreating] = useState(false);
+  const toast = useToast();
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
   const [form, setForm] = useState<FormState>({ ...empty });
 
   const { data = [], isLoading } = useQuery<ServiceArea[]>({
@@ -58,21 +79,42 @@ export default function AdminCmsServiceAreas() {
 
   const createMutation = useMutation({
     mutationFn: (d: FormState) => adminApi.post("/cms/service-areas", d),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] }); setCreating(false); setForm({ ...empty }); },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] });
+      setOpen(false);
+      toast.success("Servicegebied toegevoegd");
+    },
+    onError: (e: Error) => toast.error("Aanmaken mislukt", e.message),
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: number; data: Partial<FormState> }) => adminApi.patch(`/cms/service-areas/${id}`, data),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] }); setEditing(null); },
+    mutationFn: ({ id, data }: { id: number; data: FormState }) =>
+      adminApi.patch(`/cms/service-areas/${id}`, data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] });
+      setOpen(false);
+      toast.success("Servicegebied opgeslagen");
+    },
+    onError: (e: Error) => toast.error("Opslaan mislukt", e.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => adminApi.delete(`/cms/service-areas/${id}`),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-cms-service-areas"] });
+      toast.success("Servicegebied verwijderd");
+    },
+    onError: (e: Error) => toast.error("Verwijderen mislukt", e.message),
   });
 
-  function openEdit(a: ServiceArea) {
-    setEditing(a);
+  function startCreate() {
+    setEditingId(null);
+    setForm({ ...empty });
+    setOpen(true);
+  }
+
+  function startEdit(a: ServiceArea) {
+    setEditingId(a.id);
     setForm({
       name: a.name,
       slug: a.slug,
@@ -84,25 +126,7 @@ export default function AdminCmsServiceAreas() {
       intro_html: a.intro_html ?? "",
       popular_routes: Array.isArray(a.popular_routes) ? a.popular_routes : [],
     });
-  }
-
-  function autoSlug(name: string) {
-    return name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
-  }
-
-  function addRoute() {
-    setForm((p) => ({ ...p, popular_routes: [...p.popular_routes, { from: "", to: "", price_eur: "" }] }));
-  }
-
-  function removeRoute(idx: number) {
-    setForm((p) => ({ ...p, popular_routes: p.popular_routes.filter((_, i) => i !== idx) }));
-  }
-
-  function updateRoute(idx: number, field: keyof PopularRoute, value: string) {
-    setForm((p) => ({
-      ...p,
-      popular_routes: p.popular_routes.map((r, i) => i === idx ? { ...r, [field]: value } : r),
-    }));
+    setOpen(true);
   }
 
   function handleSave() {
@@ -116,149 +140,263 @@ export default function AdminCmsServiceAreas() {
           price_eur: r.price_eur === "" || r.price_eur === null ? 0 : Number(r.price_eur),
         })),
     };
-    if (editing?.id) {
-      updateMutation.mutate({ id: editing.id, data: payload });
-    } else {
-      createMutation.mutate(payload);
-    }
+    if (editingId) updateMutation.mutate({ id: editingId, data: payload });
+    else createMutation.mutate(payload);
   }
 
-  return (
-    <div className="p-6 max-w-5xl mx-auto space-y-5">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold text-primary">Servicegebieden</h1>
-        <button onClick={() => { setCreating(true); setForm({ ...empty }); }} className="px-4 py-2 text-sm font-medium bg-brand-solid text-white rounded-lg hover:bg-brand-solid_hover transition duration-100">
-          + Toevoegen
-        </button>
-      </div>
+  const isSaving = createMutation.isPending || updateMutation.isPending;
 
-      {isLoading ? <p className="text-tertiary text-sm">Laden…</p> : (
-        <div className="bg-primary rounded-2xl border border-secondary overflow-hidden">
+  return (
+    <div className="space-y-6 p-6 md:p-8">
+      <PageHeader
+        title="Servicegebieden"
+        description="Beheer de steden en regio's waar YAS taxidiensten aanbiedt. Gepubliceerde gebieden krijgen een eigen landingspagina op de publieke site."
+        actions={
+          <Button size="md" iconLeading={Plus} onClick={startCreate}>
+            Nieuw gebied
+          </Button>
+        }
+      />
+
+      {isLoading ? (
+        <p className="text-sm text-tertiary">Laden…</p>
+      ) : data.length === 0 ? (
+        <EmptyState
+          icon={MarkerPin01}
+          title="Nog geen servicegebieden"
+          description="Voeg het eerste gebied toe om de publieke stadspagina's mogelijk te maken."
+          action={<Button size="md" iconLeading={Plus} onClick={startCreate}>Nieuw gebied</Button>}
+        />
+      ) : (
+        <div className="overflow-hidden rounded-xl border border-secondary bg-primary">
           <table className="w-full text-sm">
             <thead className="border-b border-secondary bg-secondary">
               <tr>
-                {["Naam", "Slug", "Status", "Gepubliceerd", ""].map((h) => (
-                  <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-tertiary uppercase tracking-wider">{h}</th>
-                ))}
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Naam</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Slug</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Zichtbaar</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-tertiary uppercase">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-semibold tracking-wider text-tertiary uppercase">Acties</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-secondary">
               {data.map((a) => (
-                <tr key={a.id} className="hover:bg-primary_hover transition duration-100">
-                  <td className="px-4 py-3 text-primary font-medium">{a.name}</td>
-                  <td className="px-4 py-3 text-tertiary font-mono text-xs">{a.slug}</td>
-                  <td className="px-4 py-3">
-                    {a.is_visible
-                      ? <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-success-secondary text-success-primary">Actief</span>
-                      : <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-secondary text-tertiary">Inactief</span>}
+                <tr key={a.id} className="transition duration-100 ease-linear hover:bg-primary_hover">
+                  <td className="px-6 py-4 font-medium text-primary">{a.name}</td>
+                  <td className="px-6 py-4 font-mono text-xs text-tertiary">/taxi/{a.slug}</td>
+                  <td className="px-6 py-4">
+                    {a.is_visible ? (
+                      <Badge type="pill-color" color="success" size="sm">
+                        <Eye aria-hidden="true" className="size-3" /> Zichtbaar
+                      </Badge>
+                    ) : (
+                      <Badge type="pill-color" color="gray" size="sm">
+                        <EyeOff aria-hidden="true" className="size-3" /> Verborgen
+                      </Badge>
+                    )}
                   </td>
-                  <td className="px-4 py-3">
-                    {a.is_published
-                      ? <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-success-secondary text-success-primary">Live</span>
-                      : <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-warning-secondary text-warning-primary">Concept</span>}
+                  <td className="px-6 py-4">
+                    {a.is_published ? (
+                      <Badge type="pill-color" color="success" size="sm">Live</Badge>
+                    ) : (
+                      <Badge type="pill-color" color="warning" size="sm">Concept</Badge>
+                    )}
                   </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className="flex gap-2 justify-end">
-                      <button onClick={() => openEdit(a)} className="px-3 py-1.5 text-xs rounded-lg border border-secondary text-secondary hover:bg-primary_hover transition duration-100">Bewerken</button>
-                      <button onClick={() => deleteMutation.mutate(a.id)} className="px-3 py-1.5 text-xs rounded-lg border border-error text-error-primary hover:bg-error-primary transition duration-100">Verwijderen</button>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-1">
+                      <Button size="sm" color="tertiary" iconLeading={Edit01} onClick={() => startEdit(a)}>
+                        Bewerken
+                      </Button>
+                      <ConfirmInline
+                        icon={Trash01}
+                        onConfirm={() => deleteMutation.mutate(a.id)}
+                        isLoading={deleteMutation.isPending && deleteMutation.variables === a.id}
+                      />
                     </div>
                   </td>
                 </tr>
               ))}
-              {data.length === 0 && (
-                <tr><td colSpan={5} className="px-4 py-8 text-center text-tertiary">Geen servicegebieden.</td></tr>
-              )}
             </tbody>
           </table>
         </div>
       )}
 
-      {(creating || editing) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay overflow-y-auto py-8">
-          <div className="bg-primary rounded-2xl border border-secondary shadow-xl w-full max-w-2xl mx-4 p-6 space-y-4 my-auto">
-            <h2 className="text-base font-semibold text-primary">{editing ? "Servicegebied bewerken" : "Servicegebied toevoegen"}</h2>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-medium text-secondary mb-1">Naam</label>
-                <input value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value, slug: !editing ? autoSlug(e.target.value) : p.slug }))}
-                  className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-secondary mb-1">Slug</label>
-                <input value={form.slug} onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))}
-                  className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand font-mono" />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-secondary">Meta titel</label>
-                <span className="text-xs text-quaternary">{form.meta_title.length}/70</span>
-              </div>
-              <input maxLength={70} value={form.meta_title} onChange={(e) => setForm((p) => ({ ...p, meta_title: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-secondary">Meta beschrijving</label>
-                <span className="text-xs text-quaternary">{form.meta_description.length}/160</span>
-              </div>
-              <textarea rows={2} maxLength={160} value={form.meta_description} onChange={(e) => setForm((p) => ({ ...p, meta_description: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand resize-none" />
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-secondary mb-1">Hero ondertitel</label>
-              <input value={form.hero_subtitle} onChange={(e) => setForm((p) => ({ ...p, hero_subtitle: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-secondary mb-1">Intro tekst</label>
-              <textarea rows={6} value={form.intro_html} onChange={(e) => setForm((p) => ({ ...p, intro_html: e.target.value }))}
-                className="w-full px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand resize-none font-mono" />
-              <p className="text-xs text-quaternary mt-1">HTML is toegestaan.</p>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="block text-xs font-medium text-secondary">Populaire routes</label>
-                <button type="button" onClick={addRoute} className="px-2.5 py-1 text-xs rounded-lg border border-secondary text-secondary hover:bg-primary_hover transition duration-100">+ Route</button>
-              </div>
-              <div className="space-y-2">
-                {form.popular_routes.length === 0 && <p className="text-xs text-quaternary">Nog geen routes toegevoegd.</p>}
-                {form.popular_routes.map((r, i) => (
-                  <div key={i} className="flex gap-2">
-                    <input value={r.from} onChange={(e) => updateRoute(i, "from", e.target.value)} placeholder="Van"
-                      className="flex-1 px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-                    <input value={r.to} onChange={(e) => updateRoute(i, "to", e.target.value)} placeholder="Naar"
-                      className="flex-1 px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-                    <input type="number" value={r.price_eur} onChange={(e) => updateRoute(i, "price_eur", e.target.value)} placeholder="€"
-                      className="w-24 px-3 py-2 rounded-lg border border-primary text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-                    <button type="button" onClick={() => removeRoute(i)} className="px-3 py-1.5 text-xs rounded-lg border border-error text-error-primary hover:bg-error-primary transition duration-100">×</button>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-4 pt-2">
-              <label className="flex items-center gap-2 text-sm text-secondary cursor-pointer">
-                <input type="checkbox" checked={form.is_visible} onChange={(e) => setForm((p) => ({ ...p, is_visible: e.target.checked }))} className="rounded" />
-                Zichtbaar
-              </label>
-              <label className="flex items-center gap-2 text-sm text-secondary cursor-pointer">
-                <input type="checkbox" checked={form.is_published} onChange={(e) => setForm((p) => ({ ...p, is_published: e.target.checked }))} className="rounded" />
-                Gepubliceerd op publieke site
-              </label>
-            </div>
-
-            <div className="flex gap-3 justify-end pt-2">
-              <button onClick={() => { setCreating(false); setEditing(null); }} className="px-4 py-2 text-sm rounded-lg border border-secondary text-secondary hover:bg-primary_hover transition duration-100">Annuleren</button>
-              <button onClick={handleSave} className="px-4 py-2 text-sm font-medium rounded-lg bg-brand-solid text-white hover:bg-brand-solid_hover transition duration-100">Opslaan</button>
-            </div>
+      <SlideOver
+        isOpen={open}
+        onOpenChange={setOpen}
+        size="lg"
+        title={editingId ? "Servicegebied bewerken" : "Nieuw servicegebied"}
+        description="SEO-content die op /taxi/{slug} wordt getoond."
+        footer={
+          <div className="flex justify-end gap-3">
+            <Button color="secondary" onClick={() => setOpen(false)} isDisabled={isSaving}>
+              Annuleren
+            </Button>
+            <Button onClick={handleSave} isLoading={isSaving} showTextWhileLoading>
+              {editingId ? "Wijzigingen opslaan" : "Aanmaken"}
+            </Button>
           </div>
+        }
+      >
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <Input
+              label="Naam"
+              isRequired
+              value={form.name}
+              onChange={(value) =>
+                setForm((p) => ({ ...p, name: value, slug: !editingId ? autoSlug(value) : p.slug }))
+              }
+              placeholder="Gouda"
+            />
+            <Input
+              label="Slug"
+              isRequired
+              value={form.slug}
+              onChange={(value) => setForm((p) => ({ ...p, slug: value }))}
+              hint={`Wordt /taxi/${form.slug || "…"}`}
+              placeholder="gouda"
+            />
+          </div>
+
+          <Input
+            label="Meta titel"
+            value={form.meta_title}
+            onChange={(value) => setForm((p) => ({ ...p, meta_title: value }))}
+            hint={`${form.meta_title.length}/70 — verschijnt in Google's zoekresultaten`}
+            maxLength={70}
+            placeholder="Taxi Gouda — YAS TaxiCentrale"
+          />
+
+          <TextArea
+            label="Meta beschrijving"
+            value={form.meta_description}
+            onChange={(value) => setForm((p) => ({ ...p, meta_description: value }))}
+            hint={`${form.meta_description.length}/160`}
+            rows={2}
+            maxLength={160}
+            placeholder="Betrouwbaar taxivervoer in Gouda. Vaste tarieven, 24/7 beschikbaar."
+          />
+
+          <Input
+            label="Hero ondertitel"
+            value={form.hero_subtitle}
+            onChange={(value) => setForm((p) => ({ ...p, hero_subtitle: value }))}
+            placeholder="Uw taxi in Gouda en omstreken — 24/7"
+          />
+
+          <TextArea
+            label="Intro tekst (HTML toegestaan)"
+            value={form.intro_html}
+            onChange={(value) => setForm((p) => ({ ...p, intro_html: value }))}
+            rows={6}
+            placeholder="<p>Welkom bij YAS in Gouda…</p>"
+          />
+
+          <PopularRoutesField
+            routes={form.popular_routes}
+            onChange={(popular_routes) => setForm((p) => ({ ...p, popular_routes }))}
+          />
+
+          <div className="space-y-3 rounded-lg border border-secondary bg-secondary_subtle p-4">
+            <p className="text-sm font-medium text-secondary">Zichtbaarheid</p>
+            <label className="flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={form.is_visible}
+                onChange={(e) => setForm((p) => ({ ...p, is_visible: e.target.checked }))}
+                className="mt-1 size-4 rounded border-primary"
+              />
+              <span className="text-sm">
+                <span className="font-medium text-primary">Zichtbaar in admin lijsten</span>
+                <span className="block text-xs text-tertiary">Verberg het gebied uit interne overzichten zonder te verwijderen.</span>
+              </span>
+            </label>
+            <label className="flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={form.is_published}
+                onChange={(e) => setForm((p) => ({ ...p, is_published: e.target.checked }))}
+                className="mt-1 size-4 rounded border-primary"
+              />
+              <span className="text-sm">
+                <span className="font-medium text-primary">Gepubliceerd op publieke site</span>
+                <span className="block text-xs text-tertiary">Maakt /taxi/{form.slug || "…"} bereikbaar voor bezoekers en zoekmachines.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </SlideOver>
+    </div>
+  );
+}
+
+function PopularRoutesField({
+  routes,
+  onChange,
+}: {
+  routes: PopularRoute[];
+  onChange: (next: PopularRoute[]) => void;
+}) {
+  function update(idx: number, field: keyof PopularRoute, value: string) {
+    onChange(routes.map((r, i) => (i === idx ? { ...r, [field]: value } : r)));
+  }
+  function add() {
+    onChange([...routes, { from: "", to: "", price_eur: "" }]);
+  }
+  function remove(idx: number) {
+    onChange(routes.filter((_, i) => i !== idx));
+  }
+
+  return (
+    <div>
+      <div className="mb-2 flex items-end justify-between">
+        <div>
+          <p className="text-sm font-medium text-secondary">Populaire routes</p>
+          <p className="text-xs text-tertiary">Maximaal 4-5 routes — getoond op de stadspagina.</p>
+        </div>
+        <Button size="sm" color="secondary" iconLeading={Plus} onClick={add}>
+          Route
+        </Button>
+      </div>
+
+      {routes.length === 0 ? (
+        <p className="rounded-lg border border-dashed border-secondary px-4 py-6 text-center text-xs text-tertiary">
+          Nog geen routes toegevoegd.
+        </p>
+      ) : (
+        <div className="space-y-2">
+          {routes.map((r, i) => (
+            <div key={i} className="flex items-start gap-2">
+              <Input
+                placeholder="Van"
+                value={r.from}
+                onChange={(value) => update(i, "from", value)}
+                size="sm"
+              />
+              <Input
+                placeholder="Naar"
+                value={r.to}
+                onChange={(value) => update(i, "to", value)}
+                size="sm"
+              />
+              <Input
+                placeholder="€"
+                value={String(r.price_eur ?? "")}
+                onChange={(value) => update(i, "price_eur", value)}
+                size="sm"
+                inputMode="decimal"
+                wrapperClassName="w-24 shrink-0"
+              />
+              <Button
+                size="sm"
+                color="tertiary-destructive"
+                iconLeading={Trash01}
+                onClick={() => remove(i)}
+                aria-label="Route verwijderen"
+              />
+            </div>
+          ))}
         </div>
       )}
     </div>
