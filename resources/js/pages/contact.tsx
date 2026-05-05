@@ -47,14 +47,14 @@ const HeroSection = () => (
                 </h1>
                 <p className="text-md text-white/60 md:text-lg">
                     Heeft u een vraag of wilt u een rit bespreken? Stuur een bericht via het
-                    formulier, of kies een directe lijn — wij reageren snel.
+                    formulier, of kies een directe lijn, wij reageren snel.
                 </p>
             </div>
         </div>
     </section>
 );
 
-/* ─── Quick channels — 3 directe lijnen ──────────────────────── */
+/* ─── Quick channels, 3 directe lijnen ──────────────────────── */
 const CHANNELS = [
     {
         num: "01",
@@ -76,10 +76,10 @@ const CHANNELS = [
     {
         num: "03",
         icon: Mail01,
-        label: "E-mail",
-        value: "info@yastaxicentrale.nl",
+        label: "Contactformulier",
+        value: "Stuur een bericht",
         sub: "Voor offertes en zakelijke vragen",
-        href: "mailto:info@yastaxicentrale.nl",
+        href: "#formulier",
     },
 ];
 
@@ -166,7 +166,7 @@ const ContactFormSection = () => {
     };
 
     return (
-        <section className="bg-primary py-20 md:py-28">
+        <section id="formulier" className="bg-primary py-20 md:py-28">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="mb-14 flex flex-col gap-5 md:mb-20 md:max-w-2xl">
                     <Eyebrow>Stuur een bericht</Eyebrow>
@@ -175,7 +175,7 @@ const ContactFormSection = () => {
                     </h2>
                     <p className="text-md text-tertiary md:text-lg">
                         Voor offertes, zakelijke aanvragen of een complexe rit. Wij nemen binnen
-                        één werkdag contact met u op — vaak veel sneller.
+                        één werkdag contact met u op, vaak veel sneller.
                     </p>
                 </div>
 
@@ -291,7 +291,7 @@ const ContactFormSection = () => {
                                 Belofte
                             </span>
                             <p className="text-lg font-semibold leading-snug tracking-tight text-primary">
-                                Geen wachttijd, geen automaat — een echt mens aan de lijn, dag en nacht.
+                                Geen wachttijd, geen automaat, een echt mens aan de lijn, dag en nacht.
                             </p>
                         </div>
 
@@ -334,7 +334,7 @@ const ContactFormSection = () => {
                                 Heeft u nu een chauffeur nodig?
                             </p>
                             <p className="text-sm text-white/60">
-                                Bel ons direct — wij sturen meestal binnen vijftien minuten een wagen.
+                                Bel ons direct, wij sturen meestal binnen vijftien minuten een wagen.
                             </p>
                             <a
                                 href="tel:+31852128302"

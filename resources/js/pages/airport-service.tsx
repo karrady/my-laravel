@@ -113,9 +113,7 @@ const HeroSection = () => (
                     <span style={{ color: YELLOW }}>vliegveld.</span>
                 </h1>
                 <p className="text-md text-white/60 md:text-lg">
-                    Vaste tarieven naar Schiphol en Rotterdam The Hague Airport. Wij volgen uw
-                    vlucht, passen de ophaaltijd automatisch aan bij vertragingen en staan op tijd
-                    voor de deur — voor één vooraf bekende prijs.
+                    Vaste tarieven naar Schiphol en Rotterdam The Hague Airport. Staat uw locatie er niet bij, of wilt u naar een andere luchthaven? Vraag vrijblijvend naar de mogelijkheden.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
                     <Button size="lg" href="/reserveren" iconTrailing={ArrowRight}>
@@ -144,7 +142,6 @@ const HeroSection = () => (
                 <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/55">
                     {[
                         "Vaste prijs vooraf",
-                        "Vluchtvolging inbegrepen",
                         "Deur-tot-deur service",
                         "24/7 beschikbaar",
                     ].map((label) => (
@@ -159,7 +156,7 @@ const HeroSection = () => (
     </section>
 );
 
-/* ─── Tarieven — twee parallelle airport-tabellen ────────────── */
+/* ─── Tarieven, twee parallelle airport-tabellen ────────────── */
 const AirportColumn = ({ airport }: { airport: Airport }) => (
     <div className="flex flex-col gap-5">
         <div className="flex items-baseline justify-between gap-4 border-b border-secondary pb-4">
@@ -181,7 +178,7 @@ const AirportColumn = ({ airport }: { airport: Airport }) => (
                     href="/reserveren"
                     className="group relative flex items-center justify-between gap-4 border-b border-secondary px-1 py-3.5 last:border-b-0 transition-colors duration-150 hover:bg-secondary/60"
                 >
-                    {/* Sarı sol kenar — alleen voor "popular" */}
+                    {/* Sarı sol kenar, alleen voor "popular" */}
                     {loc.popular && (
                         <span
                             aria-hidden
@@ -227,7 +224,7 @@ const TarievenSection = () => (
                     Vaste luchthavenprijzen.
                 </h2>
                 <p className="text-md text-tertiary md:text-lg">
-                    Alle prijzen gelden voor 1 t/m 4 personen, inclusief BTW en parkeerkosten.
+                    Alle prijzen gelden voor 1 t/m 4 personen, inclusief BTW.
                     Klik op een opstapplaats om direct te reserveren.
                 </p>
             </div>
@@ -238,7 +235,7 @@ const TarievenSection = () => (
                 ))}
             </div>
 
-            {/* Andere luchthaven — refined card */}
+            {/* Andere luchthaven, refined card */}
             <div
                 className="mt-14 flex flex-col items-start justify-between gap-6 border-y px-6 py-8 md:mt-20 md:flex-row md:items-center md:gap-12 md:px-10"
                 style={{ borderColor: "var(--color-border-secondary)", background: "var(--color-bg-secondary)" }}
@@ -267,31 +264,23 @@ const TarievenSection = () => (
     </section>
 );
 
-/* ─── Inbegrepen — checklist + 3 highlights ──────────────────── */
+/* ─── Inbegrepen, checklist + 3 highlights ──────────────────── */
 const INBEGREPEN = [
-    "Vluchtvolging — wij weten wanneer u landt",
-    "Aanpassing ophaaltijd bij vluchtvertraging",
     "Ruimte voor koffers en handbagage",
     "Kinder- of rolstoelvriendelijk op aanvraag",
     "Stille rit, zonder ongewenste gesprekken",
-    "Vaste prijs — geen meter, geen verrassing",
+    "Vaste prijs, geen meter, geen verrassing",
 ];
 
 const HIGHLIGHTS = [
     {
         num: "01",
-        icon: Clock,
-        title: "Vluchtvolging",
-        text: "Wij monitoren uw vlucht en passen de ophaaltijd automatisch aan bij vertragingen.",
+        icon: Shield01,
+        title: "Vaste prijs",
+        text: "U betaalt nooit meer dan het afgesproken tarief, ook bij files of omleidingen.",
     },
     {
         num: "02",
-        icon: Shield01,
-        title: "Vaste prijs",
-        text: "U betaalt nooit meer dan het afgesproken tarief — ook bij files of omleidingen.",
-    },
-    {
-        num: "03",
         icon: MarkerPin01,
         title: "Deur-tot-deur",
         text: "Wij halen u op bij uw voordeur en brengen u tot direct aan de vertrekhal.",
@@ -307,8 +296,7 @@ const InbegrepenSection = () => (
                     Wat u ziet, is wat u betaalt.
                 </h2>
                 <p className="text-md text-tertiary md:text-lg">
-                    Bij YAS TaxiCentrale zijn er geen verborgen kosten. Geen taxameter,
-                    geen toeslagen achteraf — gewoon de prijs die u vooraf afspreekt.
+                    Bij YAS TaxiCentrale zijn er geen verborgen kosten. Gewoon de prijs die u vooraf afspreekt.
                 </p>
             </div>
 
@@ -336,7 +324,7 @@ const InbegrepenSection = () => (
 
                 {/* Highlights rechts */}
                 <div className="lg:col-span-7">
-                    <div className="grid grid-cols-1 gap-px sm:grid-cols-3" style={{ background: "var(--color-border-secondary)" }}>
+                    <div className="grid grid-cols-1 gap-px sm:grid-cols-2" style={{ background: "var(--color-border-secondary)" }}>
                         {HIGHLIGHTS.map(({ num, icon: Icon, title, text }) => (
                             <div
                                 key={num}

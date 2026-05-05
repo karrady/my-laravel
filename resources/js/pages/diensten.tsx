@@ -38,7 +38,7 @@ const HeroSection = () => (
             style={{ background: YELLOW, opacity: 0.06 }}
         />
 
-        {/* Header binnen het donkere blok — geen harde cut */}
+        {/* Header binnen het donkere blok, geen harde cut */}
         <div className="relative z-30 w-full">
             <YasHeader dark />
         </div>
@@ -53,7 +53,7 @@ const HeroSection = () => (
                 </h1>
                 <p className="text-md text-white/60 md:text-lg">
                     Van een vroege vlucht tot een spoedrit naar het ziekenhuis. Wij rijden u
-                    discreet, comfortabel en met vaste prijzen vooraf — door de hele Rijn en Gouwe regio.
+                    discreet, comfortabel en met vaste prijzen vooraf, door de hele Rijn en Gouwe regio.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
                     <Button size="lg" href="/reserveren" iconTrailing={ArrowRight}>
@@ -82,7 +82,7 @@ const HeroSection = () => (
     </section>
 );
 
-/* ─── Diensten — editöryel numaralı kartlar ─────────────────── */
+/* ─── Diensten, editöryel numaralı kartlar ─────────────────── */
 type ServiceItem = {
     num: string;
     icon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -112,14 +112,14 @@ const services: ServiceItem[] = [
         icon: Users01,
         title: "Groepsvervoer",
         description:
-            "Uitstapjes, bruiloften, vrijgezellenfeesten of een bedrijfsuitje — samen reizen in stijl. Vraag naar de mogelijkheden.",
+            "Uitstapjes, bruiloften, vrijgezellenfeesten of een bedrijfsuitje, samen reizen in stijl. Vraag naar de mogelijkheden.",
     },
     {
         num: "04",
         icon: MarkerPin01,
         title: "Ritten op maat",
         description:
-            "Ziekenhuis, treinstation, evenement of gewoon thuis — wij rijden u waar u naartoe wilt, door heel Nederland.",
+            "Ziekenhuis, treinstation, evenement of gewoon thuis, wij rijden u waar u naartoe wilt, door heel Nederland.",
         primaryBtn: { label: "Bekijk tarieven", href: "#ritten-tarieven" },
     },
     {
@@ -216,7 +216,7 @@ const DienstenGridSection = () => (
     </section>
 );
 
-/* ─── Tarieven — gegroepeerd per zone ─────────────────────────── */
+/* ─── Tarieven, gegroepeerd per zone ─────────────────────────── */
 type Route = { route: string; price: string };
 type Zone = { label: string; subtitle: string; routes: Route[] };
 
@@ -346,7 +346,7 @@ const TarievenSection = () => (
     </section>
 );
 
-/* ─── Hoe het werkt — 3 stappen ──────────────────────────────── */
+/* ─── Hoe het werkt, 3 stappen ──────────────────────────────── */
 const STAPPEN = [
     {
         num: "01",

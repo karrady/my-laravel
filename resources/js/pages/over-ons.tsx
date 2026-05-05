@@ -32,7 +32,7 @@ const waarden = [
         num: "03",
         icon: Star01,
         title: "Kwaliteit",
-        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit — dat is onze standaard, niet de uitzondering.",
+        text: "Schone voertuigen, vriendelijke chauffeurs en een vlekkeloze rit, dat is onze standaard, niet de uitzondering.",
     },
     {
         num: "04",
@@ -75,7 +75,7 @@ const HeroSection = () => (
                     <p className="text-md text-white/60 md:text-lg">
                         YAS TaxiCentrale is opgericht vanuit een persoonlijke passie voor service
                         en betrouwbaarheid. Wij geloven dat goed vervoer meer is dan van A naar B
-                        komen — het gaat om de ervaring onderweg.
+                        komen, het gaat om de ervaring onderweg.
                     </p>
                     <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
                         <Button size="lg" href="/reserveren" iconTrailing={ArrowRight}>
@@ -125,7 +125,7 @@ const HeroSection = () => (
     </section>
 );
 
-/* ─── Verhaal — editöryel layout ─────────────────────────────── */
+/* ─── Verhaal, editöryel layout ─────────────────────────────── */
 const VerhaalSection = () => (
     <section className="bg-primary py-20 md:py-28">
         <div className="mx-auto max-w-container px-4 md:px-8">
@@ -164,7 +164,7 @@ const VerhaalSection = () => (
     </section>
 );
 
-/* ─── Waarden — donker, numaralı grid ───────────────────────── */
+/* ─── Waarden, donker, numaralı grid ───────────────────────── */
 const WaardenSection = () => (
     <section className="relative overflow-hidden py-20 md:py-28" style={{ background: DARK }}>
         <div
@@ -183,7 +183,7 @@ const WaardenSection = () => (
                     De principes achter elke rit.
                 </h2>
                 <p className="text-md text-white/60 md:text-lg">
-                    Vier overtuigingen die elke beslissing — van planning tot rijden — sturen.
+                    Vier overtuigingen die elke beslissing, van planning tot rijden, sturen.
                 </p>
             </div>
 

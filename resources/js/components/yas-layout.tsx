@@ -402,7 +402,6 @@ export const YasFooter = () => (
                 <div className="flex flex-col gap-3">
                     <p className="text-sm font-semibold text-secondary">Contact</p>
                     <p className="text-md text-tertiary">+31 (0)85 212 83 02</p>
-                    <p className="text-md text-tertiary">info@yastaxicentrale.nl</p>
                     <p className="text-md text-tertiary">Gouda, Zuid-Holland</p>
                 </div>
             </div>

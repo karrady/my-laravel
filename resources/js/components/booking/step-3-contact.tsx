@@ -135,7 +135,7 @@ export function Step3Contact({ onNext, onBack }: Step3Props) {
         />
       </Field>
 
-      <Field label="Vluchtnummer (optioneel)" hint="Wij volgen uw vlucht bij vertraging.">
+      <Field label="Vluchtnummer (optioneel)" hint="Optioneel, voor uw eigen referentie.">
         <input
           type="text"
           value={step3.flightNumber}

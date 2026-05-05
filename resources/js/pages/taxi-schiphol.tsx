@@ -30,7 +30,7 @@ const TaxiSchiphol = () => (
                         Taxi Schiphol vanuit Gouda en omgeving, vaste prijs
                     </h1>
                     <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                        YAS TaxiCentrale brengt u stressvrij van Gouda naar Amsterdam Schiphol Airport. Vaste prijs, vluchtvolging inbegrepen, gratis wachttijd tot 60 minuten bij vertraging.
+                        YAS TaxiCentrale brengt u stressvrij van Gouda naar Amsterdam Schiphol Airport. Vaste prijs, altijd op tijd.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <Button size="lg" href="/reserveren">Nu Reserveren</Button>
@@ -53,7 +53,7 @@ const TaxiSchiphol = () => (
         <section className="bg-primary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Vaste prijzen naar Schiphol Airport</h2>
-                <p className="mt-3 text-lg text-tertiary">Alle tarieven zijn per rit, inclusief BTW en parkeerkosten.</p>
+                <p className="mt-3 text-lg text-tertiary">Alle tarieven zijn per rit, inclusief BTW.</p>
                 <div className="mt-8 overflow-hidden rounded-2xl border border-secondary">
                     <table className="w-full">
                         <thead>
@@ -97,8 +97,6 @@ const TaxiSchiphol = () => (
                         <p className="mt-4 text-lg text-tertiary">Bij YAS TaxiCentrale betaalt u de vaste prijs, geen extra's achteraf.</p>
                         <ul className="mt-8 flex flex-col gap-4">
                             {[
-                                "Vluchtvolging: wij weten wanneer u landt",
-                                "Gratis wachttijd tot 60 minuten bij vertraging",
                                 "Ruimte voor koffers en handbagage",
                                 "Deur-tot-deur service, geen overstap",
                                 "Kinderzitje op aanvraag",
@@ -113,8 +111,7 @@ const TaxiSchiphol = () => (
                     </div>
                     <div className="flex flex-col gap-6">
                         {[
-                            { icon: Clock, title: "Vluchtvolging", text: "Wij monitoren uw vlucht live en passen de ophaaltijd automatisch aan bij vertragingen." },
-                            { icon: Shield01, title: "Vaste prijs garantie", text: "Geen taximeter, geen files-opslag. U betaalt nooit meer dan het afgesproken tarief." },
+                            { icon: Shield01, title: "Vaste prijs garantie", text: "U betaalt nooit meer dan het afgesproken tarief, ook bij files of omleidingen." },
                             { icon: MarkerPin01, title: "Deur-tot-deur", text: "Wij halen u op bij uw voordeur en brengen u direct tot aan de vertrekhal op Schiphol." },
                         ].map(({ icon, title, text }) => (
                             <div key={title} className="flex gap-4">

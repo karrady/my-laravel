@@ -56,7 +56,7 @@ const USPS = [
     {
         icon: Clock,
         title: "Altijd op tijd",
-        text: "Wij plannen ruim, volgen vluchten en passen ophaaltijden aan bij vertraging.",
+        text: "Wij plannen ruim en staan altijd op tijd klaar.",
     },
     {
         icon: Shield01,
@@ -73,7 +73,7 @@ const USPS = [
 const NotFound = () => (
     <div className="bg-primary">
         <Helmet>
-            <title>Servicegebied niet gevonden — YAS TaxiCentrale</title>
+            <title>Servicegebied niet gevonden | YAS TaxiCentrale</title>
             <meta name="robots" content="noindex" />
         </Helmet>
         <YasHeader />
@@ -122,7 +122,7 @@ const TaxiArea = () => {
     if (isLoading) return <Loading />;
     if (error || !area) return <NotFound />;
 
-    const title = area.meta_title || `Taxi ${area.name} — YAS TaxiCentrale`;
+    const title = area.meta_title || `Taxi ${area.name} | YAS TaxiCentrale`;
     const description =
         area.meta_description ||
         `Betrouwbaar taxivervoer in ${area.name} met vaste tarieven. Boek online of bel 085 212 83 02. 24/7 beschikbaar.`;

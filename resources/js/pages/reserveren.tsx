@@ -18,7 +18,7 @@ const USP_ITEMS = [
         num: "01",
         icon: CheckCircle,
         title: "Gratis annuleren",
-        text: "Tot 2 uur voor de rit kosteloos annuleren — geen vragen.",
+        text: "Tot 2 uur voor de rit kosteloos annuleren, geen vragen.",
     },
     {
         num: "02",
@@ -30,7 +30,7 @@ const USP_ITEMS = [
         num: "03",
         icon: Car01,
         title: "Vaste prijs",
-        text: "De prijs staat vast voordat u instapt. Geen taxameter, geen verrassingen.",
+        text: "De prijs staat vast voordat u instapt. Geen verrassingen achteraf.",
     },
     {
         num: "04",
@@ -40,7 +40,7 @@ const USP_ITEMS = [
     },
 ];
 
-/* ─── Hero — twee-koloms wizard layout ───────────────────────── */
+/* ─── Hero, twee-koloms wizard layout ───────────────────────── */
 const ReserverenHero = () => {
     const { step, setStep } = useBookingStore();
 

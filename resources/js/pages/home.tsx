@@ -21,13 +21,13 @@ import { YasHero } from "@/components/yas-hero";
 const YELLOW = "rgb(255,210,0)";
 const DARK = "#0E0E0E";
 
-/* ─── Diensten — editorial numbered cards ────────────────────── */
+/* ─── Diensten, editorial numbered cards ────────────────────── */
 const DIENSTEN = [
     {
         num: "01",
         icon: Car01,
         title: "Luchthavenvervoer",
-        text: "Stressvrij van deur tot gate. Wij rijden u naar Schiphol, Rotterdam The Hague Airport en meer — altijd op tijd.",
+        text: "Stressvrij van deur tot gate. Wij rijden u naar Schiphol, Rotterdam The Hague Airport en meer, altijd op tijd.",
         href: "/airport-service",
         cta: "Bekijk tarieven",
     },
@@ -43,7 +43,7 @@ const DIENSTEN = [
         num: "03",
         icon: MarkerPin01,
         title: "Regionaal vervoer",
-        text: "Stations, ziekenhuizen, scholen of afspraken — snel en betrouwbaar door heel Gouda en de regio.",
+        text: "Stations, ziekenhuizen, scholen of afspraken, snel en betrouwbaar door heel Gouda en de regio.",
         href: "/diensten",
         cta: "Meer informatie",
     },
@@ -66,7 +66,7 @@ const DienstenSection = () => (
                     Een rit voor elke gelegenheid.
                 </h2>
                 <p className="text-md text-tertiary md:text-lg">
-                    Van een vroege vlucht tot een spoedrit naar het ziekenhuis — wij rijden u
+                    Van een vroege vlucht tot een spoedrit naar het ziekenhuis, wij rijden u
                     discreet, comfortabel en met vaste prijzen vooraf.
                 </p>
             </div>
@@ -86,7 +86,7 @@ const DienstenSection = () => (
                                         : undefined,
                             }}
                         >
-                            {/* Top accent — fills yellow on hover */}
+                            {/* Top accent, fills yellow on hover */}
                             <span
                                 aria-hidden
                                 className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
@@ -124,17 +124,17 @@ const DienstenSection = () => (
     </section>
 );
 
-/* ─── Waarom YAS — credibility grid op donker ────────────────── */
+/* ─── Waarom YAS, credibility grid op donker ────────────────── */
 const REDENEN = [
     {
         icon: CreditCard02,
         title: "Vaste prijs vooraf",
-        text: "Geen verrassingen, geen taxameter. U weet de ritprijs voordat u instapt.",
+        text: "Geen verrassingen. U weet de ritprijs voordat u instapt.",
     },
     {
         icon: Clock,
         title: "24/7 beschikbaar",
-        text: "Dag en nacht, doordeweeks of in het weekend — wij staan voor u klaar.",
+        text: "Dag en nacht, doordeweeks of in het weekend, wij staan voor u klaar.",
     },
     {
         icon: ShieldTick,
@@ -154,7 +154,7 @@ const REDENEN = [
     {
         icon: Phone,
         title: "Persoonlijk contact",
-        text: "Een vast aanspreekpunt — boekt u één keer, dan kennen wij u de volgende keer.",
+        text: "Een vast aanspreekpunt, boekt u één keer, dan kennen wij u de volgende keer.",
     },
 ];
 
@@ -239,7 +239,7 @@ const ServiceRegioSection = () => (
                     </h2>
                     <p className="text-md text-tertiary md:text-lg">
                         YAS TaxiCentrale is gevestigd in Gouda en rijdt door de gehele regio.
-                        Van station tot luchthaven — altijd dichtbij.
+                        Van station tot luchthaven, altijd dichtbij.
                     </p>
                     <p className="text-sm text-tertiary">
                         Buiten deze plaatsen? Neem contact op, wij rijden door heel Nederland.
@@ -281,7 +281,7 @@ const ServiceRegioSection = () => (
     </section>
 );
 
-/* ─── CTA — premium dark closer ──────────────────────────────── */
+/* ─── CTA, premium dark closer ──────────────────────────────── */
 const CtaSection = () => (
     <section className="relative overflow-hidden" style={{ background: DARK }}>
         <div

@@ -28,7 +28,7 @@ const TaxiRotterdamAirport = () => (
                         Taxi Rotterdam The Hague Airport, vaste prijs vanuit Gouda
                     </h1>
                     <p className="mt-4 text-lg md:mt-5 md:text-xl" style={{ color: "#999" }}>
-                        Betrouwbaar taxivervoer van Gouda en omstreken naar Rotterdam The Hague Airport (RTM). Sneller dan Schiphol, vaste prijs, vluchtvolging inbegrepen.
+                        Betrouwbaar taxivervoer van Gouda en omstreken naar Rotterdam The Hague Airport (RTM). Vaste prijs, altijd op tijd.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         <Button size="lg" href="/reserveren">Nu Reserveren</Button>
@@ -37,7 +37,7 @@ const TaxiRotterdamAirport = () => (
                         </Button>
                     </div>
                     <div className="mt-6 flex flex-wrap gap-4 text-sm" style={{ color: "#777" }}>
-                        {["Vluchtvolging inbegrepen", "Gratis wachttijd 60 min", "Dichtstbijzijnde luchthaven"].map((t) => (
+                        {["Vaste prijs, geen verrassingen", "Dichtstbijzijnde luchthaven"].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
                                 <CheckCircle className="size-4 shrink-0" style={{ color: YELLOW }} aria-hidden /> {t}
                             </span>
@@ -51,7 +51,7 @@ const TaxiRotterdamAirport = () => (
         <section className="bg-primary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">Vaste prijzen naar Rotterdam The Hague Airport</h2>
-                <p className="mt-3 text-lg text-tertiary">Inclusief BTW, parkeerkosten en wachttijd tot 60 minuten.</p>
+                <p className="mt-3 text-lg text-tertiary">Inclusief BTW.</p>
                 <div className="mt-8 overflow-hidden rounded-2xl border border-secondary">
                     <table className="w-full">
                         <thead>
