@@ -140,22 +140,16 @@ const VerhaalSection = () => (
                 <div className="lg:col-span-8">
                     <div className="flex flex-col gap-6 border-l-2 pl-8" style={{ borderColor: YELLOW }}>
                         <p className="text-lg leading-relaxed text-secondary md:text-xl">
-                            YAS TaxiCentrale staat voor eerlijk en persoonlijk taxivervoer in
-                            Gouda en omstreken. Geen verrassingen aan de meter, geen anonieme app —
-                            gewoon een vaste prijs en een chauffeur die de regio kent.
+                            YAS TaxiCentrale verzorgt taxivervoer in Gouda en de regio Rijn en Gouwe. Particulier, zakelijk of voor een instelling, wij rijden voor iedereen die ergens moet zijn.
                         </p>
                         <p className="text-md leading-relaxed text-tertiary">
-                            Als Gouwenaar weet ik hoe belangrijk goede service is. Daarom werken
-                            wij met vaste prijzen, vertrouwde chauffeurs en direct contact via
-                            telefoon of WhatsApp. Voor elke rit, dichtbij of ver weg.
+                            Bij ons staat het simpel: vaste prijzen vooraf, vertrouwde chauffeurs en duidelijke afspraken. U weet vooraf waar u aan toe bent en wij zorgen voor de rest.
                         </p>
                         <p className="text-md leading-relaxed text-tertiary">
-                            Wij rijden voor particulieren, zakelijke klanten en zorginstellingen.
-                            Voor regelmatig vervoer hebben wij speciale tarieven.
+                            Onze chauffeurs kennen de regio goed. Of u nu een rit door de stad nodig hebt, naar een afspraak moet of een langere reis voor de boeg hebt, u kunt op ons rekenen voor een rustige en comfortabele rit.
                         </p>
                         <p className="text-md leading-relaxed text-tertiary">
-                            Een rit nodig? Vraag 'm aan via onze website, of bel of app ons.
-                            Wij regelen het voor u.
+                            Bellen, appen of een rit aanvragen via onze website kan altijd. Wij regelen het voor u.
                         </p>
                     </div>
                 </div>
@@ -230,8 +224,7 @@ const CtaSection = () => (
                         <span style={{ color: "rgb(180,140,0)" }}>wij regelen de rest.</span>
                     </h2>
                     <p className="text-md text-tertiary md:text-lg">
-                        Vragen of een speciale rit? Stuur een bericht of bel ons direct —
-                        wij denken graag met u mee.
+                        Vragen of een speciale rit? Stuur een bericht of bel ons direct, wij denken graag met u mee.
                     </p>
                 </div>
 

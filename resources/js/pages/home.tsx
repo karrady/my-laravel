@@ -66,8 +66,7 @@ const DienstenSection = () => (
                     Een rit voor elke gelegenheid.
                 </h2>
                 <p className="text-md text-tertiary md:text-lg">
-                    Van een vroege vlucht tot een spoedrit naar het ziekenhuis, wij rijden u
-                    discreet, comfortabel en met vaste prijzen vooraf.
+                    Of het nu gaat om een luchthaventransfer, een zakelijke afspraak of een rit door de regio, wij staan voor u klaar met comfortabel vervoer tegen vaste prijzen.
                 </p>
             </div>
 
