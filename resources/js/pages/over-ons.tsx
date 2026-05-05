@@ -133,7 +133,7 @@ const VerhaalSection = () => (
                 <div className="flex flex-col gap-5 lg:col-span-4">
                     <Eyebrow>Ons verhaal</Eyebrow>
                     <h2 className="text-display-md font-semibold tracking-tight text-primary md:text-display-lg">
-                        Betrouwbaar taxivervoer, dichtbij of ver weg.
+                        Betrouwbaar taxivervoer dichtbij of ver weg.
                     </h2>
                 </div>
 
